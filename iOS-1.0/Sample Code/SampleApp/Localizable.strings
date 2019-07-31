@@ -1,0 +1,12 @@
+/*
+ Localizable.strings
+ PingOne
+ 
+ Created by Segev Sherry on 5/21/19.
+ Copyright © 2019 Ping Identity. All rights reserved.
+ */
+
+"notification.confirm"  = "Approve";
+"notification.deny"     = "Deny";
+"notification.message"  = "You have a new authentication request.";
+"notification.title"    = "New Authentication";
