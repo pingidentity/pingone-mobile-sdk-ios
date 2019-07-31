@@ -88,10 +88,10 @@ PingOne SDK will only handle push notifications which were issued by the PingOne
 The `APNSDeviceTokenType` should be set like this:
 
 ```
-      var deviceTokenType : PingOne.APNSDeviceTokenType = .production
-        #if DEBUG
-        deviceTokenType = .sandbox
-        #endif
+var deviceTokenType : PingOne.APNSDeviceTokenType = .production
+#if DEBUG
+deviceTokenType = .sandbox
+#endif
 ```
 
 Inside the following AppDelegate method:
@@ -99,13 +99,13 @@ Inside the following AppDelegate method:
 ```
 optional func application(_ application: UIApplication, 
 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
-   fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 ```
 
 Call:
 
 ```
-    @objc public static func processRemoteNotification(_ userInfo: [AnyHashable : Any], completionHandler: @escaping (_ notificationObject: NotificationObject?, _ error: NSError?) -> Void)
+@objc public static func processRemoteNotification(_ userInfo: [AnyHashable : Any], completionHandler: @escaping (_ notificationObject: NotificationObject?, _ error: NSError?) -> Void)
 ```
 
 and pass it the `userInfo` as is.
@@ -121,18 +121,18 @@ PingOne SDK uses categories for different notifications. If your app already use
 and add them to your current categories, for example:
 
 ```
-        let center  = UNUserNotificationCenter.current()
-        center.delegate = self
-        center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
-            if error == nil
-            {
-                // Registering UNNotificationCategory more than once results in previous categories being overwritten. PingOne provides the needed categories. The developer may add categories.
-                UNUserNotificationCenter.current().setNotificationCategories(PingOne.getUNNotificationCategories())
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-            }
+let center  = UNUserNotificationCenter.current()
+center.delegate = self
+center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+    if error == nil
+    {
+        // Registering UNNotificationCategory more than once results in previous categories being overwritten. PingOne provides the needed categories. The developer may add categories.
+        UNUserNotificationCenter.current().setNotificationCategories(PingOne.getUNNotificationCategories())
+        DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
         }
+    }
+}
         
 ```
 
