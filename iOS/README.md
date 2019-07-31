@@ -53,7 +53,7 @@ The following steps solve this issue:
 	bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PingOne.framework/strip-frameworks.sh"
 	```
 	
-	![](https://github.com/pingidentity/pingone-customers-mobile-mfa-sdk/tree/v1.0/iOS/img/p1_i_SDKbuildPhasesRunScript.png)
+	![](./img/p1_i_SDKbuildPhasesRunScript.png)
 
 
  
@@ -156,7 +156,7 @@ The following keys are returned by the PingOne SDK Remote Notification, with sug
 Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your private keychain group). This requirement will ensure that the SDK keychain values are private, and are not shared between apps​:
 
 
-![](https://github.com/pingidentity/pingone-customers-mobile-mfa-sdk/tree/v1.0/iOS/img/p1_i_SDKkeychainSharing.png)
+![](./img/p1_i_SDKkeychainSharing.png)
 
 
 ### PingOne Mobile SDK sample app
