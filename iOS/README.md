@@ -33,7 +33,7 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 1. In your **Project Navigator**, click on your target, and drag **PingOne.framework** to **Embedded Binaries**.
 2. Check the **Copy items if needed** checkbox.
 
-    ![](https://github.com/pingidentity/pingone-customers-mobile-mfa-sdk/tree/v1.0/iOS/img/p1_i_SDKintegrateIntoIDE.png)
+    ![](./img/p1_i_SDKintegrateIntoIDE.png)
 
 
 3. Integrate the PingOne SDK component into your code:
