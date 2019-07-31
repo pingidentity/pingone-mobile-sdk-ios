@@ -1,15 +1,15 @@
 ## Getting started with Android PingOne SDK
 
 
-1. Download the `PingOne.aar` library file from the PingOne Mobile SDK package. <!--<TBD>-->
+1. Download the [PingOne.aar](Android/SDK/PingOne.aar) library file.
 
 2. Make the following changes to your `build.gradle` files in order to add the PingOne SDK component dependency:
 	* Open your top-level `build.gradle` file, to add the PingOne SDK component as a dependency. Add the following lines to the `allprojects` node under the `repositories` node:
 	
-		```
-		flatDir {
-	     dirs 'libs'
-	         }
+	    ```
+	    flatDir {
+	        dirs 'libs'
+	    }
 	    ```
    
     * Create a `libs` folder inside your module’s folder. Copy the PingOne SDK component file `PingOne.aar` into the `libs` folderit. Add the following dependency to the modules that use the PingOne SDK component:
