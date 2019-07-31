@@ -1,9 +1,3 @@
----
-layout: guide_microsite.hbs
-title: Android implementation
-summary: Flow for integrating the PingOne Mobile SDK component in Android mobile apps
----
-
 ## Getting started with Android PingOne SDK
 
 

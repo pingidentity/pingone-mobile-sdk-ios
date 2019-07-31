@@ -1,9 +1,3 @@
----
-layout: guide_microsite.hbs
-title: iOS implementation
-summary: Flow for integrating the PingOne Mobile SDK component in iOS mobile apps
----
-
 ## Set up a mobile app using the PingOne SDK sample code
 
 ### Prerequisites
@@ -39,7 +33,7 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 1. In your **Project Navigator**, click on your target, and drag **PingOne.framework** to **Embedded Binaries**.
 2. Check the **Copy items if needed** checkbox.
 
-    ![](/{{pingoneApisPath}}/mobileSDK/images/p1_i_SDKintegrateIntoIDE.png)
+    ![](https://github.com/pingidentity/pingone-customers-mobile-mfa-sdk/tree/v1.0/iOS/img/p1_i_SDKintegrateIntoIDE.png)
 
 
 3. Integrate the PingOne SDK component into your code:
@@ -59,7 +53,8 @@ The following steps solve this issue:
 	bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PingOne.framework/strip-frameworks.sh"
 	```
 	
-	![](/{{pingoneApisPath}}/mobileSDK/images/p1_i_SDKbuildPhasesRunScript.png)
+	![](https://github.com/pingidentity/pingone-customers-mobile-mfa-sdk/tree/v1.0/iOS/img/p1_i_SDKbuildPhasesRunScript.png)
+
 
  
 ### Pairing
@@ -161,7 +156,8 @@ The following keys are returned by the PingOne SDK Remote Notification, with sug
 Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your private keychain group). This requirement will ensure that the SDK keychain values are private, and are not shared between apps​:
 
 
-![](/{{pingoneApisPath}}/mobileSDK/images/p1_i_SDKkeychainSharing.png)
+![](https://github.com/pingidentity/pingone-customers-mobile-mfa-sdk/tree/v1.0/iOS/img/p1_i_SDKkeychainSharing.png)
+
 
 ### PingOne Mobile SDK sample app
 
