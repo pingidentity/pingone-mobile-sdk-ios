@@ -16,8 +16,8 @@
 
 	    ```
 	    {
-	    implementation fileTree(include: ['*.aar'], dir: 'libs')
-	     }
+	        implementation fileTree(include: ['*.aar'], dir: 'libs')
+	    }
 	    ```
    
     *  As the PingOne SDK component is loaded locally, you’ll have to add the PingOne SDK component’s dependencies manually in order to be able to compile and run it. Add these dependencies under the PingOne SDK component dependency:
