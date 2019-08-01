@@ -22,7 +22,7 @@
    
     *  As the PingOne SDK component is loaded locally, you’ll have to add the PingOne SDK component’s dependencies manually in order to be able to compile and run it. Add these dependencies under the PingOne SDK component dependency:
 
-	    ```
+		```
 	    implementation 'androidx.appcompat:appcompat:1.0.2'
 		
 		implementation 'org.slf4j:slf4j-api:1.7.26'
@@ -60,7 +60,10 @@ Make sure you set the device’s FCM registration token before you call `PingOne
 
 
 2. Retrieve the pairing key (see [Pairing keys](/{{pingoneApisPath}}/man/p1_Users/p1_PairingKeys/)) and pair the device to the PingOne servers by calling
-`PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())`
+
+	```
+	PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())
+	```
 
 3. Implement the PingOne library’s push handling by passing the RemoteMessage received from FCM to the PingOne Library: 
 
@@ -158,8 +161,8 @@ private void parseTitleAndBody(RemoteMessage remoteMessage, Intent intent){
 
 ```
 /*
-* To share the log file, use this method. The FileProvider for your application_id and
-* PingOne log file are provided by the SDK component.
+* Call this method if you want to share the PingOne SDK logs with the PingOne support team.
+* The FileProvider for your application_id and PingOne log file are provided by the SDK component.
 */
 private void shareLogFile(Context context){
    /*

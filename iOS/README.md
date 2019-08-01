@@ -16,7 +16,7 @@ Refer to: [Establishing a Token-Based Connection to APNs](https://developer.appl
 
 #### iOS Push Notification:
 
-When configuring your PingOne SDK application in the PingOne admin web console (**Connections > Applications > {application} > Edit > Authenticator**), you should upload your .p8 token and fill in the Key ID, Team ID and Bundle ID. See [Edit an application](https://documentation.pingidentity.com/pingone/p14cAdminGuide/index.shtml#p1_t_editApplication.html) in the administration guide.
+When configuring your PingOne SDK application in the PingOne admin web console (**Connections > Applications > {NATIVE application} > Edit > Authenticator**), you should upload your .p8 token and fill in the Key ID, Team ID and Bundle ID. See [Edit an application](https://documentation.pingidentity.com/pingone/p14cAdminGuide/index.shtml#p1_t_editApplication.html) in the administration guide.
 
 
 
@@ -133,7 +133,6 @@ center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error
         }
     }
 }
-        
 ```
 
 
@@ -163,4 +162,22 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
+### Share log file
 
+```
+// Call this method if you want to share the PingOne SDK logs with the PingOne support team.
+func shareLogs() {
+	if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+		DispatchQueue.global(qos: .userInitiated).async {
+			let fileURL = dir.appendingPathComponent("pingone.log")
+			var filesToShare = [Any]()
+			filesToShare.append(fileURL)
+			let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+			
+			DispatchQueue.main.async {
+				self.present(activityViewController, animated: true, completion: nil)
+			}
+		}
+	}
+}
+```
