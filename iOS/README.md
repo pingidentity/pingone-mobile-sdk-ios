@@ -61,7 +61,7 @@ The following steps solve this issue:
 
 To pair the device, call the following method with your pairing key:
 
-```
+```swift
 @objc public static func pair(_ pairingKey: String, completionHandler: @escaping (NSError?) -> Void)
 ```
 
@@ -77,7 +77,7 @@ This section details the steps needed in order to work with push messages in iOS
 
 In order to receive push notifications from PingOne SDK, use the following code in your `didRegisterForRemoteNotificationsWithDeviceToken` call, passing the deviceToken as is:
 
-```
+```swift
 @objc public static func setDeviceToken(_ deviceToken: Data, type: APNSDeviceTokenType, completionHandler: @escaping (_ error: NSError?) -> Void)
 ```
  
@@ -87,7 +87,7 @@ PingOne SDK will only handle push notifications which were issued by the PingOne
 
 The `APNSDeviceTokenType` should be set like this:
 
-```
+```swift
 var deviceTokenType : PingOne.APNSDeviceTokenType = .production
 #if DEBUG
 deviceTokenType = .sandbox
@@ -96,7 +96,7 @@ deviceTokenType = .sandbox
 
 Inside the following AppDelegate method:
 
-```
+```swift
 optional func application(_ application: UIApplication, 
 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
@@ -104,7 +104,7 @@ fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) ->
 
 Call:
 
-```
+```swift
 @objc public static func processRemoteNotification(_ userInfo: [AnyHashable : Any], completionHandler: @escaping (_ notificationObject: NotificationObject?, _ error: NSError?) -> Void)
 ```
 
@@ -114,13 +114,13 @@ and pass it the `userInfo` as is.
 
 PingOne SDK uses categories for different notifications. If your app already uses categories, you will need to retrieve the PingOne SDK categories `Set<UNNotificationCategory>`, by calling:    
 
-```
+```swift
 @objc public static func getUNNotificationCategories() -> Set<UNNotificationCategory>
 ```
 
 and add them to your current categories, for example:
 
-```
+```swift
 let center  = UNUserNotificationCenter.current()
 center.delegate = self
 center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
@@ -140,7 +140,7 @@ center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error
 
 The following keys are returned by the PingOne SDK Remote Notification, with suggested localization:
 
-```
+```swift
 "notification.confirm"  = "Approve";
 "notification.deny"     = "Deny";
 "notification.message"  = "You have a new authentication request.";
@@ -164,7 +164,7 @@ The PingOne Mobile SDK bundle provides a sample app that includes all the basic 
 
 ### Share log file
 
-```
+```swift
 // Call this method if you want to share the PingOne SDK logs with the PingOne support team.
 func shareLogs() {
 	if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
