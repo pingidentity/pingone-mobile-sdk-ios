@@ -61,13 +61,13 @@ Make sure you set the device’s FCM registration token before you call `PingOne
 
 2. Retrieve the pairing key (see [Pairing keys](/{{pingoneApisPath}}/man/p1_Users/p1_PairingKeys/)) and pair the device to the PingOne servers by calling
 
-	```
+	```java
 	PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())
 	```
 
 3. Implement the PingOne library’s push handling by passing the RemoteMessage received from FCM to the PingOne Library: 
 
-	```
+	```java
 	@Override
 	public void onMessageReceived(final RemoteMessage remoteMessage) {
 	PingOne.processRemoteNotification(remoteMessage, new PingOne.PingOneNotificationCallback() {
@@ -88,7 +88,7 @@ Make sure you set the device’s FCM registration token before you call `PingOne
 
 ### Sample messaging service
 
-```
+```java
 /*
 * This is where you will receive FCM messages
 */
@@ -159,7 +159,7 @@ private void parseTitleAndBody(RemoteMessage remoteMessage, Intent intent){
 
 ### Share log file
 
-```
+```java
 /*
 * Call this method if you want to share the PingOne SDK logs with the PingOne support team.
 * The FileProvider for your application_id and PingOne log file are provided by the SDK component.
