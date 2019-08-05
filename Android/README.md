@@ -4,7 +4,7 @@
 1. Download the [PingOne.aar](SDK/PingOne.aar) library file.
 
 2. Make the following changes to your `build.gradle` files in order to add the PingOne SDK component dependency:
-	* Open your top-level `build.gradle` file, to add the PingOne SDK component as a dependency. Add the following lines to the `allprojects` node under the `repositories` node:
+	* Open your top-level `build.gradle` file, to add the PingOne SDK component as a dependency. Add the following lines to the `allprojects` node inside the `repositories` node:
 	
 	    ```
 	    flatDir {
@@ -12,7 +12,7 @@
 	    }
 	    ```
    
-    * Create a `libs` folder inside your module’s folder. Copy the PingOne SDK component file `PingOne.aar` into the `libs` folderit. Add the following dependency to the modules that use the PingOne SDK component:
+    * Create a `libs` folder inside your module’s folder. Copy the PingOne SDK component file `PingOne.aar` into the `libs` folder. Add the following dependency to the modules that use the PingOne SDK component:
 
 	    ```
 	    {
@@ -59,7 +59,7 @@ In your app, add the appropriate section in your androidmanifest.xml file (FCM m
 Make sure you set the device’s FCM registration token before you call `PingOne.pair`, and make sure you update the PingOne SDK Library with the new device token each time it changes.
 
 
-2. Retrieve the pairing key (see [Pairing keys](/{{pingoneApisPath}}/man/p1_Users/p1_PairingKeys/)) and pair the device to the PingOne servers by calling
+2. Retrieve the pairing key (see [Pairing keys](https://apidocs.pingidentity.com/pingone/customer/v1/api/man/p1_Users/p1_PairingKeys/)) and pair the device to the PingOne servers by calling
 
 	```java
 	PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())
