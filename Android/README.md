@@ -1,5 +1,26 @@
-## Getting started with Android PingOne SDK
+## Set up a mobile app using the PingOne SDK sample code
 
+### Prerequisites
+
+Prepare the FCM push messaging mandatory data from Firebase developers console:
+
+* Server key
+* Package name
+* google-services.json
+
+Refer to: [Add Firebase to your Android project](https://firebase.google.com/docs/android/setup).
+
+### Configure FCM push messaging on the PingOne Portal
+
+#### FCM Push Notification:
+
+Add the google-services.json retrieved from the Firebase developers console to your project.
+
+When configuring your PingOne SDK application in the PingOne admin web console (**Connections > Applications > {NATIVE application} > Edit > Authenticator**), you should fill in the Package Name and the Server Key. See [Edit an application](https://documentation.pingidentity.com/pingone/p14cAdminGuide/index.shtml#p1_t_editApplication.html) in the administration guide. 
+
+
+
+#### Add the PingOne SDK component into your existing project
 
 1. Download the [PingOne.aar](SDK/PingOne.aar) library file.
 
@@ -43,31 +64,35 @@
 		
 	    ```
 
-3. Register your application with Firebase according to the instructions in the following tutorial: [https://firebase.google.com/docs/android/setup](https://firebase.google.com/docs/android/setup). 
 
-	**Note**: Make sure you insert the `google-services.json` into your project in order to send push notifications.
+### Pairing
 
-4. Register your Application ID in PingOne. See [Edit an application](https://documentation.pingidentity.com/pingone/p14cAdminGuide/index.shtml#p1_t_editApplication.html) in the administration guide.
+To pair the device, call the following method with your pairing key:
 
+```java
+PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())
+```
 
-## Implement the PingOne SDK in your code
+### Working with push messages in Android
 
 PingOne SDK utilizes push messaging in order to authenticate end users. PingOne SDK can work side by side within an app that uses push messaging. This page details the steps needed in order to work with push messages in Android. Your application may receive push messages from the PingOne SDK server, and also from other sources. As a result, your implementation of the FirebaseMessagingService will have to differentiate between push messages sent from the PingOne SDK server and other messages, and pass them to the PingOne SDK component for processing.
 In your app, add the appropriate section in your androidmanifest.xml file (FCM messaging service), and add the appropriate class.
 
-1. Retrieve the FCM Registration Token Id from the FCM and set it in the PingOne Library by calling `PingOne.setDeviceToken(context,, token, new PingOne.PingOneSDKCallback())`
+
+#### Register device token on PingOne server
+
+ Retrieve the FCM Registration Token Id from the FCM and set it in the PingOne Library by calling 	
+ ```java
+PingOne.setDeviceToken(context,, token, new PingOne.PingOneSDKCallback())
+```
 Make sure you set the device’s FCM registration token before you call `PingOne.pair`, and make sure you update the PingOne SDK Library with the new device token each time it changes.
 
+### Handling Push Notifications
 
-2. Retrieve the pairing key (see [Pairing keys](https://apidocs.pingidentity.com/pingone/customer/v1/api/man/p1_Users/p1_PairingKeys/)) and pair the device to the PingOne servers by calling
+Implement the PingOne library’s push handling by passing the RemoteMessage received from FCM to the PingOne Library. 
+PingOne SDK will only handle push notifications which were issued by the PingOne SDK server. For other push notifications, `PingOneSDKError` with the code `10002, unrecognizedRemoteNotification` will be returned.
 
-	```java
-	PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())
-	```
-
-3. Implement the PingOne library’s push handling by passing the RemoteMessage received from FCM to the PingOne Library: 
-
-	```java
+```java
 	@Override
 	public void onMessageReceived(final RemoteMessage remoteMessage) {
 	PingOne.processRemoteNotification(remoteMessage, new PingOne.PingOneNotificationCallback() {
@@ -80,81 +105,11 @@ Make sure you set the device’s FCM registration token before you call `PingOne
 	     	}
 	 });
 	}
-	```
-
-4. The NotificationObject received in PingOneNotificationCallback contains the “approve” and “deny” methods. Present them to the user according to your UX.
-
-## Sample application methods with comments
-
-### Sample messaging service
-
-```java
-/*
-* This is where you will receive FCM messages
-*/
-public class SampleMessagingService extends FirebaseMessagingService {
-
-   @Override
-   public void onMessageReceived(RemoteMessage remoteMessage) {
-       PingOne.processRemoteNotification(remoteMessage, new PingOne.PingOneNotificationCallback() {
-           @Override
-           public void onComplete(@Nullable NotificationObject pingOneNotificationObject, PingOneSDKError error) {
-               if (pingOneNotificationObject == null){
-                   //the push is not from PingOne  - apply your customized application logic
-               }else{
-                   //the object contains two options - approve and deny - present them to the user
-                   Intent handleNotificationObjectIntent = new Intent(SampleMessagingService.this, MainActivity.class);
-                   handleNotificationObjectIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                   handleNotificationObjectIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                   handleNotificationObjectIntent.putExtra("PingOneNotification", pingOneNotificationObject);
-                   startActivity(handleNotificationObjectIntent);
-
-               }
-           }
-       });
-
-   }
-   /**
-    * Called if InstanceID token is updated. This may occur if the security of
-    * the previous token had been compromised. Note that this is called when the InstanceID token
-    * is initially generated, so this is where you would retrieve the token.
-    */
-   @Override
-   public void onNewToken(String token) {
-       // If you want to send messages to this application instance or
-       // manage this app’s subscriptions on the server side, send the
-       // Instance ID token to your app server.
-       PingOne.setDeviceToken(this, token, new PingOne.PingOneSDKCallback() {
-           @Override
-           public void onComplete(@Nullable PingOneSDKError pingOneSDKError) {
- 
-           }
-       });
-   }
-
-
-/**
-Optional
-* Parse the "aps" part of the RemoteMessage to get notifications' title and body
-* @param remoteMessage
-* @param intent
-*/
-
-
-private void parseTitleAndBody(RemoteMessage remoteMessage, Intent intent){
-        if(remoteMessage.getData().containsKey("aps")){
-            try {
-                JSONObject jsonObject = new JSONObject(remoteMessage.getData().get("aps"));
-                intent.putExtra("title", ((JSONObject)jsonObject.get("alert")).get("title").toString());
-                intent.putExtra("body", ((JSONObject)jsonObject.get("alert")).get("body").toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-}
 ```
+
+### PingOne Mobile SDK sample app
+
+The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
 
 ### Share log file
