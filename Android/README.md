@@ -93,18 +93,19 @@ Implement the PingOne library’s push handling by passing the RemoteMessage rec
 PingOne SDK will only handle push notifications which were issued by the PingOne SDK server. For other push notifications, `PingOneSDKError` with the code `10002, unrecognizedRemoteNotification` will be returned.
 
 ```java
-	@Override
-	public void onMessageReceived(final RemoteMessage remoteMessage) {
-	PingOne.processRemoteNotification(remoteMessage, new PingOne.PingOneNotificationCallback() {
-	     	@Override
-	     	public void onComplete(@Nullable NotificationObject notificationObject, PingOneSDKError error) {
-	        	 if (notificationObject == null){
-	           	  //the push is not from PingOne - apply your customized application logic
-	       	  }else{
-	            	//the object contains two options - approve and deny - present them to the user             
-	     	}
-	 });
+@Override
+public void onMessageReceived(final RemoteMessage remoteMessage) {
+    PingOne.processRemoteNotification(remoteMessage, new PingOne.PingOneNotificationCallback() {
+        @Override
+	public void onComplete(@Nullable NotificationObject notificationObject, PingOneSDKError error) {
+	    if (notificationObject == null){
+	        //the push is not from PingOne - apply your customized application logic
+	    }else{
+	       //the object contains two options - approve and deny - present them to the user             
+	    }
 	}
+    });
+}
 ```
 
 ### PingOne Mobile SDK sample app
