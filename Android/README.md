@@ -83,7 +83,7 @@ In your app, add the appropriate section in your androidmanifest.xml file (FCM m
 
  Retrieve the FCM Registration Token Id from the FCM and set it in the PingOne Library by calling 	
  ```java
-PingOne.setDeviceToken(context,, token, new PingOne.PingOneSDKCallback())
+PingOne.setDeviceToken(context, token, new PingOne.PingOneSDKCallback())
 ```
 Make sure you set the device’s FCM registration token before you call `PingOne.pair`, and make sure you update the PingOne SDK Library with the new device token each time it changes.
 
