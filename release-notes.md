@@ -6,10 +6,11 @@ Features:
 
 Bug fixes:
 - Android: Handle test push without producing an error.
-- iOS: support Swift 5.1.
 
 Compatibility notes:
 - Android: replace NimbusDS with Jose4J.
+- iOS: support Swift 5.1.
+
 
 ## v1.0 - August 1st, 2019
 Features:
