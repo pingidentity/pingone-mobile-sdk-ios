@@ -24,38 +24,20 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 
 **Note:** PingOne SDK supports the following software versions:
 
-* Xcode 10.2 and above.
+* Xcode 11 and above.
 * iOS 10.0 and above.
 
 
 #### Add the PingOne SDK component into your existing project
 
-1. In your **Project Navigator**, click on your target, and drag **PingOne.framework** to **Embedded Binaries**.
+1. In your **Project Navigator**, click on your target, and drag **PingOne.xcframework** to **Frameworks, Libraries, and Embedded Content**.
 2. Check the **Copy items if needed** checkbox.
 
-    ![](./img/p1_i_SDKintegrateIntoIDE.png)
+    ![](./img/p1_i_xc11-SDKintegrateIntoIDE.png)
 
 
 3. Integrate the PingOne SDK component into your code:
 	* Import the framework into your application initialization code:<br>`import PingOne`
-
-#### Setup the Run Script phase
-
-**Note:** Due to an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216), binaries containing simulator slices can’t be uploaded to the App Store. 
-
-The following steps solve this issue:
-
-* Select your application’s Xcode **project**, then your **application target**, and then select **Build Phases**, click “**+**”, and then **New Run Script Build Phase**.
-* Make sure that the Run Script phase is after the Embed Frameworks phase.
-* Paste the following line into the body of the **Run Script Build Phase**:
-
-	```bash
-	bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PingOne.framework/strip-frameworks.sh"
-	```
-	
-	![](./img/p1_i_SDKbuildPhasesRunScript.png)
-
-
  
 ### Pairing
 
