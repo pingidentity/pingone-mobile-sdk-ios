@@ -1,57 +1,28 @@
-apply plugin: 'com.android.application'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-android {
-    compileSdkVersion 28
-
-
-    defaultConfig {
-        applicationId "com.pingidentity.pingone"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode = 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+buildscript {
+    repositories {
+        google()
+        jcenter()
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.google.gms:google-services:4.3.0'
     }
-    flavorDimensions "version"
-    productFlavors {
-        envProd {
-            dimension "version"
-            resValue "string", "app_name", "PingOne Sample Application"
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+
+        flatDir {
+            dirs 'libs'
         }
     }
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-
-    implementation 'org.slf4j:slf4j-api:1.7.26'
-    implementation 'com.github.tony19:logback-android:2.0.0'
-
-    implementation 'com.madgag.spongycastle:core:1.58.0.0'
-    implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0'
-
-    //FireCloud Messaging Services
-    implementation 'com.google.firebase:firebase-core:17.0.0'
-    implementation 'com.google.firebase:firebase-messaging:19.0.1'
-
-    //Google's gSon library to build and parse JSON format
-    implementation 'com.google.code.gson:gson:2.8.5'
-
-    //nimbus JWT and JOSE tokens library
-    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '7.0.1'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
-apply plugin: 'com.google.gms.google-services'
