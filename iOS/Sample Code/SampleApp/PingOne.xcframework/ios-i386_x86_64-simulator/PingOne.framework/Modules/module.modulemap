@@ -1,0 +1,11 @@
+framework module PingOne {
+  umbrella header "PingOne.h"
+
+  export *
+  module * { export * }
+}
+
+module PingOne.Swift {
+    header "PingOne-Swift.h"
+    requires objc
+}
