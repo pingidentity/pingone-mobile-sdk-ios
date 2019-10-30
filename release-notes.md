@@ -1,5 +1,9 @@
 # Release Notes
 
+## v1.0.2 - October 30th, 2019
+Features:
+- Support for APAC datacenter.
+
 ## v1.0.1 - October 10th, 2019
 Features:
 - Android: added a notification pop up in the sample app.
