@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B32BA9B23687A46008C1CF5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32BA9A23687A46008C1CF5 /* Alert.swift */; };
 		7B81E4FE2338C3F00040DC79 /* PingOne.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B81E4FA2338B7610040DC79 /* PingOne.xcframework */; };
 		7B81E4FF2338C3F00040DC79 /* PingOne.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B81E4FA2338B7610040DC79 /* PingOne.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7BA52470229AA65200DD0E06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5246F229AA65200DD0E06 /* AppDelegate.swift */; };
-		7BA52472229AA65200DD0E06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA52471229AA65200DD0E06 /* ViewController.swift */; };
+		7BA52472229AA65200DD0E06 /* ManualPairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA52471229AA65200DD0E06 /* ManualPairingViewController.swift */; };
 		7BA52475229AA65200DD0E06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA52473229AA65200DD0E06 /* Main.storyboard */; };
 		7BA52477229AA65300DD0E06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA52476229AA65300DD0E06 /* Assets.xcassets */; };
 		7BA5247A229AA65300DD0E06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA52478229AA65300DD0E06 /* LaunchScreen.storyboard */; };
 		7BA52482229AA69B00DD0E06 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BA52481229AA69B00DD0E06 /* Localizable.strings */; };
+		7BA92C21235F00440022D645 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA92C20235F00440022D645 /* Constants.swift */; };
+		7BA92C24235F004D0022D645 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA92C23235F004C0022D645 /* HomeViewController.swift */; };
+		7BA92C27235F00570022D645 /* ActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA92C26235F00570022D645 /* ActionItem.swift */; };
+		7BA92C2A235F00600022D645 /* OIDCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA92C29235F00600022D645 /* OIDCViewController.swift */; };
+		7BA92C2C235F00AD0022D645 /* AppAuth.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BA92C1D235F00350022D645 /* AppAuth.xcframework */; };
+		7BA92C2D235F00AD0022D645 /* AppAuth.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BA92C1D235F00350022D645 /* AppAuth.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +32,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7B81E4FF2338C3F00040DC79 /* PingOne.xcframework in Embed Frameworks */,
+				7BA92C2D235F00AD0022D645 /* AppAuth.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,16 +40,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B32BA9A23687A46008C1CF5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		7B81E4FA2338B7610040DC79 /* PingOne.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PingOne.xcframework; sourceTree = "<group>"; };
 		7BA5246C229AA65200DD0E06 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA5246F229AA65200DD0E06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7BA52471229AA65200DD0E06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7BA52471229AA65200DD0E06 /* ManualPairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualPairingViewController.swift; sourceTree = "<group>"; };
 		7BA52474229AA65200DD0E06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7BA52476229AA65300DD0E06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BA52479229AA65300DD0E06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BA5247B229AA65300DD0E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BA52481229AA69B00DD0E06 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7BA52487229AA7FB00DD0E06 /* SampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleApp.entitlements; sourceTree = "<group>"; };
+		7BA92C1D235F00350022D645 /* AppAuth.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AppAuth.xcframework; sourceTree = "<group>"; };
+		7BA92C20235F00440022D645 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7BA92C23235F004C0022D645 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7BA92C26235F00570022D645 /* ActionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionItem.swift; sourceTree = "<group>"; };
+		7BA92C29235F00600022D645 /* OIDCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B81E4FE2338C3F00040DC79 /* PingOne.xcframework in Frameworks */,
+				7BA92C2C235F00AD0022D645 /* AppAuth.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,14 +91,20 @@
 			isa = PBXGroup;
 			children = (
 				7B81E4FA2338B7610040DC79 /* PingOne.xcframework */,
+				7BA92C1D235F00350022D645 /* AppAuth.xcframework */,
 				7BA52487229AA7FB00DD0E06 /* SampleApp.entitlements */,
+				7BA92C20235F00440022D645 /* Constants.swift */,
 				7BA5246F229AA65200DD0E06 /* AppDelegate.swift */,
-				7BA52471229AA65200DD0E06 /* ViewController.swift */,
+				7BA92C23235F004C0022D645 /* HomeViewController.swift */,
+				7BA52471229AA65200DD0E06 /* ManualPairingViewController.swift */,
+				7BA92C29235F00600022D645 /* OIDCViewController.swift */,
+				7BA92C26235F00570022D645 /* ActionItem.swift */,
 				7BA52473229AA65200DD0E06 /* Main.storyboard */,
 				7BA52476229AA65300DD0E06 /* Assets.xcassets */,
 				7BA52478229AA65300DD0E06 /* LaunchScreen.storyboard */,
 				7BA5247B229AA65300DD0E06 /* Info.plist */,
 				7BA52481229AA69B00DD0E06 /* Localizable.strings */,
+				7B32BA9A23687A46008C1CF5 /* Alert.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -169,8 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BA52472229AA65200DD0E06 /* ViewController.swift in Sources */,
+				7BA52472229AA65200DD0E06 /* ManualPairingViewController.swift in Sources */,
+				7BA92C2A235F00600022D645 /* OIDCViewController.swift in Sources */,
 				7BA52470229AA65200DD0E06 /* AppDelegate.swift in Sources */,
+				7BA92C21235F00440022D645 /* Constants.swift in Sources */,
+				7BA92C24235F004D0022D645 /* HomeViewController.swift in Sources */,
+				7BA92C27235F00570022D645 /* ActionItem.swift in Sources */,
+				7B32BA9B23687A46008C1CF5 /* Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +344,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SampleApp/SampleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = YZYUGL7S48;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -330,7 +356,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pingIdentity.p14c.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -344,7 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SampleApp/SampleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = YZYUGL7S48;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,7 +382,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pingIdentity.p14c.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

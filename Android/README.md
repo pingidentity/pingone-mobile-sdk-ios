@@ -16,7 +16,7 @@ Refer to: [Add Firebase to your Android project](https://firebase.google.com/doc
 
 Add the google-services.json retrieved from the Firebase developers console to your project.
 
-When configuring your PingOne SDK application in the PingOne admin web console (**Connections > Applications > {NATIVE application} > Edit > Authenticator**), you should fill in the Package Name and the Server Key. See [Edit an application](https://documentation.pingidentity.com/pingone/p14cAdminGuide/index.shtml#p1_t_editApplication.html) in the administration guide. 
+When configuring your PingOne SDK application in the PingOne admin web console (**Connections > Applications > {NATIVE application} > Edit > Authenticator**), you should fill in the Package Name and the Server Key. See [Edit an application](https://documentation.pingidentity.com/pingone/p14cAdminGuide/index.shtml#p1_t_editApplication.html) in the administration guide.
 
 
 
@@ -26,13 +26,13 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 
 2. Make the following changes to your `build.gradle` files in order to add the PingOne SDK component dependency:
 	* Open your top-level `build.gradle` file, to add the PingOne SDK component as a dependency. Add the following lines to the `allprojects` node inside the `repositories` node:
-	
+
 	    ```
 	    flatDir {
 	        dirs 'libs'
 	    }
 	    ```
-   
+
     * Create a `libs` folder inside your module’s folder. Copy the PingOne SDK component file `PingOne.aar` into the `libs` folder. Add the following dependency to the modules that use the PingOne SDK component:
 
 	    ```
@@ -40,37 +40,48 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 	        implementation fileTree(include: ['*.aar'], dir: 'libs')
 	    }
 	    ```
-   
+
     *  As the PingOne SDK component is loaded locally, you’ll have to add the PingOne SDK component’s dependencies manually in order to be able to compile and run it. Add these dependencies under the PingOne SDK component dependency:
 
 		```
-	    implementation 'androidx.appcompat:appcompat:1.0.2'
-		
+	    implementation 'androidx.appcompat:appcompat:1.1.0'
+
 		implementation 'org.slf4j:slf4j-api:1.7.26'
 		implementation 'com.github.tony19:logback-android:2.0.0'
-		
+
 		implementation 'com.madgag.spongycastle:core:1.58.0.0'
 		implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0'
-		
+
 		//FireCloud Messaging Services
 		implementation 'com.google.firebase:firebase-core:17.0.0'
 		implementation 'com.google.firebase:firebase-messaging:19.0.1'
-		
+
 		//Google's gSon library to build and parse JSON format
 		implementation 'com.google.code.gson:gson:2.8.5'
-		
-		//nimbus JWT and JOSE tokens library
-		implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '7.0.1'
-		
-	    ```
+
+		//The jose.4.j library is an open source (Apache 2.0) implementation of JWT and the JOSE specification suite
+ 		implementation 'org.bitbucket.b_c:jose4j:0.6.5'
+```
 
 
 ### Pairing
 
-To pair the device, call the following method with your pairing key:
+To manually pair the device, call the following method with your pairing key:
 
 ```java
 PingOne.pair(context, pairingKey, new PingOne.PingOneSDKCallback())
+```
+
+To pair the device using OpedID Connect (automatic pairing):
+
+1. call this function to get the PingOne SDK mobile payload:
+```java
+public static String generateMobilePayload(Context context);
+```
+2. pass the received mobile payload on the OIDC request as the value of query param: `mobilePayload`
+3. call this function with the ID token after the OIDC authentication completes:
+```java
+public static void processIdToken(String idToken, PingOnePairingCallback callback);
 ```
 
 ### Working with push messages in Android
@@ -89,7 +100,7 @@ Make sure you set the device’s FCM registration token before you call `PingOne
 
 ### Handling Push Notifications
 
-Implement the PingOne library’s push handling by passing the RemoteMessage received from FCM to the PingOne Library. 
+Implement the PingOne library’s push handling by passing the RemoteMessage received from FCM to the PingOne Library.
 PingOne SDK will only handle push notifications which were issued by the PingOne SDK server. For other push notifications, `PingOneSDKError` with the code `10002, unrecognizedRemoteNotification` will be returned.
 
 ```java
@@ -148,5 +159,3 @@ private void shareLogFile(Context context){
 
 }
 ```
-
-

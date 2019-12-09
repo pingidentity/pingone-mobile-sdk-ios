@@ -41,7 +41,7 @@ public class SampleMessagingService extends FirebaseMessagingService {
                          * if the application is in the background build and show Notification
                          */
                         //the object contains two options - approve and deny - present them to the user
-                        Intent handleNotificationObjectIntent = new Intent(SampleMessagingService.this, MainActivity.class);
+                        Intent handleNotificationObjectIntent = new Intent(SampleMessagingService.this, SampleActivity.class);
                         handleNotificationObjectIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         handleNotificationObjectIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         //optional - parse title and body of the push notification
@@ -53,7 +53,7 @@ public class SampleMessagingService extends FirebaseMessagingService {
                     }
                 }else{
                     //the object contains two options - approve and deny - present them to the user
-                    Intent handleNotificationObjectIntent = new Intent(SampleMessagingService.this, MainActivity.class);
+                    Intent handleNotificationObjectIntent = new Intent(SampleMessagingService.this, SampleActivity.class);
                     handleNotificationObjectIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     handleNotificationObjectIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //optional - parse title and body of the push notification

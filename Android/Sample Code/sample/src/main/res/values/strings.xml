@@ -1,5 +1,9 @@
 <resources>
-    <string name="activation_code_hint">Activation code</string>
+
+    <string name="button_regular_pairing_text">Manual Pairing</string>
+    <string name="button_oidc_log_in_text">OIDC Automatic Pairing</string>
+
+    <string name="activation_code_hint">Pairing Key</string>
 
     <string name="pair_button_text">PAIR</string>
 
@@ -11,11 +15,16 @@
     <string name="notification_action_deny">Deny</string>
 
     <!--NON TRANSLATABLE STRINGS FOR AUTOMATION!-->
+
+    <string name="button_regular_pairing" translatable="false">button_regular_pair</string>
+    <string name="button_oidc_pairing" translatable="false">button_oidc_pairing</string>
     <string name="button_pair" translatable="false">button_pair</string>
     <string name="edit_text_pairing_key" translatable="false">edit_text_pairing_key</string>
     <string name="alert_dialog_button_ok">button_ok</string>
     <string name="button_approve" translatable="false">button_approve</string>
     <string name="button_deny" translatable="false">button_deny</string>
+
+    <string name="text_view_app_version" translatable="false">text_view_app_version</string>
 
     <string name="channel_name">Notifications Channel</string>
     <string name="channel_description">Channel Description</string>

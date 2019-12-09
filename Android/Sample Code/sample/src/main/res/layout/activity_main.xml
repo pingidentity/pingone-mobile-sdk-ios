@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
-        android:id="@+id/activation_code_input"
-        android:contentDescription="@string/edit_text_pairing_key"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:padding="5dp"
-        android:textSize="24sp"
-        android:hint="@string/activation_code_hint"
-        android:imeOptions="actionDone"
-        style="@style/activation_code_edit_text"
-        android:inputType="numberDecimal"/>
-
     <Button
-        android:id="@+id/button_pair"
+        android:id="@+id/button_pairing_key"
         android:layout_gravity="center"
-        android:contentDescription="@string/button_pair"
-        android:padding="10dp"
+        android:contentDescription="@string/button_regular_pairing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pair_button_text"/>
+        android:text="@string/button_regular_pairing_text"/>
+    <Button
+        android:id="@+id/button_pairing_oidc"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/button_oidc_pairing"
+        android:text="@string/button_oidc_log_in_text"/>
 
+    <TextView
+        android:id="@+id/text_view_app_version"
+        android:contentDescription="@string/text_view_app_version"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
-</RelativeLayout>

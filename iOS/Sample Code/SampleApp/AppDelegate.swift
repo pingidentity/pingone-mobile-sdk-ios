@@ -9,15 +9,21 @@
 import UIKit
 import UserNotifications
 import PingOne
+import AppAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    var currentAuthorizationFlow: OIDExternalUserAgentSession?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            window!.overrideUserInterfaceStyle = .light
+        }
         self.registerRemoteNotifications()
-        
+
         return true
     }
     
@@ -68,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     {
         print("didReceive")
         
-        PingOne.processRemoteNotificationAction(response.actionIdentifier, forRemoteNotification: response.notification.request.content.userInfo) { (notificationObject, error) in
+        PingOne.processRemoteNotificationAction(response.actionIdentifier, authenticationMethod: "user", forRemoteNotification: response.notification.request.content.userInfo) { (notificationObject, error) in
             
             if let error = error{
                 print("Error: \(String(describing: error))")
@@ -114,33 +120,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func displayNotificationViewAlert(_ notificationObject: NotificationObject){
         DispatchQueue.main.async {
-            let authAlert = UIAlertController(title: "Authenticate?", message: nil, preferredStyle: .alert)
             
-            let approveAction = UIAlertAction(title: "Approve", style: UIAlertAction.Style.default) {
-                UIAlertAction in
-                print("Approve Pressed")
-                notificationObject.approve(completionHandler: { (error) in
-                    if error != nil
-                    {
-                        print("Error: \(String(describing: error))")
-                    }
-                })
+            var displayOnVc: UIViewController
+            guard let rootVc = self.window?.rootViewController else{
+                return
             }
-            let denyAction = UIAlertAction(title: "Deny", style: UIAlertAction.Style.cancel) {
-                UIAlertAction in
-                print("Deny Pressed")
-                notificationObject.deny(completionHandler: { (error) in
-                    if error != nil
-                    {
-                        print("Error: \(String(describing: error))")
-                    }
-                })
+            
+            if rootVc.presentedViewController != nil{
+                displayOnVc = rootVc.presentedViewController!
             }
-            authAlert.addAction(approveAction)
-            authAlert.addAction(denyAction)
-            authAlert.view.accessibilityIdentifier = "auth_alert"
-            self.window?.rootViewController?.present(authAlert, animated: true, completion: nil)
+            else{
+                displayOnVc = rootVc
+            }
+            
+            Alert.approveDeny(viewController: displayOnVc, title: Local.Authenticate) { (approved) in
+                if let approved = approved{
+                    if(approved){
+                        notificationObject.approve(withAuthenticationMethod: "user", completionHandler: { (error) in
+                            if error != nil
+                            {
+                                Alert.generic(viewController: displayOnVc, message: nil, error: error)
+                            }
+                        })
+                    }
+                    else{
+                        notificationObject.deny(completionHandler: { (error) in
+                            if error != nil
+                            {
+                                Alert.generic(viewController: displayOnVc, message: nil, error: error)
+                            }
+                        })
+                    }
+                }
+            }
         }
+    }
+    
+    //OIDC
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+        if let authorizationFlow = self.currentAuthorizationFlow, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
+            self.currentAuthorizationFlow = nil
+            return true
+        }
+
+        return false
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

@@ -38,13 +38,25 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 
 3. Integrate the PingOne SDK component into your code:
 	* Import the framework into your application initialization code:<br>`import PingOne`
- 
+
 ### Pairing
 
-To pair the device, call the following method with your pairing key:
+To manually pair the device, call the following method with your pairing key:
 
 ```swift
 @objc public static func pair(_ pairingKey: String, completionHandler: @escaping (NSError?) -> Void)
+```
+
+To pair the device using OpedID Connect (automatic pairing):
+
+1. call this function to get the PingOne SDK mobile payload:
+```swift
+@objc public static func generateMobilePayload() throws -> String
+```
+2. pass the received mobile payload on the OIDC request as the value of query param: `mobilePayload`
+3. call this function with the ID token after the OIDC authentication completes:
+```swift
+@objc public static func processIdToken(_ idToken: String, completionHandler: @escaping (_ pairingObject: PairingObject?, _ error: NSError?) -> Void)
 ```
 
 ### Working with push messages in iOS
@@ -62,7 +74,7 @@ In order to receive push notifications from PingOne SDK, use the following code 
 ```swift
 @objc public static func setDeviceToken(_ deviceToken: Data, type: APNSDeviceTokenType, completionHandler: @escaping (_ error: NSError?) -> Void)
 ```
- 
+
 ### Handling Push Notifications
 
 PingOne SDK will only handle push notifications which were issued by the PingOne SDK server. For other push notifications, `NSError` with the code `10002, unrecognizedRemoteNotification` will be returned.
@@ -79,8 +91,8 @@ deviceTokenType = .sandbox
 Inside the following AppDelegate method:
 
 ```swift
-optional func application(_ application: UIApplication, 
-didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
+optional func application(_ application: UIApplication,
+didReceiveRemoteNotification userInfo: [AnyHashable : Any],
 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 ```
 
@@ -130,7 +142,7 @@ The following keys are returned by the PingOne SDK Remote Notification, with sug
 ```
 
 **Note:** An example of these keys is provided in the sample app, in the `Localizable.strings` file.
-        
+
 ### Keychain Sharing
 
 **Note:** This step is required only if your app uses Keychain Sharing.
@@ -155,7 +167,7 @@ func shareLogs() {
 			var filesToShare = [Any]()
 			filesToShare.append(fileURL)
 			let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-			
+
 			DispatchQueue.main.async {
 				self.present(activityViewController, animated: true, completion: nil)
 			}
