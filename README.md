@@ -7,6 +7,8 @@ This solution leverages Ping Identity’s expertise in MFA technology, as a comp
 
 * The PingOne for Customers Mobile SDK library for iOS and Android applications.
 * A sample app example source code for iOS and Android.
+* [Android SDK home repository](https://github.com/pingidentity/pingone-customers-mobile-sdk-android)
+* [iOS SDK home respository](https://github.com/pingidentity/pingone-customers-mobile-sdk-ios)
 
 Release notes can be found [here](./release-notes.md) 
 
