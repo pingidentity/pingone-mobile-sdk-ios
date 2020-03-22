@@ -5,8 +5,8 @@
 PingOne for Customers Mobile SDK is a set of components and services targeted at enabling organizations to include multifactor authentication (MFA) into native applications.
 This solution leverages Ping Identity’s expertise in MFA technology, as a component that can be embedded easily and quickly into a new or existing application. The PingOne for Customers Mobile SDK package comprises of the following components:
 
-* The PingOne for Customers Mobile SDK library for Android applications.
-* A sample app example source code for Android.
+* The PingOne for Customers Mobile SDK library for iOS applications.
+* A sample app example source code for iOS.
 
 Release notes can be found [here](./release-notes.md).
 
