@@ -158,6 +158,8 @@ The PingOne Mobile SDK bundle provides a sample app that includes all the basic 
 
 ### Send log file
 
+The PingOne Mobile SDK bundle writes fixed size, encrypted log messages to memory. To send these logs to our server for support, call the sendLogs function:
+
 ```swift
 // Call this method if you want to share the PingOne SDK logs with the PingOne support team.
 PingOne.sendLogs { (supportId, error) in
