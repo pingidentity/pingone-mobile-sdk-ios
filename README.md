@@ -156,22 +156,16 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
-### Share log file
+### Send log file
 
 ```swift
-// Call this method if you want to share the PingOne SDK logs with the PingOne support team.
-func shareLogs() {
-	if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-		DispatchQueue.global(qos: .userInitiated).async {
-			let fileURL = dir.appendingPathComponent("pingone.log")
-			var filesToShare = [Any]()
-			filesToShare.append(fileURL)
-			let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-
-			DispatchQueue.main.async {
-				self.present(activityViewController, animated: true, completion: nil)
-			}
-		}
-	}
+// Call this method if you want to send log with PingOne SDK to the PingOne support team.
+PingOne.sendLogs { (supportId, error) in
+   if let supportId = supportId{
+      print("Support ID:\(supportId)")
+   }
+   else if let error = error{
+      print(error.localizedDescription)
+   }
 }
 ```
