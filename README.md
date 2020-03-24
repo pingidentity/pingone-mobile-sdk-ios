@@ -183,7 +183,6 @@ The PingOne Mobile SDK bundle writes fixed size, encrypted log messages to memor
 // Call this method if you want to share the PingOne SDK logs with the PingOne support team.
 PingOne.sendLogs { (supportId, error) in
    if let supportId = supportId{
-      Alert.generic(viewController: self, message:"Support ID: \(supportId)", error: nil)
       print("Support ID:\(supportId)")
    }
    else if let error = error{
