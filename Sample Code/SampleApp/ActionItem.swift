@@ -10,11 +10,20 @@ import UIKit
 
 class ActionItem: NSObject {
 
-    var actionName:     String
-    var segueID:        String
+    enum ActionItemType {
+        case segue
+        case sendLogs
+    }
     
-    init(actionName: String, segueID : String) {
+    var actionName:     String
+    var segueID:        String?
+    var type:           ActionItemType
+    
+    init(actionName: String, segueID : String?, actionType: ActionItemType) {
         self.actionName = actionName
-        self.segueID = segueID
+        self.type       = actionType
+        if let segueID = segueID{
+            self.segueID = segueID
+        }
     }
 }

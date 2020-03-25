@@ -10,6 +10,8 @@ import UIKit
 import PingOne
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+
+    
     @IBOutlet weak var actionTableView: UITableView!
     var actionsArray: Array<ActionItem>!
     
@@ -18,9 +20,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let pairAction = ActionItem.init(actionName: PairingMethodName.Manual, segueID: SegueName.Manual)
-        let oidcAction = ActionItem.init(actionName: PairingMethodName.OIDC, segueID: SegueName.OIDC)
-        actionsArray = [pairAction,oidcAction]
+        let pairAction = ActionItem.init(actionName: PairingMethodName.Manual, segueID: SegueName.Manual, actionType: .segue)
+        let oidcAction = ActionItem.init(actionName: PairingMethodName.OIDC, segueID: SegueName.OIDC, actionType: .segue)
+        let logsAction = ActionItem.init(actionName: SDKFunctionality.SendLogs, segueID: nil, actionType: .sendLogs)
+        actionsArray = [pairAction,oidcAction,logsAction]
         self.navigationItem.title = "Sample"
         if let version = getAppVersionAndBuild() {
             versionOutlt.text = version
@@ -64,6 +67,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let selectedActionItem = actionsArray[indexPath.row]
-        self.performSegue(withIdentifier: selectedActionItem.segueID, sender: nil)
+        switch selectedActionItem.type {
+        case .segue:
+            if let segueID = selectedActionItem.segueID {
+              self.performSegue(withIdentifier: segueID, sender: nil)
+            }
+        case .sendLogs:
+            PingOne.sendLogs { (supportId, error) in
+                if let supportId = supportId{
+                    Alert.generic(viewController: self, message:"Support ID: \(supportId)", error: nil)
+                    print("Support ID:\(supportId)")
+                }
+                else if let error = error{
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }

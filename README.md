@@ -179,20 +179,17 @@ The PingOne Mobile SDK bundle provides a sample app that includes all the basic 
 ### Share log file
 
 ```swift
-// Call this method if you want to share the PingOne SDK logs with the PingOne support team.
+// Call this method if you want to send logs to the PingOne support team.
 func shareLogs() {
-	if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-		DispatchQueue.global(qos: .userInitiated).async {
-			let fileURL = dir.appendingPathComponent("pingone.log")
-			var filesToShare = [Any]()
-			filesToShare.append(fileURL)
-			let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-
-			DispatchQueue.main.async {
-				self.present(activityViewController, animated: true, completion: nil)
-			}
-		}
-	}
+	PingOne.sendLogs { (supportId, error) in
+        if let supportId = supportId{
+            print("Support ID:\(supportId)")
+            }
+        }
+        else if let error = error{
+            print("error sending logs: \(error.debugDescription)")
+        }
+    }
 }
 ```
 
