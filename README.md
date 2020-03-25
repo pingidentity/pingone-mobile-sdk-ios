@@ -176,19 +176,17 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
-### Share log file
+### Send log file
 
 ```swift
 // Call this method if you want to send logs to the PingOne support team.
-func shareLogs() {
-	PingOne.sendLogs { (supportId, error) in
-        if let supportId = supportId{
-            print("Support ID:\(supportId)")
-            }
+PingOne.sendLogs { (supportId, error) in
+    if let supportId = supportId{
+        print("Support ID:\(supportId)")
         }
-        else if let error = error{
-            print("error sending logs: \(error.debugDescription)")
-        }
+    }
+    else if let error = error{
+        print("error sending logs: \(error.debugDescription)")
     }
 }
 ```
