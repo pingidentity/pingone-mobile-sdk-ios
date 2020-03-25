@@ -176,7 +176,7 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
-### Send log file
+### Send logs
 
 ```swift
 // Call this method if you want to send logs to the PingOne support team.
