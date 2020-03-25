@@ -67,7 +67,7 @@ To manually pair the device, call the following method with your pairing key:
 @objc public static func pair(_ pairingKey: String, completionHandler: @escaping (NSError?) -> Void)
 ```
 
-To pair the device using OpedID Connect (automatic pairing):
+To automatically pair the device using OpenID Connect:
 
 1. call this function to get the PingOne SDK mobile payload:
 ```swift
