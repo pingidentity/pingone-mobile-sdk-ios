@@ -42,8 +42,6 @@
 /* Begin PBXFileReference section */
 		7B32BA9A23687A46008C1CF5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		7B81E4FA2338B7610040DC79 /* PingOne.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PingOne.xcframework; sourceTree = "<group>"; };
-		7B9C1FBC2357A0F80069315F /* PingOne.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PingOne.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B9C1FC42357A4C40069315F /* PingOne.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PingOne.framework; sourceTree = "<group>"; };
 		7B9C1FED23585AEF0069315F /* Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Debug-Info.plist"; sourceTree = "<group>"; };
 		7BA5246C229AA65200DD0E06 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA5246F229AA65200DD0E06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,20 +72,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7B9C1FBB2357A0F80069315F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7B9C1FBC2357A0F80069315F /* PingOne.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7BA52463229AA65200DD0E06 = {
 			isa = PBXGroup;
 			children = (
 				7BA5246E229AA65200DD0E06 /* SampleApp */,
 				7BA5246D229AA65200DD0E06 /* Products */,
-				7B9C1FBB2357A0F80069315F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,7 +91,6 @@
 		7BA5246E229AA65200DD0E06 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				7B9C1FC42357A4C40069315F /* PingOne.framework */,
 				7B81E4FA2338B7610040DC79 /* PingOne.xcframework */,
 				7BA92C1D235F00350022D645 /* AppAuth.xcframework */,
 				7BA52487229AA7FB00DD0E06 /* SampleApp.entitlements */,
