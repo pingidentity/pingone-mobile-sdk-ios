@@ -1,5 +1,11 @@
 # Release Notes
 
+## v1.2.0 - March 31st, 2020
+Features:
+
+- Support for sending logs (both by app and admin)
+- Ability to track authentication expiration time in the app
+
 ## v1.1.0 - December 9th, 2019
 Features:
 
