@@ -67,7 +67,7 @@ To manually pair the device, call the following method with your pairing key:
 @objc public static func pair(_ pairingKey: String, completionHandler: @escaping (NSError?) -> Void)
 ```
 
-To pair the device using OpedID Connect (automatic pairing):
+To automatically pair the device using OpenID Connect:
 
 1. call this function to get the PingOne SDK mobile payload:
 ```swift
@@ -176,23 +176,18 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
-### Share log file
+### Send logs
 
 ```swift
-// Call this method if you want to share the PingOne SDK logs with the PingOne support team.
-func shareLogs() {
-	if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-		DispatchQueue.global(qos: .userInitiated).async {
-			let fileURL = dir.appendingPathComponent("pingone.log")
-			var filesToShare = [Any]()
-			filesToShare.append(fileURL)
-			let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-
-			DispatchQueue.main.async {
-				self.present(activityViewController, animated: true, completion: nil)
-			}
-		}
-	}
+// Call this method if you want to send logs to the PingOne support team.
+PingOne.sendLogs { (supportId, error) in
+    if let supportId = supportId{
+        print("Support ID:\(supportId)")
+        }
+    }
+    else if let error = error{
+        print("error sending logs: \(error.debugDescription)")
+    }
 }
 ```
 

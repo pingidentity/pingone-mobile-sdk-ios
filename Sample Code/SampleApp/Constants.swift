@@ -35,6 +35,10 @@ struct PairingMethodName {
     static let OIDC                     = "OIDC Automatic Pairing"
 }
 
+struct SDKFunctionality {
+    static let SendLogs                 = "SendLogs"
+}
+
 struct SegueName {
     static let Manual                   = "manual"
     static let OIDC                     = "oidc"
