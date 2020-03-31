@@ -1,3 +1,23 @@
+# PingOne for Customers Mobile SDK
+
+## Overview
+
+PingOne for Customers Mobile SDK is a set of components and services targeted at enabling organizations to include multifactor authentication (MFA) into native applications.
+This solution leverages Ping Identity’s expertise in MFA technology, as a component that can be embedded easily and quickly into a new or existing application. The PingOne for Customers Mobile SDK package comprises of the following components:
+
+* The PingOne for Customers Mobile SDK library for iOS applications.
+* A sample app example source code for iOS.
+
+Release notes can be found [here](./release-notes.md).
+
+### Documentation
+
+Reference documentation is available for PingOne for Customers Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
+
+* [PingOne for Customers Mobile SDK release notes and admin related documentation](https://documentation.pingidentity.com/pingone/p14cAdminGuide/)
+* [PingOne for Customers Mobile SDK developer documentation](https://apidocs.pingidentity.com/pingone/customer/v1/api/mobileSDK/)
+
+
 ## Set up a mobile app using the PingOne SDK sample code
 
 ### Prerequisites
@@ -47,7 +67,7 @@ To manually pair the device, call the following method with your pairing key:
 @objc public static func pair(_ pairingKey: String, completionHandler: @escaping (NSError?) -> Void)
 ```
 
-To pair the device using OpedID Connect (automatic pairing):
+To automatically pair the device using OpenID Connect:
 
 1. call this function to get the PingOne SDK mobile payload:
 ```swift
@@ -156,22 +176,29 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 The PingOne Mobile SDK bundle provides a sample app that includes all the basic flows in order to help you get started.
 
-### Share log file
+### Send logs
 
 ```swift
-// Call this method if you want to share the PingOne SDK logs with the PingOne support team.
-func shareLogs() {
-	if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-		DispatchQueue.global(qos: .userInitiated).async {
-			let fileURL = dir.appendingPathComponent("pingone.log")
-			var filesToShare = [Any]()
-			filesToShare.append(fileURL)
-			let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-
-			DispatchQueue.main.async {
-				self.present(activityViewController, animated: true, completion: nil)
-			}
-		}
-	}
+// Call this method if you want to send logs to the PingOne support team.
+PingOne.sendLogs { (supportId, error) in
+    if let supportId = supportId{
+        print("Support ID:\(supportId)")
+        }
+    }
+    else if let error = error{
+        print("error sending logs: \(error.debugDescription)")
+    }
 }
 ```
+
+## Disclaimer
+
+THE SAMPLE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SAMPLE CODE OR THE USE OR OTHER DEALINGS IN
+THE SAMPLE CODE.  FURTHERMORE, THIS SAMPLE CODE IS NOT COMMERCIALLY SUPPORTED BY PING IDENTITY BUT QUESTIONS MAY BE ADDRESSED TO PING'S SUPPORT CENTER OR MAY BE OTHERWISE ADDRESSED IN THE RELATED DOCUMENTATION.
+
+Any questions or issues should go to the support center, or may be discussed in the [Ping Identity developer communities](https://community.pingidentity.com/collaborate).
