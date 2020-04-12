@@ -85,8 +85,8 @@ This section details the steps needed in order to work with push messages in iOS
 
 * Enable **Push Notifications**: Go to your Project Navigator’s **capabilities** tab. Select **Push Notifications > Enable**.
 * Enable **Remote Notifications**: Go to your Project Navigator’s **capabilities** tab. Turn on **Background Modes > Remote notifications**.
-* Enable **Push Notifications** in Apple Developer Account > Certificates, Identifiers & Profiles > Identifiers > Capabilities > Push Notifications > Enable and upload your p8 key.
-* Enter your app’s **Deployment Details** settings in your Apple Developer Account > Certificates, Identifiers & Profiles > Identifiers > Your App ID. These details are now mandatory prerequisites for Apple to register your device for push notifications.
+* Enable **Push Notifications** in your **Apple Developer Account > Certificates, Identifiers & Profiles > Identifiers > Capabilities > Push Notifications > Enable** and upload your p8 key.
+* Enter your app’s **Deployment Details** settings in your **Apple Developer Account > Certificates, Identifiers & Profiles > Identifiers > Your App ID.** These details are now mandatory prerequisites for Apple to register your device for push notifications.
 
 #### Register device token on PingOne server
 
