@@ -1,5 +1,11 @@
 # Release Notes
 
+## v1.3.0 - Jun 18th, 2020
+Features:
+
+-  Added clientContext to the push notification object. clientContext contains extra parameters that are passed to the client.
+-  Known issue: If the iOS device clock is set to manual update instead of automatic, the automatic pairing process could fail.
+
 ## v1.2.0 - March 31st, 2020
 Features:
 

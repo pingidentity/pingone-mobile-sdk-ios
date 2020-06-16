@@ -44,6 +44,7 @@ import UserNotifications
   }
   @objc final public let notificationType: NotificationObject.NotificationType
   @objc final public let timeoutDuration: Swift.Int
+  @objc final public let clientContext: Swift.String
   @objc final public func approve(withAuthenticationMethod: Swift.String?, completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
   @available(*, deprecated, message: "please use approve(withAuthenticationMethod:completionHandler) instead")
   @objc final public func approve(completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)

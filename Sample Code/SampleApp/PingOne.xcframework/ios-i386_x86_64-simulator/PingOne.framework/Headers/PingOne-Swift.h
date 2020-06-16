@@ -241,6 +241,8 @@ SWIFT_CLASS("_TtC7PingOne18NotificationObject")
 @property (nonatomic, readonly) enum NotificationType notificationType;
 /// The maximum time duration allowed from getting push till user response.
 @property (nonatomic, readonly) NSInteger timeoutDuration;
+/// Extra parameters are passed to the client with the push object
+@property (nonatomic, readonly, copy) NSString * _Nonnull clientContext;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 /// Approve authentication
@@ -640,6 +642,8 @@ SWIFT_CLASS("_TtC7PingOne18NotificationObject")
 @property (nonatomic, readonly) enum NotificationType notificationType;
 /// The maximum time duration allowed from getting push till user response.
 @property (nonatomic, readonly) NSInteger timeoutDuration;
+/// Extra parameters are passed to the client with the push object
+@property (nonatomic, readonly, copy) NSString * _Nonnull clientContext;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 /// Approve authentication
