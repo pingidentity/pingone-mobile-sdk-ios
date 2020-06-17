@@ -1,5 +1,16 @@
 # Release Notes
 
+## v1.3.0 - June 18th, 2020
+Features:
+
+- Push notification data is now JWT-signed and verified
+- Added `clientContext` to the push notification object. `clientContext` contains extra parameters that are passed to the client.
+- Added support for background push notification (extra verification) during device authorization
+
+Known issues:
+
+- If the iOS device clock is set to manual update instead of automatic, the automatic pairing process could fail.
+
 ## v1.2.0 - March 31st, 2020
 Features:
 
