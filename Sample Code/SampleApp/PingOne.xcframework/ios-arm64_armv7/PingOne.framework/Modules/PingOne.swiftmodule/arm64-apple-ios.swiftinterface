@@ -1,0 +1,91 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name PingOne
+import AVKit
+import CommonCrypto
+import Compression
+import CoreFoundation
+import CoreLocation
+import Foundation
+import LocalAuthentication
+@_exported import PingOne
+import Security
+import Swift
+import SystemConfiguration
+import UIKit
+import UserNotifications
+@objc public enum ErrorCode : ObjectiveC.NSInteger {
+  case internalError = 10000
+  case deviceTokenIsMissing = 10001
+  case unrecognizedRemoteNotification = 10002
+  case serverError = 10003
+  case noConnectivity = 10004
+  case pairingKey = 10005
+  case bundleId = 10006
+  case pairingKeyDataCenterMismatch = 10007
+  case deviceIsNotPaired = 10008
+  case pushConfirmationTimeout = 10009
+  public typealias RawValue = ObjectiveC.NSInteger
+  public init?(rawValue: ObjectiveC.NSInteger)
+  public var rawValue: ObjectiveC.NSInteger {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class NotificationObject : ObjectiveC.NSObject {
+  @objc public enum NotificationType : ObjectiveC.NSInteger {
+    case none = -1
+    case done
+    case authentication
+    public typealias RawValue = ObjectiveC.NSInteger
+    public init?(rawValue: ObjectiveC.NSInteger)
+    public var rawValue: ObjectiveC.NSInteger {
+      get
+    }
+  }
+  @objc final public let notificationType: NotificationObject.NotificationType
+  @objc final public let timeoutDuration: Swift.Int
+  @objc final public let clientContext: Swift.String
+  @objc final public func approve(withAuthenticationMethod: Swift.String?, completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "please use approve(withAuthenticationMethod:completionHandler) instead")
+  @objc final public func approve(completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc final public func deny(completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class PairingObject : ObjectiveC.NSObject {
+  @objc final public func approve(completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class PingOne : ObjectiveC.NSObject {
+  @objc public enum APNSDeviceTokenType : ObjectiveC.NSInteger {
+    case production = 0
+    case sandbox
+    public typealias RawValue = ObjectiveC.NSInteger
+    public init?(rawValue: ObjectiveC.NSInteger)
+    public var rawValue: ObjectiveC.NSInteger {
+      get
+    }
+  }
+  @objc public static func generateMobilePayload() throws -> Swift.String
+  @objc public static func pair(_ pairingKey: Swift.String, completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc public static func processIdToken(_ idToken: Swift.String, completionHandler: @escaping (PairingObject?, Foundation.NSError?) -> Swift.Void)
+  @objc public static func setDeviceToken(_ deviceToken: Foundation.Data, type: APNSDeviceTokenType, completionHandler: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc public static func getUNNotificationCategories() -> Swift.Set<UserNotifications.UNNotificationCategory>
+  @objc public static func processRemoteNotification(_ userInfo: [Swift.AnyHashable : Any], completionHandler: @escaping (NotificationObject?, Foundation.NSError?) -> Swift.Void)
+  @objc public static func processRemoteNotificationAction(_ identifier: Swift.String, authenticationMethod: Swift.String?, forRemoteNotification userInfo: [Swift.AnyHashable : Any], completionHandler: @escaping (NotificationObject?, Foundation.NSError?) -> Swift.Void)
+  @objc public static func getInfo(_ completionHandler: @escaping ([Swift.String : Any]?, Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "please use processRemoteNotificationAction(identifier:authenticationMethod:userInfo) instead")
+  @objc public static func processRemoteNotificationAction(_ identifier: Swift.String, forRemoteNotification userInfo: [Swift.AnyHashable : Any], completionHandler: @escaping (NotificationObject?, Foundation.NSError?) -> Swift.Void)
+  @objc public static func removePingOneLocalData()
+  @objc public static func setDevicePairedAfterReinstall(_ stayPaired: Swift.Bool)
+  @objc public static func sendLogs(completionHandler: @escaping (Swift.String?, Foundation.NSError?) -> Swift.Void)
+  @objc deinit
+}
+extension ErrorCode : Swift.Equatable {}
+extension ErrorCode : Swift.Hashable {}
+extension ErrorCode : Swift.RawRepresentable {}
+extension NotificationObject.NotificationType : Swift.Equatable {}
+extension NotificationObject.NotificationType : Swift.Hashable {}
+extension NotificationObject.NotificationType : Swift.RawRepresentable {}
+extension APNSDeviceTokenType : Swift.Equatable {}
+extension APNSDeviceTokenType : Swift.Hashable {}
+extension APNSDeviceTokenType : Swift.RawRepresentable {}
