@@ -7,6 +7,7 @@ This solution leverages Ping Identity’s expertise in MFA technology, as a comp
 
 * The PingOne for Customers Mobile SDK library for iOS applications.
 * A sample app example source code for iOS.
+* Mobile Authentication Framework for iOS Developers (integrated into the sample app).
 
 Release notes can be found [here](./release-notes.md).
 
@@ -172,6 +173,33 @@ Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your 
 
 ![](./img/p1_i_SDKkeychainSharing.png)
 
+#### Mobile Authentication Framework
+
+The following method starts an authentication process when the user taps "Authentication API" on the main screen. The authentication process is completed by the PingFederate Authentication API.
+
+**Note:** Before running this method, you need to update your `oidcIssuer` and `clientId` in the Config.swift class. See [Authentication API for Developers Mobile iOS code](https://github.com/pingidentity/mobile-authentication-framework-ios)
+
+```swift
+func authenticate(With payload: String){
+    authnUI.authenticate(presenter: self, payload: payload, dynamicData: "") { [weak self] (serverPayload, accessToken, error) in
+        guard let self = self else { return }
+        
+        if (serverPayload.count > 0) { //Need pairing
+           PingOne.processIdToken(serverPayload) { (pairingObject, error) in
+               self.stopLoadingAnimation()
+               if let pairingObject = pairingObject{
+                   self.displayNotificationViewAlert(pairingObject)
+               }
+               else if let error = error{
+                   print(error.localizedDescription)
+               }
+           }
+        } else {
+           self.stopLoadingAnimation()
+        }
+    }
+}
+```
 
 ### PingOne Mobile SDK sample app
 

@@ -1,5 +1,10 @@
 # Release Notes
 
+## v1.4.0 - Jan 5th, 2021
+Features:
+
+- Added support for Mobile Authentication Framework for iOS Developers. See the `AuthnAPI` folder.
+
 ## v1.3.0 - June 18th, 2020
 Features:
 

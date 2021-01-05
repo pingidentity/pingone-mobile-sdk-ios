@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     var currentAuthorizationFlow: OIDExternalUserAgentSession?
+    var notificationObject: NotificationObject?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if #available(iOS 13.0, *) {
@@ -83,7 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             else if let notificationObject = notificationObject{ //User pressed the actual banner, instead of an action.
-                self.displayNotificationViewAlert(notificationObject)
+               if let userInfo = response.notification.request.content.userInfo as? [String : Any] {
+                   let title = self.getNotificationTextFrom(userInfo).title
+                   let message = self.getNotificationTextFrom(userInfo).body
+                   self.displayNotificationViewAlert(notificationObject, title: title, msg: message)
+               }
             }
             completionHandler()
         }
@@ -102,10 +107,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             else if let notificationObject = notificationObject{
+                self.notificationObject = notificationObject
                 switch(notificationObject.notificationType){
                 case .authentication:
-                    self.displayNotificationViewAlert(notificationObject)
-                    completionHandler(UIBackgroundFetchResult.newData)
+                    
+                    if let userInfo = userInfo as? [String : Any] {
+                        let title = self.getNotificationTextFrom(userInfo).title
+                        let message = self.getNotificationTextFrom(userInfo).body
+                        self.displayNotificationViewAlert(notificationObject, title: title, msg: message)
+                        completionHandler(UIBackgroundFetchResult.newData)
+                    }
 
                 default:
                     print("Error: \(String(describing: error))")
@@ -118,7 +129,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func displayNotificationViewAlert(_ notificationObject: NotificationObject){
+    func getNotificationTextFrom(_ userInfo: [String: Any]) -> (title: String, body: String){
+        
+        if let aps = userInfo[Push.aps] as? [String:Any] {
+            if let alert = aps[Push.alert] as? [String:String] {
+                if let title = alert[Push.title], let body = alert[Push.body] {
+                     return (title,body)
+                }
+            }
+        }
+        return ("","")
+    }
+    
+    func displayNotificationViewAlert(_ notificationObject: NotificationObject, title: String, msg: String){
         DispatchQueue.main.async {
             
             var displayOnVc: UIViewController
@@ -132,14 +155,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             else{
                 displayOnVc = rootVc
             }
-            
-            Alert.approveDeny(viewController: displayOnVc, title: Local.Authenticate) { (approved) in
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationRecived"), object: nil)
+
+            Alert.approveDeny(viewController: displayOnVc, title: title, message: msg) { (approved) in
                 if let approved = approved{
                     if(approved){
                         notificationObject.approve(withAuthenticationMethod: "user", completionHandler: { (error) in
                             if error != nil
                             {
-                                Alert.generic(viewController: displayOnVc, message: nil, error: error)
+                                Alert.generic(viewController: displayOnVc, message: msg, error: error)
                             }
                         })
                     }
@@ -147,11 +172,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         notificationObject.deny(completionHandler: { (error) in
                             if error != nil
                             {
-                                Alert.generic(viewController: displayOnVc, message: nil, error: error)
+                                Alert.generic(viewController: displayOnVc, message: msg, error: error)
                             }
                         })
                     }
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationResponded"), object: nil)
             }
         }
     }
