@@ -92,7 +92,7 @@ class OIDCViewController: UIViewController {
         Alert.approveDeny(viewController: self, title: Local.Pair) { (approved) in
             if let approved = approved{
                 if(approved){
-                    pairingObject.approve(completionHandler: { (error) in
+                    pairingObject.approve(completion: { (response, error) in
                         Alert.generic(viewController: self, message:Local.DeviceIsPaired, error: error)
                     })
                 }

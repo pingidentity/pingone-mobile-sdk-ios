@@ -28,6 +28,7 @@ struct AuthnAPIName {
 }
 
 struct SDKFunctionality {
+    static let OneTimePasscode          = "One Time Passcode"
     static let SendLogs                 = "SendLogs"
 }
 
@@ -35,6 +36,7 @@ struct SegueName {
     static let Manual                   = "manual"
     static let OIDC                     = "oidc"
     static let authnAPI                 = "authnapi"
+    static let passcode                 = "passcode"
 }
 
 struct Local {
@@ -55,5 +57,9 @@ struct Push {
     static let alert                   = "alert"
     static let title                   = "title-loc-key"
     static let body                    = "loc-key"
+}
+
+struct OneTimePasscodeError {
+    static let notPaired               = "Device Not Paired"
 }
 

@@ -1,5 +1,16 @@
 # Release Notes
 
+## v1.5.0 - April 6th, 2021
+Features:
+
+- Updated the SDK version 1.4.0.
+- Added support for one time passcode and disable SDK push notifications.
+
+Compatibility notes:
+
+- Deprecated current pairing method and added support to new one with returned object of PairingInfo. 
+- Supports Xcode 12 and above.
+
 ## v1.4.0 - Jan 5th, 2021
 Features:
 
