@@ -27,7 +27,7 @@ class ManualPairingViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         if let pairingKeyText = pairingKeyTextField.text{
 
-            PingOne.pair(pairingKeyText) { (error) in                
+            PingOne.pair(pairingKeyText) { (reponse, error) in                
                 Alert.generic(viewController: self, message:Local.DeviceIsPaired, error: error)
             }
         }

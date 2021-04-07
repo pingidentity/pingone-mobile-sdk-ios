@@ -8,6 +8,7 @@
 
 import UIKit
 import PingOne
+
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var actionTableView: UITableView!
@@ -22,8 +23,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let pairAction = ActionItem.init(actionName: PairingMethodName.Manual, segueID: SegueName.Manual, actionType: .segue)
         let oidcAction = ActionItem.init(actionName: PairingMethodName.OIDC, segueID: SegueName.OIDC, actionType: .segue)
         let authnAction = ActionItem.init(actionName: AuthnAPIName.authnAPI, segueID: SegueName.authnAPI, actionType: .segue)
+        let PasscodeAction = ActionItem.init(actionName: SDKFunctionality.OneTimePasscode, segueID: SegueName.passcode, actionType: .segue)
         let logsAction = ActionItem.init(actionName: SDKFunctionality.SendLogs, segueID: nil, actionType: .sendLogs)
-        actionsArray = [pairAction,oidcAction,authnAction,logsAction]
+        actionsArray = [pairAction,oidcAction,authnAction,PasscodeAction,logsAction]
         self.navigationItem.title = Local.appTitle
         if let version = getAppVersionAndBuild() {
             versionOutlt.text = version
@@ -33,7 +35,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self,selector: #selector(resetClientContextUpdate), name: NSNotification.Name(rawValue: "notificationResponded"), object: nil)
         
     }
-    
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "notificationRecived"), object: nil)

@@ -74,7 +74,7 @@ class AuthnViewController: UIViewController {
         Alert.approveDeny(viewController: self, title: Local.Pair) { (approved) in
             if let approved = approved{
                 if(approved){
-                    pairingObject.approve(completionHandler: { (error) in
+                    pairingObject.approve(completion: { (response, error) in
                         
                         if error != nil {
                             Alert.generic(viewController: self, message: error.debugDescription, error: error)

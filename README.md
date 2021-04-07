@@ -45,7 +45,7 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 
 **Note:** PingOne SDK supports the following software versions:
 
-* Xcode 11 and above.
+* Xcode 12 and above.
 * iOS 10.0 and above.
 
 
@@ -65,7 +65,12 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 To manually pair the device, call the following method with your pairing key:
 
 ```swift
-@objc public static func pair(_ pairingKey: String, completionHandler: @escaping (NSError?) -> Void)
+/// Pair device
+///
+/// - Parameters:
+///   - pairingKey: The `String` value
+///   - completionHandler: Will return PairingInfo object containing data about pairing resolution, and NSError in case of an error. Documentation for pairing object error codes: https://apidocs.pingidentity.com/pingone/mobile-sdks/v1/api/#pingone-mobile-sdk-for-ios
+@objc public static func pair(_ pairingKey: String, completion: @escaping (_ response: PairingInfo?, NSError?) -> Void)
 ```
 
 To automatically pair the device using OpenID Connect:
@@ -218,6 +223,22 @@ PingOne.sendLogs { (supportId, error) in
         print("error sending logs: \(error.debugDescription)")
     }
 }
+```
+
+### Get one time passcode
+
+```swift
+/// Get one time passcode object
+/// - Parameter completionHandler: OneTimePasscodeData object if available or error
+@objc public static func getOneTimePasscode(_ completionHandler: @escaping (_ oneTimePasscodeData: OneTimePasscodeData?, _ error: Error?) -> Void)
+```
+
+### Disable SDK push notifications
+
+```swift
+/// Method that will notify the server not to send push messages to this device. Set to false to disable SDK push notifications.
+/// - Parameter allowed: a boolean that will tell the server to send push messages or not. Defaults to `true`.
+@objc (allowPushNotifications:) public static func pushNotification(allowed: Bool)
 ```
 
 ## Disclaimer
