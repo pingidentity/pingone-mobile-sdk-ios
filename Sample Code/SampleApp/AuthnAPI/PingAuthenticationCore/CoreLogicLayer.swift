@@ -261,9 +261,8 @@ final class CoreLogicLayer : NSObject {
             }
             
             stopPolling()
-        }
-        
-        if let flowId = requestParams.flowId {
+            
+        } else if let flowId = requestParams.flowId {
             let pollRequestParams = RequestParams.init(flowID: flowId)
             pollRequestParams.name = Identifiers.PathNamePoll
             
