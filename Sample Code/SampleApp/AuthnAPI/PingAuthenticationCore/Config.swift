@@ -14,12 +14,12 @@ struct Config {
      The OIDC issuer from which the configuration will be discovered.
      For example: "https://pingfed-auth-demo-api.com:9031"
     */
-    static var oidcIssuer                = Identifiers.issuerPlaceholder
+    static var oidcIssuer                = "<#Issuer#>"
     /**
      The OAuth client ID.
      For example: "4sk02sk7-36a9-39kd-a23e-10ws4msk8ww02""
     */
-    static var clientId                  = Identifiers.clientPlaceholder
+    static var clientId                 = "<#clientId#>"
     
     /**
      Parameters for getFlowId API request

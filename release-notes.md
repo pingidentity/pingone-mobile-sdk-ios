@@ -1,5 +1,11 @@
 # Release Notes
 
+## v1.6.0 - August 1st, 2021
+Features:
+
+- Updated SDK to version 1.6.0.
+- Added support for device integrity validation for threat protection.
+
 ## v1.5.0 - April 6th, 2021
 Features:
 
