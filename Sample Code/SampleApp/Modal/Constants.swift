@@ -9,8 +9,8 @@
 import Foundation
 
 struct OIDC {
-    static let Issuer                  = "https://auth.pingone.com/9431bc59-ace5-44f7-a71f-60bc6afb0535/as"
-    static let ClientID                = "f26dde36-5e65-442e-b7e6-7a3b2c92266d"
+    static let Issuer                  = "<#Issuer#>"
+    static let ClientID                = "<#clientId#>"
     static let RedirectURI             = "pingonesdk://sample"
 }
 

@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		10C32F2523BA595F00FA5E71 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA92C20235F00440022D645 /* Constants.swift */; };
 		69155A7A244C4F2800CD0D16 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69155A79244C4F2800CD0D16 /* Extension+UIColor.swift */; };
-		693B71E8261B079E00F84E87 /* AuthConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71E2261B079E00F84E87 /* AuthConstants.swift */; };
-		693B71E9261B079E00F84E87 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71E3261B079E00F84E87 /* Config.swift */; };
-		693B71EA261B079E00F84E87 /* CoreLogicLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71E4261B079E00F84E87 /* CoreLogicLayer.swift */; };
-		693B71EB261B079E00F84E87 /* PingAuthenticationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71E5261B079E00F84E87 /* PingAuthenticationCore.swift */; };
-		693B71EC261B079E00F84E87 /* RequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71E6261B079E00F84E87 /* RequestParams.swift */; };
-		693B71ED261B079E00F84E87 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71E7261B079E00F84E87 /* CommunicationManager.swift */; };
-		693B71F1261B07B600F84E87 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71EE261B07B600F84E87 /* DeviceData.swift */; };
-		693B71F2261B07B600F84E87 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71EF261B07B600F84E87 /* UserData.swift */; };
-		693B71F3261B07B600F84E87 /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71F0261B07B600F84E87 /* AuthenticationState.swift */; };
-		693B71FA261B07CA00F84E87 /* AlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71F4261B07CA00F84E87 /* AlertHandler.swift */; };
-		693B71FB261B07CA00F84E87 /* AuthMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693B71F5261B07CA00F84E87 /* AuthMain.storyboard */; };
-		693B71FC261B07CA00F84E87 /* UILogicLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71F6261B07CA00F84E87 /* UILogicLayer.swift */; };
-		693B71FD261B07CA00F84E87 /* MainAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71F7261B07CA00F84E87 /* MainAuthViewController.swift */; };
-		693B71FE261B07CA00F84E87 /* PingAuthenticationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71F8261B07CA00F84E87 /* PingAuthenticationUI.swift */; };
-		693B71FF261B07CA00F84E87 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B71F9261B07CA00F84E87 /* AppViewController.swift */; };
 		6947240125A61922007CA033 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6947240025A61922007CA033 /* PasscodeViewController.swift */; };
 		69C45840254FE38C00010773 /* AuthnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C4583F254FE38C00010773 /* AuthnViewController.swift */; };
+		69EC90D5263601AE00329D83 /* CoreLogicLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90CF263601AE00329D83 /* CoreLogicLayer.swift */; };
+		69EC90D6263601AE00329D83 /* AuthConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90D0263601AE00329D83 /* AuthConstants.swift */; };
+		69EC90D7263601AE00329D83 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90D1263601AE00329D83 /* CommunicationManager.swift */; };
+		69EC90D8263601AE00329D83 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90D2263601AE00329D83 /* Config.swift */; };
+		69EC90D9263601AE00329D83 /* PingAuthenticationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90D3263601AE00329D83 /* PingAuthenticationCore.swift */; };
+		69EC90DA263601AE00329D83 /* RequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90D4263601AE00329D83 /* RequestParams.swift */; };
+		69EC90DE263601CE00329D83 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90DB263601CE00329D83 /* DeviceData.swift */; };
+		69EC90DF263601CE00329D83 /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90DC263601CE00329D83 /* AuthenticationState.swift */; };
+		69EC90E0263601CE00329D83 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90DD263601CE00329D83 /* UserData.swift */; };
+		69EC90E72636020C00329D83 /* UILogicLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90E12636020C00329D83 /* UILogicLayer.swift */; };
+		69EC90E82636020C00329D83 /* MainAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90E22636020C00329D83 /* MainAuthViewController.swift */; };
+		69EC90E92636020C00329D83 /* AlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90E32636020C00329D83 /* AlertHandler.swift */; };
+		69EC90EA2636020C00329D83 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90E42636020C00329D83 /* AppViewController.swift */; };
+		69EC90EB2636020C00329D83 /* PingAuthenticationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EC90E52636020C00329D83 /* PingAuthenticationUI.swift */; };
+		69EC90EC2636020C00329D83 /* AuthMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69EC90E62636020C00329D83 /* AuthMain.storyboard */; };
 		7B32BA9B23687A46008C1CF5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32BA9A23687A46008C1CF5 /* Alert.swift */; };
 		7B81E4FE2338C3F00040DC79 /* PingOne.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B81E4FA2338B7610040DC79 /* PingOne.xcframework */; };
 		7B81E4FF2338C3F00040DC79 /* PingOne.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B81E4FA2338B7610040DC79 /* PingOne.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -59,23 +59,23 @@
 
 /* Begin PBXFileReference section */
 		69155A79244C4F2800CD0D16 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
-		693B71E2261B079E00F84E87 /* AuthConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthConstants.swift; sourceTree = "<group>"; };
-		693B71E3261B079E00F84E87 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		693B71E4261B079E00F84E87 /* CoreLogicLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLogicLayer.swift; sourceTree = "<group>"; };
-		693B71E5261B079E00F84E87 /* PingAuthenticationCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingAuthenticationCore.swift; sourceTree = "<group>"; };
-		693B71E6261B079E00F84E87 /* RequestParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestParams.swift; sourceTree = "<group>"; };
-		693B71E7261B079E00F84E87 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
-		693B71EE261B07B600F84E87 /* DeviceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
-		693B71EF261B07B600F84E87 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		693B71F0261B07B600F84E87 /* AuthenticationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
-		693B71F4261B07CA00F84E87 /* AlertHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHandler.swift; sourceTree = "<group>"; };
-		693B71F5261B07CA00F84E87 /* AuthMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthMain.storyboard; sourceTree = "<group>"; };
-		693B71F6261B07CA00F84E87 /* UILogicLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILogicLayer.swift; sourceTree = "<group>"; };
-		693B71F7261B07CA00F84E87 /* MainAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAuthViewController.swift; sourceTree = "<group>"; };
-		693B71F8261B07CA00F84E87 /* PingAuthenticationUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingAuthenticationUI.swift; sourceTree = "<group>"; };
-		693B71F9261B07CA00F84E87 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		6947240025A61922007CA033 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		69C4583F254FE38C00010773 /* AuthnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthnViewController.swift; sourceTree = "<group>"; };
+		69EC90CF263601AE00329D83 /* CoreLogicLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLogicLayer.swift; sourceTree = "<group>"; };
+		69EC90D0263601AE00329D83 /* AuthConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthConstants.swift; sourceTree = "<group>"; };
+		69EC90D1263601AE00329D83 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
+		69EC90D2263601AE00329D83 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		69EC90D3263601AE00329D83 /* PingAuthenticationCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingAuthenticationCore.swift; sourceTree = "<group>"; };
+		69EC90D4263601AE00329D83 /* RequestParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestParams.swift; sourceTree = "<group>"; };
+		69EC90DB263601CE00329D83 /* DeviceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
+		69EC90DC263601CE00329D83 /* AuthenticationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
+		69EC90DD263601CE00329D83 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		69EC90E12636020C00329D83 /* UILogicLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILogicLayer.swift; sourceTree = "<group>"; };
+		69EC90E22636020C00329D83 /* MainAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAuthViewController.swift; sourceTree = "<group>"; };
+		69EC90E32636020C00329D83 /* AlertHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHandler.swift; sourceTree = "<group>"; };
+		69EC90E42636020C00329D83 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		69EC90E52636020C00329D83 /* PingAuthenticationUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingAuthenticationUI.swift; sourceTree = "<group>"; };
+		69EC90E62636020C00329D83 /* AuthMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthMain.storyboard; sourceTree = "<group>"; };
 		7B32BA9A23687A46008C1CF5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		7B81E4FA2338B7610040DC79 /* PingOne.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PingOne.xcframework; sourceTree = "<group>"; };
 		7B9C1FBC2357A0F80069315F /* PingOne.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PingOne.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,12 +143,12 @@
 		69C4580F254FE2FA00010773 /* PingAuthenticationUI */ = {
 			isa = PBXGroup;
 			children = (
-				693B71F8261B07CA00F84E87 /* PingAuthenticationUI.swift */,
-				693B71F6261B07CA00F84E87 /* UILogicLayer.swift */,
-				693B71F9261B07CA00F84E87 /* AppViewController.swift */,
-				693B71F7261B07CA00F84E87 /* MainAuthViewController.swift */,
-				693B71F4261B07CA00F84E87 /* AlertHandler.swift */,
-				693B71F5261B07CA00F84E87 /* AuthMain.storyboard */,
+				69EC90E52636020C00329D83 /* PingAuthenticationUI.swift */,
+				69EC90E12636020C00329D83 /* UILogicLayer.swift */,
+				69EC90E22636020C00329D83 /* MainAuthViewController.swift */,
+				69EC90E42636020C00329D83 /* AppViewController.swift */,
+				69EC90E32636020C00329D83 /* AlertHandler.swift */,
+				69EC90E62636020C00329D83 /* AuthMain.storyboard */,
 			);
 			path = PingAuthenticationUI;
 			sourceTree = "<group>";
@@ -156,12 +156,12 @@
 		69C45810254FE2FA00010773 /* PingAuthenticationCore */ = {
 			isa = PBXGroup;
 			children = (
-				693B71E5261B079E00F84E87 /* PingAuthenticationCore.swift */,
-				693B71E4261B079E00F84E87 /* CoreLogicLayer.swift */,
-				693B71E6261B079E00F84E87 /* RequestParams.swift */,
-				693B71E7261B079E00F84E87 /* CommunicationManager.swift */,
-				693B71E2261B079E00F84E87 /* AuthConstants.swift */,
-				693B71E3261B079E00F84E87 /* Config.swift */,
+				69EC90D3263601AE00329D83 /* PingAuthenticationCore.swift */,
+				69EC90CF263601AE00329D83 /* CoreLogicLayer.swift */,
+				69EC90D4263601AE00329D83 /* RequestParams.swift */,
+				69EC90D1263601AE00329D83 /* CommunicationManager.swift */,
+				69EC90D0263601AE00329D83 /* AuthConstants.swift */,
+				69EC90D2263601AE00329D83 /* Config.swift */,
 				69C45811254FE2FA00010773 /* Modal */,
 			);
 			path = PingAuthenticationCore;
@@ -170,9 +170,9 @@
 		69C45811254FE2FA00010773 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				693B71F0261B07B600F84E87 /* AuthenticationState.swift */,
-				693B71EE261B07B600F84E87 /* DeviceData.swift */,
-				693B71EF261B07B600F84E87 /* UserData.swift */,
+				69EC90DC263601CE00329D83 /* AuthenticationState.swift */,
+				69EC90DB263601CE00329D83 /* DeviceData.swift */,
+				69EC90DD263601CE00329D83 /* UserData.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 			files = (
 				7BA5247A229AA65300DD0E06 /* LaunchScreen.storyboard in Resources */,
 				7BA52482229AA69B00DD0E06 /* Localizable.strings in Resources */,
-				693B71FB261B07CA00F84E87 /* AuthMain.storyboard in Resources */,
+				69EC90EC2636020C00329D83 /* AuthMain.storyboard in Resources */,
 				7BA52477229AA65300DD0E06 /* Assets.xcassets in Resources */,
 				7BA52475229AA65200DD0E06 /* Main.storyboard in Resources */,
 			);
@@ -303,29 +303,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				693B71F3261B07B600F84E87 /* AuthenticationState.swift in Sources */,
-				693B71F1261B07B600F84E87 /* DeviceData.swift in Sources */,
-				693B71EB261B079E00F84E87 /* PingAuthenticationCore.swift in Sources */,
-				693B71FD261B07CA00F84E87 /* MainAuthViewController.swift in Sources */,
+				69EC90EA2636020C00329D83 /* AppViewController.swift in Sources */,
+				69EC90EB2636020C00329D83 /* PingAuthenticationUI.swift in Sources */,
+				69EC90DE263601CE00329D83 /* DeviceData.swift in Sources */,
+				69EC90DF263601CE00329D83 /* AuthenticationState.swift in Sources */,
 				7BA52472229AA65200DD0E06 /* ManualPairingViewController.swift in Sources */,
+				69EC90E0263601CE00329D83 /* UserData.swift in Sources */,
 				7BA92C2A235F00600022D645 /* OIDCViewController.swift in Sources */,
-				693B71FE261B07CA00F84E87 /* PingAuthenticationUI.swift in Sources */,
+				69EC90D7263601AE00329D83 /* CommunicationManager.swift in Sources */,
+				69EC90E72636020C00329D83 /* UILogicLayer.swift in Sources */,
+				69EC90D9263601AE00329D83 /* PingAuthenticationCore.swift in Sources */,
+				69EC90D8263601AE00329D83 /* Config.swift in Sources */,
 				69155A7A244C4F2800CD0D16 /* Extension+UIColor.swift in Sources */,
 				69C45840254FE38C00010773 /* AuthnViewController.swift in Sources */,
-				693B71EC261B079E00F84E87 /* RequestParams.swift in Sources */,
-				693B71ED261B079E00F84E87 /* CommunicationManager.swift in Sources */,
 				7BA52470229AA65200DD0E06 /* AppDelegate.swift in Sources */,
-				693B71E9261B079E00F84E87 /* Config.swift in Sources */,
-				693B71FC261B07CA00F84E87 /* UILogicLayer.swift in Sources */,
-				693B71FA261B07CA00F84E87 /* AlertHandler.swift in Sources */,
+				69EC90D5263601AE00329D83 /* CoreLogicLayer.swift in Sources */,
 				6947240125A61922007CA033 /* PasscodeViewController.swift in Sources */,
-				693B71E8261B079E00F84E87 /* AuthConstants.swift in Sources */,
-				693B71F2261B07B600F84E87 /* UserData.swift in Sources */,
-				693B71FF261B07CA00F84E87 /* AppViewController.swift in Sources */,
-				693B71EA261B079E00F84E87 /* CoreLogicLayer.swift in Sources */,
 				7BA92C24235F004D0022D645 /* HomeViewController.swift in Sources */,
+				69EC90DA263601AE00329D83 /* RequestParams.swift in Sources */,
 				10C32F2523BA595F00FA5E71 /* Constants.swift in Sources */,
+				69EC90E92636020C00329D83 /* AlertHandler.swift in Sources */,
+				69EC90D6263601AE00329D83 /* AuthConstants.swift in Sources */,
 				7BA92C27235F00570022D645 /* ActionItem.swift in Sources */,
+				69EC90E82636020C00329D83 /* MainAuthViewController.swift in Sources */,
 				7B32BA9B23687A46008C1CF5 /* Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,7 +386,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 255;
+				CURRENT_PROJECT_VERSION = 288;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -449,7 +449,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 255;
+				CURRENT_PROJECT_VERSION = 288;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -479,7 +479,7 @@
 				CODE_SIGN_ENTITLEMENTS = SampleApp/SampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 255;
+				CURRENT_PROJECT_VERSION = 288;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YZYUGL7S48;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -492,7 +492,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pingIdentity.p14c.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "P14C Sample InHouse Development";
@@ -509,7 +509,7 @@
 				CODE_SIGN_ENTITLEMENTS = SampleApp/SampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 255;
+				CURRENT_PROJECT_VERSION = 288;
 				DEVELOPMENT_TEAM = YZYUGL7S48;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,7 +521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pingIdentity.p14c.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "P14C Sample InHouse Distribution";
