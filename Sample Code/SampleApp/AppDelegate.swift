@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-import PingOne
+import PingOneSDK
 import AppAuth
 
 @UIApplicationMain
