@@ -41,24 +41,25 @@ When configuring your PingOne SDK application in the PingOne admin web console (
 
 
 
-### Xcode integration
+### Compatibility
 
 **Note:** PingOne SDK supports the following software versions:
 
-* Xcode 12 and above.
-* iOS 10.0 and above.
+* Xcode 13 and above.
+* iOS 12.0 and above.
 
 
-#### Add the PingOne SDK component into your existing project
+### Xcode integration
 
-1. In your **Project Navigator**, click on your target, and drag **PingOne.xcframework** to **Frameworks, Libraries, and Embedded Content**.
+Add the PingOne SDK component into your existing project
+1. In your **Project Navigator**, click on your target, and drag **PingOneSDK.xcframework** to **Frameworks, Libraries, and Embedded Content**.
 2. Check the **Copy items if needed** checkbox.
 
     ![](./img/p1_i_xc11-SDKintegrateIntoIDE.png)
 
 
-3. Integrate the PingOne SDK component into your code:
-	* Import the framework into your application initialization code:<br>`import PingOne`
+3. Integrate the PingOneSDK component into your code:
+	* Import the framework into your application initialization code:<br>`import PingOneSDK`
 
 ### Pairing
 
@@ -239,6 +240,58 @@ PingOne.sendLogs { (supportId, error) in
 /// Method that will notify the server not to send push messages to this device. Set to false to disable SDK push notifications.
 /// - Parameter allowed: a boolean that will tell the server to send push messages or not. Defaults to `true`.
 @objc (allowPushNotifications:) public static func pushNotification(allowed: Bool)
+```
+
+### Authentication via QR code scanning
+
+PingOne SDK provides an ability to authenticate via scanning the QR code (or typing the code manually). 
+The authCode should be passed to the PingOne SDK as is or inside a URI. 
+For example: "7F45HGF5", "https://myapp.com/pingonesdk?authentication_code=7F45HGF5", "pingonesdk?authentication_code=7F45HGF5"
+
+```swift
+/// Authenticate with code
+///
+/// PingOne SDK provides an ability to authenticate via scanning the QR code.
+/// The retrieved value should be passed to the PingOne SDK using the following API method.
+///
+/// - Parameters:
+///   - authCode: String value of the authentication code, parsed from QR or manual input.
+/// - Returns: a completionHandler that contains `authenticationObject`: users list array, clientContext object,
+/// userApproval String and status String. In case of an error will return NSError.
+@objc public static func authenticate(_ authCode: String, completionHandler: @escaping (_ authenticationObject: AuthenticationObject?, _ error: NSError?) -> Void) 
+```
+AuthenticationObject return from the authenticate method, contains the following varibles and methods:
+
+```swift   
+/// List of users that are paired to this device. Each user object can contain the following String variables: `userId`, `email`, `given`, `family` and `username`.
+@objc public var users: [[String: Any]]?
+/// String that determines if user approval is required to complete an authentication. Possible values: `REQUIRED` and `NOT_REQUIRED`
+@objc public var userApproval: String?
+/// Object for passing any data as a String from server to end-user
+@objc public var clientContext: String?
+/// String value returned from a server when a user calls an authenticate API method. Possible values: can be `CLAIMED`, `EXPIRED`, `DENIED` or `COMPLETED`
+@objc public var status: String?
+    
+/// Approve authentication with code
+///
+/// If `userApproval` is `REQUIRED` or multiple users may approve the authentication,
+/// call this method with a userId of the user, who triggered the method.
+/// - Parameter userId: String value of the user id, fetched from the user object.
+/// - Returns completionHandler: Will return status String value with one of the following values:
+/// `COMPLETED` or `EXPIRED`.
+/// Returns NSError in case of an error.
+@objc public final func approve(userId: String, completionHandler: @escaping (_ status: String?, _ error: NSError?) -> Void) 
+
+/// Deny authentication with code
+///
+/// If `userApproval` is `REQUIRED` or multiple users may deny the authentication,
+/// call this method with a userId of the user, who triggered the method.
+/// - Parameter userId: String value of the user id, fetched from the user object.
+/// This field is not mandatory, authentication can be denied without passing this value.
+/// - Returns completionHandler: Will return status String value with one of the following values:
+/// `DENIED` or `EXPIRED`.
+/// Returns NSError in case of an error.
+@objc public final func deny(_ userId: String? = nil, completionHandler: @escaping (_ status: String?, _ error: NSError?) -> Void)
 ```
 
 ## Disclaimer
