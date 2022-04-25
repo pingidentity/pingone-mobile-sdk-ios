@@ -1,0 +1,4 @@
+framework module PingOneSDK {
+  header "PingOneSDK-Swift.h"
+  requires objc
+}

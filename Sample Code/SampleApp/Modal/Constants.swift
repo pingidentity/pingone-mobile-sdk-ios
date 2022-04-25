@@ -29,6 +29,7 @@ struct AuthnAPIName {
 
 struct SDKFunctionality {
     static let OneTimePasscode          = "One Time Passcode"
+    static let QRAuth                   = "QR Authentication"
     static let SendLogs                 = "SendLogs"
 }
 
@@ -37,6 +38,8 @@ struct SegueName {
     static let OIDC                     = "oidc"
     static let authnAPI                 = "authnapi"
     static let passcode                 = "passcode"
+    static let QRAuth                   = "QRAuth"
+    static let UserApproval             = "UserApproval"
 }
 
 struct Local {
@@ -50,6 +53,13 @@ struct Local {
     static let Error                            = "ERROR"
     static let Ok                               = "OK"
     static let appTitle                         = "PingOne Sample Application"
+    static let AuthCompleted                    = "Authentication completed successfully"
+    static let AuthStatusExpired                = "EXPIRED"
+    static let AuthStatusClaimed                = "CLAIMED"
+    static let AuthStatusCompleted              = "COMPLETED"
+    static let AuthUserApprovalNOTRequired      = "NOT_REQUIRED"
+    static let AuthUserApprovalRequired         = "REQUIRED"
+    static let userSelectionTitle               = "Do you want to approve authentication for a user"
 }
 
 struct Push {

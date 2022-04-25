@@ -1,10 +1,27 @@
 # Release Notes
 
+## v1.7.0 - April 15th, 2022
+Features:
+ 
+- Updated SDK to version 1.7.0.
+- Updated the SDK import name.
+    If you are upgrading from 1.6.0 or lower:
+    - Go to each class that uses the SDK.
+    - Change in the import area "import PingOne" into "import PingOneSDK".
+- Added support for authentication using QR Code scanning or manual typing an authentication code.
+- Started supporting secured signing with Elliptic Curve algorithm, using the iOS secure enclave component (on devices using Apple A7 or later A-series processors).
+ 
+Compatibility notes:
+ 
+- Supports Xcode 13 and above.
+- Increased minimum iOS supported version to iOS 12.
+- SDK will use Elliptic Curve signature for fresh users only, not for users who upgrade from 1.6.0.
+
 ## v1.6.0 - August 1st, 2021
 Features:
 
-- Updated SDK to version 1.6.0.
-- Added support for device integrity validation for threat protection.
+- Sample app was updated to work with the latest SDK version 1.6.0.
+- Supports device integrity checks for rooted and jailbroken devices.
 
 ## v1.5.0 - April 6th, 2021
 Features:
