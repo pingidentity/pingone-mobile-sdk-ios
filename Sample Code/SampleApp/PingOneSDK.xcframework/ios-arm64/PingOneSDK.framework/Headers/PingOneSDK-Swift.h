@@ -312,6 +312,8 @@ typedef SWIFT_ENUM(NSInteger, ErrorCode, open) {
   ErrorCodePasscodeNotValid = 10010,
 /// Authentication code is not valid.
   ErrorCodeAuthCodeInvalid = 10011,
+/// Mobile device does not comply with policy requirements.
+  ErrorCodeFailedPolicyRequirements = 10012,
 };
 
 

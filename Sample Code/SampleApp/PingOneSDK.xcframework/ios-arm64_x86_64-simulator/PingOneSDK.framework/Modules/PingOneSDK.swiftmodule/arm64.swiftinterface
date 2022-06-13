@@ -55,6 +55,7 @@ import _Concurrency
   case pushConfirmationTimeout = 10009
   case passcodeNotValid = 10010
   case authCodeInvalid = 10011
+  case failedPolicyRequirements = 10012
   public init?(rawValue: ObjectiveC.NSInteger)
   public typealias RawValue = ObjectiveC.NSInteger
   public var rawValue: ObjectiveC.NSInteger {
