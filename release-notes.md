@@ -1,6 +1,13 @@
 # Release Notes
 
-## v1.7.1 - June 13th, 2022
+## v1.7.2 - Aug 31st, 2022
+Features:
+ 
+- Updated SDK to version 1.7.2.
+- Added support for alphanumeric pairing key.
+- Bug fixes and performance improvement.
+
+## v1.7.1 - June 1st, 2022
 Features:
  
 - Updated SDK to version 1.7.1.

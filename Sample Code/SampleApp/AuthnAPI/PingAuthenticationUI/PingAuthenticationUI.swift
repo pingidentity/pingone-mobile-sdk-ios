@@ -13,8 +13,8 @@ import UIKit
 * This class represents public API’s for the PingAuthenticationUI module
 */
 
-
-@objcMembers final public class PingAuthenticationUI: NSObject {
+@objcMembers
+final public class PingAuthenticationUI: NSObject {
     
     private weak var authenticatorAppVC: UIViewController?
     private var authCompletion: ((String, String, NSError?) -> Void)?
@@ -33,7 +33,7 @@ import UIKit
     ///   - accessToken: accessToken String from the Authentication API.
     ///   - error: error object in cases of error.
     
-    public func authenticate(presenter: UIViewController, payload: String?, dynamicData: String?, completionHandler: @escaping (_ serverPayload: String, _ accessToken: String, _ error: NSError?) -> Void){
+    public func authenticate(presenter: UIViewController, payload: String?, dynamicData: String?, completionHandler: @escaping (_ serverPayload: String, _ accessToken: String, _ error: NSError?) -> Void) {
         
         authenticationState.authenticatorAppVC = presenter
         
@@ -41,24 +41,24 @@ import UIKit
             requestParams.mobilePayload = mobilePayload
         }
         
-        if let dynamicData = dynamicData{
+        if let dynamicData = dynamicData {
             requestParams.dynamicData = dynamicData
         }
         
         if Config.oidcIssuer == Identifiers.issuerPlaceholder  || Config.clientId == Identifiers.clientPlaceholder {
             print("\(Identifiers.missingCredMsg)")
-            completionHandler("","",nil)
+            completionHandler("", "", nil)
         }
         
-        sharedUILogicLayer.authenticate(request: requestParams){ (response, error) in
+        sharedUILogicLayer.authenticate(request: requestParams) { (response, error) in
             
             if let error = error {
-                completionHandler("","", error)
+                completionHandler("", "", error)
             }
             
             if let response = response {
                 if authenticationState.status == .errorReceived {
-                    completionHandler("","", error)
+                    completionHandler("", "", error)
                 }
                 authenticationState = response
                 authenticationState.authCompletion = completionHandler
@@ -73,11 +73,10 @@ import UIKit
     /// - Parameters:
     ///   - presenter: a UIViewController that retrieves the result of an authentication process.
     
-    public func continueAuthentication(presenter: UIViewController){
+    public func continueAuthentication(presenter: UIViewController) {
         
         authenticationState.authenticatorAppVC = presenter
         authenticationState.status = .mobileParingCompleted
         sharedUILogicLayer.continueAuthentication()
     }
 }
-

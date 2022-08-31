@@ -33,7 +33,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         setViews()
     }
     
-    private func setViews(){
+    private func setViews() {
         hideLoginUI(true)
         usernameTextField.delegate = self
         passwordTextField.delegate = self
@@ -83,9 +83,9 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
             }
             
         default:
-            //Retrying login or otp
+            // Retrying login or otp
             
-            if let username = usernameTextField.text, let password = passwordTextField.text, let otp = passwordTextField.text{
+            if let username = usernameTextField.text, let password = passwordTextField.text, let otp = passwordTextField.text {
                 
                 requestParams.userName = username
                 requestParams.password = password
@@ -97,9 +97,9 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: authenticate
+    // MARK: authenticate
     
-    private func authenticateUser(with params: RequestParams){
+    private func authenticateUser(with params: RequestParams) {
         
         sharedUILogicLayer.needToPresentVC = false
         self.startLoadingAnimation()
@@ -113,17 +113,15 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
             self.stopLoadingAnimation()
             
             if let error = error, response == nil {
-                if authenticationState.error == .validationError{ //Only validation error keep the UI of authenAPI
+                if authenticationState.error == .validationError { // Only validation error keep the UI of authenAPI
                     self.alertHandler?.showOKAlert(title: Identifiers.errorTitle, message: error.userInfo.description)
                     
                     if requestParams.name == Identifiers.PathNameLogin {
                         self.hideLoginUI(false)
-                    }
-                    else if requestParams.name == Identifiers.PathNameOTP {
+                    } else if requestParams.name == Identifiers.PathNameOTP {
                         self.showOTP()
                     }
-                }
-                else { // Other errors close the authenAPI UI
+                } else { // Other errors close the authenAPI UI
                     self.closeAuthUI(response: response)
                 }
             }
@@ -132,8 +130,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
    
                 if authenticationState.status == .usernamePasswordRequired {
                     self.hideLoginUI(false)
-                }
-                else if authenticationState.status == .otpRequired {
+                } else if authenticationState.status == .otpRequired {
                     self.showOTP()
                 }
                 
@@ -156,8 +153,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
                                     }
                                 }
                             }
-                        }
-                        else if response?.status == .failed  || response?.status == .completed {
+                        } else if response?.status == .failed  || response?.status == .completed {
                             self.closeAuthUI(response: response)
                         }
                     }
@@ -168,9 +164,9 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         self.stopLoadingAnimation()
     }
     
-    //MARK: handle UI change
+    // MARK: handle UI change
     
-    private func hideLoginUI(_ isShowing: Bool){
+    private func hideLoginUI(_ isShowing: Bool) {
         DispatchQueue.main.async {
             
             self.passwordTextField.resignFirstResponder()
@@ -189,7 +185,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
     
-    private func showOTP(){
+    private func showOTP() {
         DispatchQueue.main.async {
             
             self.passwordTextField.resignFirstResponder()
@@ -208,7 +204,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
     
-    private func hideOTP(){
+    private func hideOTP() {
         DispatchQueue.main.async {
             self.startLoadingAnimation()
             self.screenTitleLbl.isHidden = true
@@ -223,19 +219,17 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: handle auth actions
+    // MARK: handle auth actions
     
-    private func showActions(_ actions: [AuthAction], completionHandler: @escaping (_ response: AuthenticationState?,_ error: Error?) -> Void){
+    private func showActions(_ actions: [AuthAction], completionHandler: @escaping (_ response: AuthenticationState?, _ error: Error?) -> Void) {
         
         if authenticationState.actions?.count == 0 || authenticationState.status == .mobileParingRequired {
             completionHandler(authenticationState, nil)
-        }
-        else {
+        } else {
             
             guard let actionsStringArray = alertHandler?.getStringActions(from: actions) else {
                 return
             }
-            
             alertHandler?.showAlertWithOptions(title: authenticationState.status?.rawValue, message: nil, options: actionsStringArray) { (pickedActionString, index)  in
                 self.stopLoadingAnimation()
                 
@@ -246,14 +240,11 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
                     self.hideLoginUI(false)
                     completionHandler(authenticationState, nil)
                     return
-                }
-                else if pickedAction == .checkOtp {
+                } else if pickedAction == .checkOtp {
                     self.showOTP()
                     completionHandler(authenticationState, nil)
                     return
-                }
-                else if pickedAction == .deviceSelectionRequired {
-                    
+                } else if pickedAction == .deviceSelectionRequired {
                     if let devicesNamesDict = authenticationState.devicesNames {
                         self.selectDevice(devicesNamesDict: devicesNamesDict) { deviceId in
                             
@@ -262,17 +253,15 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
                         }
                     }
                 }
-                
                 self.setAuthAction(pickedAction, completion: completionHandler)
             }
         }
     }
     
-    private func setAuthAction(_ action: AuthAction?, completion: @escaping (_ response: AuthenticationState?,_ error:NSError?) -> Void){
+    private func setAuthAction(_ action: AuthAction?, completion: @escaping (_ response: AuthenticationState?, _ error: NSError?) -> Void) {
         
         startLoadingAnimation()
         requestParams.action = action
-        
         sharedUILogicLayer.needToPresentVC = false
         
         sharedUILogicLayer.authenticate(request: requestParams) { [weak self] response, error in
@@ -287,20 +276,16 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
                 self.showError(authError) {
                     completion(response, nil)
                 }
-            }
-            else {
+            } else {
                 if let response = response {
                     if let actions = response.actions {
-                        
                         if response.status == .mobileParingRequired {
                             completion(response, nil)
                         }
-                        
                         if response.status == .completed || response.status == .failed || response.status == .tokenExchangeCompleted {
                             self.closeAuthUI(response: response)
                             completion(response, nil)
-                        }
-                        else {
+                        } else {
                             self.showActions(actions) { (response, error) in
                                 if let authError = error {
                                     self.showError(authError) {
@@ -309,8 +294,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
                                 }
                             }
                         }
-                    }
-                    else { 
+                    } else {
                         self.closeAuthUI(response: response)
                         completion(response, nil)
                     }
@@ -334,18 +318,17 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
 
-    //MARK: handle UI cycle
+    // MARK: handle UI cycle
     
-    private func closeAuthUI(response: AuthenticationState?){
+    private func closeAuthUI(response: AuthenticationState?) {
         DispatchQueue.main.async {
             self.stopLoadingAnimation()
             
-            if (authenticationState.authCompletion != nil) {
+            if authenticationState.authCompletion != nil {
                 if response?.status == .errorReceived {
                     self.dismissVC()
-                }
-                else {
-                    var errorCode: String? = nil
+                } else {
+                    var errorCode: String?
                     if response?.status == .failed {
                         errorCode = response?.code ?? ""
                     }
@@ -357,7 +340,7 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
     
-    private func dismissVC(){
+    private func dismissVC() {
         initAPI()
         
         if let completion = authenticationState.authCompletion {
@@ -368,16 +351,16 @@ class MainAuthViewController: AppViewController, UITextFieldDelegate {
         }
     }
     
-    private func initAPI(){
+    private func initAPI() {
         requestParams.flowId = nil
         requestParams.action = nil
         authenticationState.flowId = nil
         sharedUILogicLayer.needToPresentVC = true
     }
     
-    //MARK: handle errors
+    // MARK: handle errors
     
-    private func showError(_ error: Error, completion: @escaping () -> Void){
+    private func showError(_ error: Error, completion: @escaping () -> Void) {
         alertHandler?.showOKAlertWithCompletion(title: nil, message: error.localizedDescription) {
             self.stopLoadingAnimation()
             self.closeAuthUI(response: authenticationState)

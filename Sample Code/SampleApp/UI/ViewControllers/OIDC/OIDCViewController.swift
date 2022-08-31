@@ -20,7 +20,7 @@ class OIDCViewController: UIViewController {
     @IBAction func pairDevice(_ sender: UIButton) {
         
         guard let issuer = URL(string: OIDC.Issuer) else {
-            print("Error creating URL for : \(OIDC.Issuer)")
+            print("Error creating URL for: \(OIDC.Issuer)")
             return
         }
         OIDAuthorizationService.discoverConfiguration(forIssuer: issuer) { configuration, error in
@@ -38,7 +38,7 @@ class OIDCViewController: UIViewController {
     func doAuthWithAutoCodeExchange(configuration: OIDServiceConfiguration, clientID: String, clientSecret: String?) {
 
         guard let redirectURI = URL(string: OIDC.RedirectURI) else {
-            print("Error creating URL for : \(OIDC.RedirectURI)")
+            print("Error creating URL for: \(OIDC.RedirectURI)")
             return
         }
 
@@ -51,13 +51,7 @@ class OIDCViewController: UIViewController {
             let payload = try PingOne.generateMobilePayload()
             
             // builds authentication request
-            let request = OIDAuthorizationRequest(configuration: configuration,
-                                                  clientId: clientID,
-                                                  clientSecret: clientSecret,
-                                                  scopes: [OIDScopeOpenID, OIDScopeProfile],
-                                                  redirectURL: redirectURI,
-                                                  responseType: OIDResponseTypeCode,
-                                                  additionalParameters: [OIDCKey.MobilePayload:payload])
+            let request = OIDAuthorizationRequest(configuration: configuration, clientId: clientID, clientSecret: clientSecret, scopes: [OIDScopeOpenID, OIDScopeProfile], redirectURL: redirectURI, responseType: OIDResponseTypeCode, additionalParameters: [OIDCKey.MobilePayload: payload])
 
             // performs authentication request
             print("Initiating authorization request with scope: \(request.scope ?? "DEFAULT_SCOPE")")
@@ -66,7 +60,7 @@ class OIDCViewController: UIViewController {
 
                 if let authState = authState {
                     print("Got authorization tokens. Access token: \(authState.lastTokenResponse?.accessToken ?? "DEFAULT_TOKEN")")
-                    //Call PingOne SDK with the idToken
+                    // Call PingOne SDK with the idToken
                     self.processIdToken(authState.lastTokenResponse?.idToken ?? "DEFAULT_TOKEN")
                 } else {
                     print("Authorization error: \(error?.localizedDescription ?? "DEFAULT_ERROR")")
@@ -77,23 +71,22 @@ class OIDCViewController: UIViewController {
         }
     }
 
-    func processIdToken(_ idToken: String){
+    func processIdToken(_ idToken: String) {
         PingOne.processIdToken(idToken) { (pairingObject, error) in
-            if let pairingObject = pairingObject{
+            if let pairingObject = pairingObject {
                 self.displayNotificationViewAlert(pairingObject)
-            }
-            else if let error = error{
+            } else if let error = error {
                 print(error.localizedDescription)
             }
         }
     }
     
-    func displayNotificationViewAlert(_ pairingObject: PairingObject){
+    func displayNotificationViewAlert(_ pairingObject: PairingObject) {
         Alert.approveDeny(viewController: self, title: Local.Pair) { (approved) in
-            if let approved = approved{
-                if(approved){
+            if let approved = approved {
+                if approved {
                     pairingObject.approve(completion: { (response, error) in
-                        Alert.generic(viewController: self, message:Local.DeviceIsPaired, error: error)
+                        Alert.generic(viewController: self, message: Local.DeviceIsPaired, error: error)
                     })
                 }
             }

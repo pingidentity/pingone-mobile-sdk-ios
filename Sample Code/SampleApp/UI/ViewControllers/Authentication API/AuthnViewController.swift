@@ -25,9 +25,9 @@ class AuthnViewController: UIViewController {
         startAuthnAPI()
     }
     
-    //MARK: - handle authnAPI
+    // MARK: - handle authnAPI
     
-    func startAuthnAPI(){
+    func startAuthnAPI() {
         startLoadingAnimation()
         
         do {
@@ -39,17 +39,16 @@ class AuthnViewController: UIViewController {
            }
     }
     
-    func authenticate(With payload: String){
+    func authenticate(With payload: String) {
         authnUI.authenticate(presenter: self, payload: payload, dynamicData: "") { [weak self] (serverPayload, accessToken, error) in
             guard let self = self else { return }
             
-            if (serverPayload.count > 0) { //Need pairing
+            if serverPayload.count > 0 { // Need pairing
                PingOne.processIdToken(serverPayload) { (pairingObject, error) in
                    self.stopLoadingAnimation()
-                   if let pairingObject = pairingObject{
+                   if let pairingObject = pairingObject {
                        self.displayNotificationViewAlert(pairingObject)
-                   }
-                   else if let error = error{
+                   } else if let error = error {
                        print(error.localizedDescription)
                    }
                }
@@ -59,29 +58,27 @@ class AuthnViewController: UIViewController {
         }
     }
     
-    func processIdToken(_ idToken: String){
+    func processIdToken(_ idToken: String) {
         PingOne.processIdToken(idToken) { (pairingObject, error) in
-            if let pairingObject = pairingObject{
+            if let pairingObject = pairingObject {
                 self.displayNotificationViewAlert(pairingObject)
-            }
-            else if let error = error{
+            } else if let error = error {
                 print(error.localizedDescription)
             }
         }
     }
     
-    func displayNotificationViewAlert(_ pairingObject: PairingObject){
-        Alert.approveDeny(viewController: self, title: Local.Pair) { (approved) in
-            if let approved = approved{
-                if(approved){
+    func displayNotificationViewAlert(_ pairingObject: PairingObject) {
+        Alert.approveDeny(viewController: self, title: Local.Pair) { approved in
+            if let approved = approved {
+                if approved {
                     pairingObject.approve(completion: { (response, error) in
                         
                         if error != nil {
                             Alert.generic(viewController: self, message: error.debugDescription, error: error)
-                        }
-                        else {
+                        } else {
                             Alert.genericWithCompletion(viewController: self, message: Local.DeviceIsPaired, error: nil) {
-                                //AuthnAPI callback after pairing is done
+                                // AuthnAPI callback after pairing is done
                                 self.authnUI.continueAuthentication(presenter: self)
                             }
                         }
@@ -92,9 +89,9 @@ class AuthnViewController: UIViewController {
         }
     }
     
-    //MARK: spinner helper methods
+    // MARK: spinner helper methods
     
-    func initSpinner(){
+    func initSpinner() {
         DispatchQueue.main.async {
             if #available(iOS 13.0, *) {
                 self.spinner.style = .medium
@@ -115,7 +112,7 @@ class AuthnViewController: UIViewController {
         }
     }
     
-    func startLoadingAnimation(){
+    func startLoadingAnimation() {
         DispatchQueue.main.async {
             self.spinner.startAnimating()
             self.spinner.isHidden = false
@@ -123,7 +120,7 @@ class AuthnViewController: UIViewController {
     }
     
  
-    func stopLoadingAnimation(){
+    func stopLoadingAnimation() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
             self.spinner.isHidden = true

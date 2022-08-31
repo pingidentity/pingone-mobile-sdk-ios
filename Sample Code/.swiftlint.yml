@@ -1,0 +1,165 @@
+excluded:
+  - ${PWD}/Carthage
+  - ${PWD}/Pods
+  - ${PWD}/DerivedData
+
+disabled_rules:
+  - discarded_notification_center_observer
+  - notification_center_detachment
+  - orphaned_doc_comment
+  - todo
+  - unused_capture_list
+  
+  #TBD
+  #- array_constructor
+  - legacy_constructor
+  - unused_optional_binding
+  - identifier_name
+  - force_cast
+  - for_where
+  - type_name
+  - implicit_getter
+  - line_length
+  - cyclomatic_complexity
+  - shorthand_operator
+  - type_body_length
+  - unused_closure_parameter
+  - force_try
+  - redundant_discardable_let
+  - file_length
+  - function_body_length
+  - function_parameter_count
+  - trailing_whitespace #-TBD - fixed but there are still some warnings
+  - large_tuple
+
+opt_in_rules:
+  - array_init
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+#  - collection_alignment #-TBD
+  - colon # promote to error
+#  - convenience_type #-TBD
+  - discouraged_object_literal
+#  - empty_collection_literal #-TBD
+#  - empty_count #-TBD
+#  - empty_string #-TBD
+  - enum_case_associated_values_count
+  - fatal_error_message
+  - first_where
+#  - force_unwrapping #-TBD
+  - implicitly_unwrapped_optional
+#  - indentation_width #-TBD
+  - last_where
+  - legacy_random
+  - literal_expression_end_indentation
+  - multiline_arguments
+  - multiline_function_chains
+#  - multiline_literal_brackets #-TBD
+  - multiline_parameters
+  - multiline_parameters_brackets
+#  - operator_usage_whitespace #-TBD
+#  - overridden_super_call #-TBD
+  - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
+  - redundant_nil_coalescing
+#  - redundant_type_annotation #-TBD
+#  - strict_fileprivate #-TBD
+  - toggle_bool
+#  - trailing_closure #-TBD
+#  - unneeded_parentheses_in_closure_argument #-TBD
+  - unused_import
+#  - vertical_whitespace_closing_braces #-TBD
+#  - vertical_whitespace_opening_braces #-TBD
+  - yoda_condition
+
+
+custom_rules:
+#  array_constructor:  -TBD
+#    name: "Array/Dictionary initializer"
+#    regex: '[let,var] .+ = (\[.+\]\(\))'
+#    capture_group: 1
+#    message: "Use explicit type annotation when initializing empty arrays and dictionaries"
+#    severity: warning
+
+
+attributes:
+  always_on_same_line:
+    - "@IBSegueAction"
+    - "@IBAction"
+    - "@NSManaged"
+    - "@objc"
+
+#force_cast: warning #-TBD
+#force_try: warning #-TBD
+#function_body_length: #-TBD
+#    warning: 60
+
+legacy_hashing: error
+
+#identifier_name: #-TBD
+#  excluded:
+#    - i
+#    - id
+#    - x
+#    - y
+#    - z
+
+#indentation_width:
+#  indentation_width: 2
+
+#line_length: #-TBD
+#  ignores_urls: true
+#  ignores_function_declarations: true
+#  ignores_comments: true
+
+multiline_arguments:
+  first_argument_location: next_line
+  only_enforce_after_first_closure_on_first_line: true
+  
+private_over_fileprivate:
+  validate_extensions: true
+
+#trailing_whitespace:
+#  ignores_empty_lines: false
+#  ignores_comments: true
+
+vertical_whitespace:
+  max_empty_lines: 2
+  
+#TBD
+#- array_constructor
+#- legacy_constructor
+#- unused_optional_binding
+#- identifier_name
+#- force_cast
+#- for_where
+#- type_name  ### add constraints - class names
+#- implicit_getter
+#- empty_count
+#- line_length
+#- cyclomatic_complexity
+#- shorthand_operator
+#- type_body_length
+#- vertical_whitespace_closing_braces
+#- vertical_whitespace_opening_braces
+#- indentation_width
+#- unneeded_parentheses_in_closure_argument
+#- unused_closure_parameter
+#- operator_usage_whitespace
+#- collection_alignment
+#- multiline_literal_brackets
+#- convenience_type
+#- force_unwrapping
+#- force_try
+#- redundant_discardable_let
+#- overridden_super_call
+#- file_length
+#- redundant_type_annotation
+#- strict_fileprivate
+#- function_body_length
+#- trailing_closure
+#- function_parameter_count
+#- empty_string
+#- large_tuple
+#- empty_collection_literal

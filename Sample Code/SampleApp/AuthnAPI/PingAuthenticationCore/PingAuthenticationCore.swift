@@ -18,7 +18,7 @@ var requestParams = RequestParams()
 * This class represents public API’s for the PingAuthenticationCore module
 */
 
-final public class PingAuthenticationCore : NSObject{
+final public class PingAuthenticationCore: NSObject {
     
     /// Authenticate
     ///
@@ -33,7 +33,7 @@ final public class PingAuthenticationCore : NSObject{
     /// - Note:
     ///   If you want to use your own UI, this method can be called independently, regardless of the PingAuthenticationUI instance.
     
-    static public func authenticate(_ requestParams: RequestParams, completionHandler: @escaping (_ response: AuthenticationState?, _ error: NSError?) -> Void){
+    static public func authenticate(_ requestParams: RequestParams, completionHandler: @escaping (_ response: AuthenticationState?, _ error: NSError?) -> Void) {
         
         sharedCoreLogicLayer.setAction(requestParams.action) { (state, error) in
             completionHandler(state, error)

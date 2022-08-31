@@ -15,14 +15,14 @@ class ActionItem: NSObject {
         case sendLogs
     }
     
-    var actionName:     String
-    var segueID:        String?
-    var type:           ActionItemType
+    var actionName: String
+    var segueID: String?
+    var type: ActionItemType
     
-    init(actionName: String, segueID : String?, actionType: ActionItemType) {
+    init(actionName: String, segueID: String?, actionType: ActionItemType) {
         self.actionName = actionName
         self.type       = actionType
-        if let segueID = segueID{
+        if let segueID = segueID {
             self.segueID = segueID
         }
     }

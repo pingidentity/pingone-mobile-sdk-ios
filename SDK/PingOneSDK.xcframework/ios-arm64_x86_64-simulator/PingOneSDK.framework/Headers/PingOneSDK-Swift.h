@@ -316,6 +316,8 @@ typedef SWIFT_ENUM(NSInteger, ErrorCode, open) {
   ErrorCodeAuthCodeInvalid = 10011,
 /// Mobile device does not comply with policy requirements.
   ErrorCodeFailedPolicyRequirements = 10012,
+/// Another pairing API call is already in progress
+  ErrorCodePairingAlreadyRunning = 10013,
 };
 
 
@@ -914,6 +916,8 @@ typedef SWIFT_ENUM(NSInteger, ErrorCode, open) {
   ErrorCodeAuthCodeInvalid = 10011,
 /// Mobile device does not comply with policy requirements.
   ErrorCodeFailedPolicyRequirements = 10012,
+/// Another pairing API call is already in progress
+  ErrorCodePairingAlreadyRunning = 10013,
 };
 
 

@@ -21,9 +21,9 @@ class AppViewController: UIViewController {
     }
     
 
-    //MARK: loading spinner methods
+    // MARK: loading spinner methods
     
-    func initSpinner(){
+    func initSpinner() {
         DispatchQueue.main.async {
             if #available(iOS 13.0, *) {
                 self.spinner.style = .medium
@@ -44,14 +44,14 @@ class AppViewController: UIViewController {
         }
     }
     
-    func startLoadingAnimation(){
+    func startLoadingAnimation() {
         DispatchQueue.main.async {
             self.spinner.startAnimating()
             self.spinner.isHidden = false
         }
     }
     
-    func stopLoadingAnimation(){
+    func stopLoadingAnimation() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
             self.spinner.isHidden = true

@@ -15,8 +15,8 @@ Release notes can be found [here](./release-notes.md).
 
 Reference documentation is available for PingOne for Customers Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
 
-* [PingOne for Customers Mobile SDK release notes and admin related documentation](https://docs.pingidentity.com/bundle/p14c/)
-* [PingOne for Customers Mobile SDK developer documentation](https://apidocs.pingidentity.com/pingone/platform/v1/api/#mobile-sdk-api)
+* [PingOne for Customers Mobile SDK release notes and admin related documentation](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
+* [PingOne for Customers Mobile SDK developer documentation](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-native-sdks)
 
 
 ## Set up a mobile app using the PingOne SDK sample code

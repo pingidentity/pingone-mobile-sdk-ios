@@ -11,9 +11,9 @@ import Foundation
 
 final class CommunicationManager {
     
-    func post(requestParams: RequestParams, headerContentType: String, needUrlEncode: Bool, completionHandler: @escaping (_ response: [String : Any]?, _ error: NSError?) -> Void){
+    func post(requestParams: RequestParams, headerContentType: String, needUrlEncode: Bool, completionHandler: @escaping (_ response: [String: Any]?, _ error: NSError?) -> Void) {
         
-        //Prepare request
+        // Prepare request
         guard let requestUrl =  URL(string: requestParams.urlString) else {
             return
         }
@@ -24,8 +24,7 @@ final class CommunicationManager {
         if let params = requestParams.params {
             if needUrlEncode {
                 urlRequest.httpBody = urlEncode(params)
-            }
-            else {
+            } else {
                 do {
                     urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
                 } catch let error as NSError {
@@ -40,7 +39,7 @@ final class CommunicationManager {
             urlRequest.allHTTPHeaderFields = headersWithCoookies
         }
         
-        urlRequest.allHTTPHeaderFields = [Identifiers.ContentType : headerContentType, Identifiers.headerXSRF : Identifiers.typeTest]
+        urlRequest.allHTTPHeaderFields = [Identifiers.ContentType: headerContentType, Identifiers.headerXSRF: Identifiers.typeTest]
 
         #if DEBUG
 
@@ -57,7 +56,7 @@ final class CommunicationManager {
         
         #endif
         
-        //Send request
+        // Send request
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                         
             guard let data = data, error == nil else {
@@ -67,18 +66,18 @@ final class CommunicationManager {
                 
             let httpResponse = response as! HTTPURLResponse
 
-            if let responseString = String(data: data, encoding: .utf8){
+            if let responseString = String(data: data, encoding: .utf8) {
                 print("Response:     \(String(describing: responseString))")
                 
-                //Cookie handle
+                // Cookie handle
                 if let url = httpResponse.url,
-                    let allHeaderFields = httpResponse.allHeaderFields as? [String : String] {
+                    let allHeaderFields = httpResponse.allHeaderFields as? [String: String] {
                     let cookies = HTTPCookie.cookies(withResponseHeaderFields: allHeaderFields, for: url)
                     HTTPCookieStorage.shared.setCookies(cookies, for: url, mainDocumentURL: nil)
                 }
                 
-                //Get the json response
-                var jsonDictionary: NSDictionary? = nil
+                // Get the json response
+                var jsonDictionary: NSDictionary?
                 
                 do {
                     jsonDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
@@ -87,11 +86,10 @@ final class CommunicationManager {
                 }
 
                 if httpResponse.statusCode == 200 {
-                    if jsonDictionary != nil{
-                        completionHandler(jsonDictionary as? [String : Any], nil)
+                    if jsonDictionary != nil {
+                        completionHandler(jsonDictionary as? [String: Any], nil)
                     }
-                }
-                else {
+                } else {
                     authenticationState.status = .errorReceived
                     
                     if let code = jsonDictionary?["code"] as? String {
@@ -101,7 +99,7 @@ final class CommunicationManager {
                         }
                     }
                     
-                    let error = NSError.init(domain: Identifiers.errorDomainPingOne, code: httpResponse.statusCode, userInfo: jsonDictionary as? [String : Any] ?? [:])
+                    let error = NSError.init(domain: Identifiers.errorDomainPingOne, code: httpResponse.statusCode, userInfo: jsonDictionary as? [String: Any] ?? [:])
                     print("Received error response: \(error.localizedDescription)")
                         completionHandler(nil, error as NSError?)
                 }
@@ -117,7 +115,4 @@ final class CommunicationManager {
         let jsonData = jsonString.data(using: .utf8, allowLossyConversion: false)!
         return jsonData
     }
-    
-    
-    
 }

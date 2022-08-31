@@ -12,7 +12,7 @@ import UIKit
 
 let sharedCoreLogicLayer = CoreLogicLayer()
 
-final class CoreLogicLayer : NSObject {
+final class CoreLogicLayer: NSObject {
     
     private let comm = CommunicationManager()
     private var timer = Timer()
@@ -25,12 +25,12 @@ final class CoreLogicLayer : NSObject {
         switch action {
    
         case .checkUsernamePassword:
-            login{ (response, error) in
+            login { (response, error) in
                 actionCompletion(response, error)
             }
             
         case .authenticate:
-            authenticate{ (response, error) in
+            authenticate { (response, error) in
                 self.authCompletion = actionCompletion
                 actionCompletion(response, error)
             }
@@ -52,24 +52,24 @@ final class CoreLogicLayer : NSObject {
             }
             
         case .checkOtp:
-            checkOtp{ (response, error) in
+            checkOtp { (response, error) in
                 actionCompletion(response, error)
             }
             
         case .deviceSelectionRequired:
-            selectDevice{ (response, error) in
+            selectDevice { (response, error) in
                 actionCompletion(response, error)
             }
         default:
-            startFlow{ (response, error) in
+            startFlow { (response, error) in
                 actionCompletion(response, error)
             }
         }
     }
     
-    //MARK: requests handling
+    // MARK: requests handling
     
-    private func startFlow(completionHandler: @escaping(_ response: AuthenticationState? , NSError?) -> Void){
+    private func startFlow(completionHandler: @escaping(_ response: AuthenticationState?, NSError?) -> Void) {
         
         let getFlowIdRequestParams = RequestParams.init(urlStr: Config.oidcIssuer)
         
@@ -88,16 +88,16 @@ final class CoreLogicLayer : NSObject {
                     }
                 }
                 
-                if let code = responseDict[Response.code] as? String  {
+                if let code = responseDict[Response.code] as? String {
                     authenticationState.code = code
                 }
                 
-                completionHandler(authenticationState,nil)
+                completionHandler(authenticationState, nil)
             }
         }
     }
     
-    private func login(completionHandler: @escaping (_ response: AuthenticationState? , NSError?) -> Void){
+    private func login(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         
         guard let username = requestParams.userName, let password = requestParams.password, let flowID = requestParams.flowId else {
             return completionHandler(nil, nil)
@@ -114,7 +114,7 @@ final class CoreLogicLayer : NSObject {
         }
     }
     
-    private func checkOtp(completionHandler: @escaping (_ response: AuthenticationState? , NSError?) -> Void){
+    private func checkOtp(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         guard let otpValue = requestParams.otp, let flowID = requestParams.flowId else {
             return completionHandler(nil, nil)
         }
@@ -130,7 +130,7 @@ final class CoreLogicLayer : NSObject {
         }
     }
         
-    private func selectDevice(completionHandler: @escaping (_ response: AuthenticationState? , NSError?) -> Void){
+    private func selectDevice(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         
         guard let deviceId = requestParams.deviceId, let flowID = requestParams.flowId else {
             return completionHandler(nil, nil)
@@ -146,7 +146,7 @@ final class CoreLogicLayer : NSObject {
         }
     }
     
-    private func authenticate(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void){
+    private func authenticate(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         
         guard let flowID = requestParams.flowId else {
             return completionHandler(nil, nil)
@@ -162,7 +162,7 @@ final class CoreLogicLayer : NSObject {
         }
     }
     
-    private func continueAuthentication(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void){
+    private func continueAuthentication(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         
         guard let flowID = requestParams.flowId else {
             return completionHandler(nil, nil)
@@ -182,25 +182,22 @@ final class CoreLogicLayer : NSObject {
                 
                 if authenticationState.accessToken != nil { // Try parsing access token
                     completionHandler(authenticationState, nil)
-                }
-                else {  // If code parameter has a value, run getAuthnToken
+                } else {  // If code parameter has a value, run getAuthnToken
                    
                     guard let code = authenticationState.code else {
                         return completionHandler(authenticationState, nil)
                     }
-                    
                     self.getAuthnToken(code) { (response, error) in
                         if error == nil {
                             completionHandler(response, nil)
                         }
                     }
-                 
                }
             }
         }
     }
     
-    private func getAuthnToken(_ code: String, completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void){
+    private func getAuthnToken(_ code: String, completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
 
         let getAuthnTokenRequestParams = RequestParams.init(code: code)
         getAuthnTokenRequestParams.name = Identifiers.PathNameGetToken
@@ -214,13 +211,13 @@ final class CoreLogicLayer : NSObject {
             if let responseDict = response {
                 authenticationState.parseResponse(responseDict)
                 authenticationState.status = .tokenExchangeCompleted
-                completionHandler(authenticationState,nil)
+                completionHandler(authenticationState, nil)
             }
             completionHandler(nil, nil)
         }
     }
     
-    private func cancelAuthentication(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void){
+    private func cancelAuthentication(completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         
         guard let flowID = requestParams.flowId else {
             return completionHandler(nil, nil)
@@ -236,25 +233,25 @@ final class CoreLogicLayer : NSObject {
         }
     }
     
-    private func handleResponse(_ response: [String : Any]?, _ error: NSError?, completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void){
+    private func handleResponse(_ response: [String: Any]?, _ error: NSError?, completionHandler: @escaping (_ response: AuthenticationState?, NSError?) -> Void) {
         if let errorObj = error {
            completionHandler(nil, errorObj)
         }
 
         if let responseDict = response {
             authenticationState.parseResponse(responseDict)
-            completionHandler(authenticationState,nil)
+            completionHandler(authenticationState, nil)
         }
         completionHandler(nil, nil)
     }
     
-    @objc private func poll(){
+    @objc private func poll() {
         
         if timerSecCounter >= Identifiers.pollingMaxCounter {
             authenticationState.status = .pushConfirmationTimedout
             
             if var actionsArray = authenticationState.actions {
-                if let index = actionsArray.firstIndex(where: {$0 == .poll}) {
+                if let index = actionsArray.firstIndex(where: { $0 == .poll }) {
                     actionsArray.remove(at: index)
                 }
                 authenticationState.actions = actionsArray
@@ -277,9 +274,8 @@ final class CoreLogicLayer : NSObject {
                         self.stopPolling()
                         completion(nil, errorObj)
                     }
-                }
-                else {
-                    if !self.isTimerValid() { //Start polling timer only if no error and timer was not initiated yet
+                } else {
+                    if !self.isTimerValid() { // Start polling timer only if no error and timer was not initiated yet
                         self.startPollingTimer()
                     }
                     
@@ -287,7 +283,7 @@ final class CoreLogicLayer : NSObject {
                         authenticationState.parseResponse(responseDict)
                         
                         if authenticationState.status == .pushConfirmationWaiting {
-                            //Don't stop polling, untill timerSecCounter will be expired
+                            // Don't stop polling, untill timerSecCounter will be expired
                         } else {
                             self.stopPolling()
                         }
@@ -298,7 +294,7 @@ final class CoreLogicLayer : NSObject {
         }
     }
     
-    private func startPollingTimer(){
+    private func startPollingTimer() {
         DispatchQueue.main.async {
             if self.didTimerStopped {
                 return

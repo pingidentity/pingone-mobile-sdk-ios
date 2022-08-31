@@ -18,7 +18,7 @@ struct UserData {
     var status: String?
     var lastLogin: Date?
     
-    static func getUser(From data: [String:Any]) -> UserData {
+    static func getUser(From data: [String: Any]) -> UserData {
         let id = data[UserKeys.id] as? String ?? ""
         let firstName = data[UserKeys.firstName] as? String ?? ""
         let lastName = data[UserKeys.lastName] as? String ?? ""

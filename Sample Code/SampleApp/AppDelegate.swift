@@ -28,15 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func registerRemoteNotifications()
-    {
+    func registerRemoteNotifications() {
         print("Registering remote notifications")
         
         let center  = UNUserNotificationCenter.current()
         center.delegate = self
         center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
-            if error == nil
-            {
+            if error == nil {
                 // Registering UNNotificationCategories more than once results in previous categories being overwritten. PingOne provides the needed categories. The developer may add categories.
                 UNUserNotificationCenter.current().setNotificationCategories(PingOne.getUNNotificationCategories())
                 DispatchQueue.main.async {
@@ -46,9 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ application: UIApplication,
-                     didFailToRegisterForRemoteNotificationsWithError error: Error)
-    {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error.localizedDescription)
     }
     
@@ -57,34 +53,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         print("Device Token: \(deviceTokenString)")
 
-        var deviceTokenType : PingOne.APNSDeviceTokenType = .production
+        var deviceTokenType: PingOne.APNSDeviceTokenType = .production
         #if DEBUG
         deviceTokenType = .sandbox
         #endif
         
         PingOne.setDeviceToken(deviceToken, type: deviceTokenType) { (error) in
-            if let error = error{
+            if let error = error {
                 print(error.localizedDescription)
             }
         }
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void)
-    {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("didReceive")
         
         PingOne.processRemoteNotificationAction(response.actionIdentifier, authenticationMethod: "user", forRemoteNotification: response.notification.request.content.userInfo) { (notificationObject, error) in
             
-            if let error = error{
+            if let error = error {
                 print("Error: \(String(describing: error))")
-                if error.code == ErrorCode.unrecognizedRemoteNotification.rawValue{
-                    //Do something else with remote notification.
+                if error.code == ErrorCode.unrecognizedRemoteNotification.rawValue {
+                    // Do something else with remote notification.
                 }
-            }
-            else if let notificationObject = notificationObject{ //User pressed the actual banner, instead of an action.
-               if let userInfo = response.notification.request.content.userInfo as? [String : Any] {
+            } else if let notificationObject = notificationObject { // User pressed the actual banner, instead of an action.
+               if let userInfo = response.notification.request.content.userInfo as? [String: Any] {
                    let title = self.getNotificationTextFrom(userInfo).title
                    let message = self.getNotificationTextFrom(userInfo).body
                    self.displayNotificationViewAlert(notificationObject, title: title, msg: message)
@@ -96,24 +88,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
-    {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("didReceiveRemoteNotification userinfo: \(userInfo)")
         
         PingOne.processRemoteNotification(userInfo) { (notificationObject, error) in
-            if let error = error{
+            if let error = error {
                 print("Error: \(String(describing: error))")
-                if error.code == ErrorCode.unrecognizedRemoteNotification.rawValue{
-                    //Unrecognized remote notification.
+                if error.code == ErrorCode.unrecognizedRemoteNotification.rawValue {
+                    // Unrecognized remote notification.
                     completionHandler(UIBackgroundFetchResult.noData)
                 }
-            }
-            else if let notificationObject = notificationObject{
+            } else if let notificationObject = notificationObject {
                 self.notificationObject = notificationObject
-                switch(notificationObject.notificationType){
+                switch notificationObject.notificationType {
                 case .authentication:
                     
-                    if let userInfo = userInfo as? [String : Any] {
+                    if let userInfo = userInfo as? [String: Any] {
                         let title = self.getNotificationTextFrom(userInfo).title
                         let message = self.getNotificationTextFrom(userInfo).body
                         self.displayNotificationViewAlert(notificationObject, title: title, msg: message)
@@ -124,56 +114,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     print("Error: \(String(describing: error))")
                     completionHandler(UIBackgroundFetchResult.noData)
                 }
-            }
-            else{
+            } else {
                 completionHandler(UIBackgroundFetchResult.noData)
             }
         }
     }
     
-    func getNotificationTextFrom(_ userInfo: [String: Any]) -> (title: String, body: String){
+    func getNotificationTextFrom(_ userInfo: [String: Any]) -> (title: String, body: String) {
         
-        if let aps = userInfo[Push.aps] as? [String:Any] {
-            if let alert = aps[Push.alert] as? [String:String] {
+        if let aps = userInfo[Push.aps] as? [String: Any] {
+            if let alert = aps[Push.alert] as? [String: String] {
                 if let title = alert[Push.title], let body = alert[Push.body] {
-                     return (title,body)
+                     return (title, body)
                 }
             }
         }
-        return ("","")
+        return ("", "")
     }
     
-    func displayNotificationViewAlert(_ notificationObject: NotificationObject, title: String, msg: String){
+    func displayNotificationViewAlert(_ notificationObject: NotificationObject, title: String, msg: String) {
         DispatchQueue.main.async {
             
             var displayOnVc: UIViewController
-            guard let rootVc = self.window?.rootViewController else{
+            guard let rootVc = self.window?.rootViewController else {
                 return
             }
             
-            if rootVc.presentedViewController != nil{
+            if rootVc.presentedViewController != nil {
                 displayOnVc = rootVc.presentedViewController!
-            }
-            else{
+            } else {
                 displayOnVc = rootVc
             }
 
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationRecived"), object: nil)
 
             Alert.approveDeny(viewController: displayOnVc, title: title, message: msg) { (approved) in
-                if let approved = approved{
-                    if(approved){
+                if let approved = approved {
+                    if approved {
                         notificationObject.approve(withAuthenticationMethod: "user", completionHandler: { (error) in
-                            if error != nil
-                            {
+                            if error != nil {
                                 Alert.generic(viewController: displayOnVc, message: msg, error: error)
                             }
                         })
-                    }
-                    else{
+                    } else {
                         notificationObject.deny(completionHandler: { (error) in
-                            if error != nil
-                            {
+                            if error != nil {
                                 Alert.generic(viewController: displayOnVc, message: msg, error: error)
                             }
                         })
@@ -184,8 +169,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    //OIDC
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    // OIDC
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
 
         if let authorizationFlow = self.currentAuthorizationFlow, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
             self.currentAuthorizationFlow = nil
@@ -210,4 +195,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_ application: UIApplication) {
     }
 }
-

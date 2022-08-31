@@ -21,6 +21,8 @@ class ManualPairingViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.navigationItem.title = PairingMethodName.Manual
         pairingKeyTextField.delegate = self
+        pairingKeyTextField.keyboardType = .namePhonePad
+        pairingKeyTextField.autocapitalizationType = .allCharacters
     }
     
     @IBAction func pairDevice(_ sender: UIButton?) {
@@ -31,7 +33,7 @@ class ManualPairingViewController: UIViewController, UITextFieldDelegate {
             PingOne.pair(pairingKeyText) { (reponse, error) in
                 DispatchQueue.main.async {
                     sender?.isUserInteractionEnabled = true
-                    Alert.generic(viewController: self, message:Local.DeviceIsPaired, error: error)
+                    Alert.generic(viewController: self, message: Local.DeviceIsPaired, error: error)
                 }
             }
         } else {
@@ -61,5 +63,18 @@ class ManualPairingViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == pairingKeyTextField {
+            if string == "" {
+                // User presses backspace
+                textField.deleteBackward()
+            } else {
+                // User presses any key or pastes
+                textField.insertText(string.uppercased())
+            }
+            return false
+        }
+        return true
+    }
 }
-

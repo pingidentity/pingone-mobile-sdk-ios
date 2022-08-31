@@ -19,9 +19,9 @@ class MainViewController: UIViewController {
         initLoadingAnimation()
     }
     
-    //MARK: Loading Spinner methods
+    // MARK: Loading Spinner methods
     
-    func initLoadingAnimation(){
+    func initLoadingAnimation() {
         if #available(iOS 13.0, *) {
             self.spinner.style = .medium
         } else {
@@ -36,21 +36,21 @@ class MainViewController: UIViewController {
         spinner.isHidden = true
     }
     
-    func startLoadingAnimation(){
+    func startLoadingAnimation() {
         DispatchQueue.main.async {
             self.spinner.isHidden = false
             self.spinner.startAnimating()
         }
     }
     
-    func stopLoadingAnimation(){
+    func stopLoadingAnimation() {
         DispatchQueue.main.async {
             self.spinner.isHidden = true
             self.spinner.stopAnimating()
         }
     }
     
-    //MARK: handle QR Auth methods
+    // MARK: handle QR Auth methods
     
     func approveUser(userId: String, authObject: AuthenticationObject) {
         startLoadingAnimation()

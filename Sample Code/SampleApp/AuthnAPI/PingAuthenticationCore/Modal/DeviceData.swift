@@ -25,7 +25,7 @@ struct DeviceData {
     var applicationVersion: String?
     var usable: Bool?
     
-    static func getDevices(From data: [[String:Any]]) -> [String: String]?{
+    static func getDevices(From data: [[String: Any]]) -> [String: String]? {
         var devicesArray = [DeviceData]()
 
         for device in data {
@@ -36,7 +36,7 @@ struct DeviceData {
         return getDevicesNames(data: devicesArray)
     }
     
-    static func getDevicesNames(data: [DeviceData]) -> [String: String]?{
+    static func getDevicesNames(data: [DeviceData]) -> [String: String]? {
         var devicesNamesDict = [String: String]()
 
         for device in data {
@@ -53,7 +53,7 @@ struct DeviceData {
         return devicesNamesDict
     }
     
-    private static func parseDevice(deviceDict: [String:Any]) -> DeviceData {
+    private static func parseDevice(deviceDict: [String: Any]) -> DeviceData {
         let id = deviceDict[DeviceKeys.id] as? String
         let name = deviceDict[DeviceKeys.name] as? String
         let nickname = deviceDict[DeviceKeys.nickname] as? String
