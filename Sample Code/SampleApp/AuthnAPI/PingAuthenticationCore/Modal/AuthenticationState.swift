@@ -9,7 +9,7 @@
 
 import UIKit
 
-final public class AuthenticationState : NSObject {
+final public class AuthenticationState: NSObject {
     
     var authenticatorAppVC: UIViewController?
     var authCompletion: ((String, String, NSError?) -> Void)?
@@ -25,7 +25,7 @@ final public class AuthenticationState : NSObject {
     var user: UserData?
     var errorJsonMsg: String?
     
-    func parseResponse(_ responseDict: [String: Any]?){
+    func parseResponse(_ responseDict: [String: Any]?) {
         
         if let responseDict = responseDict {
             
@@ -54,7 +54,7 @@ final public class AuthenticationState : NSObject {
                 
                 if let actionsStrArray = linksData.allKeys as? [String] {
                     
-                    //Convert actions string array into AuthAction enum array
+                    // Convert actions string array into AuthAction enum array
                     var actionsArray = [AuthAction]()
                     for actionStr in actionsStrArray {
                         guard let action = AuthAction.init(rawValue: actionStr) else {
@@ -63,10 +63,10 @@ final public class AuthenticationState : NSObject {
                         actionsArray.append(action)
                     }
 
-                    //Filter actions
+                    // Filter actions
                     var actionsArrayFiltered = [AuthAction]()
                     for action in actionsArray {
-                        if action == .selfAction || (authenticationState.status == .authenticationRequired && action == .deviceSelectionRequired){ // Currently selectDevice is filtered out for the AUTHENTICATION_REQUIRE status. selectDevice will be supported in future versions.
+                        if action == .selfAction || (authenticationState.status == .authenticationRequired && action == .deviceSelectionRequired) { // Currently selectDevice is filtered out for the AUTHENTICATION_REQUIRE status. selectDevice will be supported in future versions.
                             continue
                         } else {
                             actionsArrayFiltered.append(action)
@@ -84,18 +84,18 @@ final public class AuthenticationState : NSObject {
                 if let accessToken = authorizeResponse[Response.accessToken] as? String {
                     authenticationState.accessToken = accessToken
                 }
-                if let code = authorizeResponse[Response.code] as? String  {
+                if let code = authorizeResponse[Response.code] as? String {
                     authenticationState.code = code
                 }
             }
             
             if authenticationState.status == .failed {
-                if let code = responseDict[Response.code] as? String  {
+                if let code = responseDict[Response.code] as? String {
                     authenticationState.code = code
                 }
             }
             
-            if let accessToken = responseDict[Response.accessToken] as? String  {
+            if let accessToken = responseDict[Response.accessToken] as? String {
                 authenticationState.accessToken = accessToken
             }
             

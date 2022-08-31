@@ -56,6 +56,7 @@ import _Concurrency
   case passcodeNotValid = 10010
   case authCodeInvalid = 10011
   case failedPolicyRequirements = 10012
+  case pairingAlreadyRunning = 10013
   public init?(rawValue: ObjectiveC.NSInteger)
   public typealias RawValue = ObjectiveC.NSInteger
   public var rawValue: ObjectiveC.NSInteger {

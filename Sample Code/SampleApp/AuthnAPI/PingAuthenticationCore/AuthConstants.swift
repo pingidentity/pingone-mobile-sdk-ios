@@ -51,12 +51,12 @@ struct Identifiers {
     static let headerXSRF                 = "X-XSRF-Header"
     static let typeTest                   = "test"
 
-    //Requests
+    // Requests
     static let Post                       = "POST"
     static let ContentType                = "Content-Type"
     static let Accept                     = "Accept"
     
-    //GetFlowId
+    // GetFlowId
     static let flowId                     = "flowId"
     static let PathNameFlows              = "flows"
     static let ContentTypeInitAuth        = "application/vnd.pingidentity.initiateOAuthAuthorization+json"
@@ -72,10 +72,10 @@ struct Identifiers {
     static let responseMode               = "response_mode"
     static let scopeKey                   = "scope"
     
-    //Version
+    // Version
     static let versionName                = "v1.0.0"
     
-    //Login
+    // Login
     static let loginTitle                 = "Sign On"
     static let PathNameLogin              = "Login"
     static let username                   = "username"
@@ -85,51 +85,51 @@ struct Identifiers {
     static let signOnBtnText              = "Sign On"
     static let ContentTypeLogin           = "application/vnd.pingidentity.checkUsernamePassword+json"
     
-    //Authenticate
+    // Authenticate
     static let PathNameAuthenticate       = "Authenticate"
     static let mobilePayloadKey           = "mobilePayload"
     
-    //Pairing
+    // Pairing
     static let pingIdPayload              = "pingIdPayload"
     
-    //ContinueAuthenticate
+    // ContinueAuthenticate
     static let PathNameContinueAuth       = "continueAuthenticate"
     
-    //OTP
+    // OTP
     static let PathNameOTP                = "checkOTP"
     static let otp                        = "otp"
     static let otpPlaceholder             = "Insert OTP"
     static let otpSubmitBtnText           = "Check OTP"
     static let ContentTypeOTP             = "application/vnd.pingidentity.checkOtp+json"
     
-    //SelectDevices
+    // SelectDevices
     static let PathNameSelectDevice       = "SelectDevice"
     static let deviceId                   = "deviceId"
     static let id                         = "id"
     static let deviceRef                  = "deviceRef"
     
-    //Poll
+    // Poll
     static let PathNamePoll               = "Poll"
     static let pollingCode                = "code"
     static let pollingMaxCounter          = 15
     
-    //CancelAuthenticate
+    // CancelAuthenticate
     static let PathNameCancelAuth         = "CancelAuthentication"
     
-    //GetAuthnToken
+    // GetAuthnToken
     static let PathNameGetToken           = "GetAuthnToken"
     static let getToken                   = "as/token.oauth2"
     static let AuthnTokenCodeKey          = "code"
     static let grantTypeKey               = "grant_type"
     static let clientSecretKey            = "client_secret"
     
-    //Error
+    // Error
     static let messageKey                 = "message"
     static let errorTitle                 = "ERROR"
     static let errorDomainPingOne         = "PingOneErrorDomain"
     static let missingCredMsg             = "Please remove placeholders from Config file and add your own credentials."
     
-    //Placeholders
+    // Placeholders
     static let issuerPlaceholder          = "<issuerPlaceHolder>"
     static let clientPlaceholder          = "<clientIdPlaceHolder>"
 }

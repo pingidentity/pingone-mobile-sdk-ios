@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 
-struct Alert{    
-    static func generic(viewController: UIViewController, title: String? = nil, message: String?, error: NSError?){
+struct Alert {
+    static func generic(viewController: UIViewController, title: String? = nil, message: String?, error: NSError?) {
         
         var titleCustmized = Local.Success
         if title != nil {
@@ -19,17 +19,16 @@ struct Alert{
         
         var alertMessage = ""
         
-        if error != nil{
+        if error != nil {
             titleCustmized = Local.Error
             alertMessage = error!.description
             print(error!.description)
-        }
-        else if message != nil{
+        } else if message != nil {
             alertMessage = message!
         }
         
         DispatchQueue.main.async {
-            let pairAlert = UIAlertController(title: titleCustmized, message:alertMessage, preferredStyle: .alert)
+            let pairAlert = UIAlertController(title: titleCustmized, message: alertMessage, preferredStyle: .alert)
             pairAlert.addAction(UIKit.UIAlertAction(title: Local.Ok, style: .default, handler: nil))
             pairAlert.view.accessibilityIdentifier = "generic_alert"
             pairAlert.view.accessibilityValue = "\(titleCustmized)-\(alertMessage)"
@@ -37,7 +36,7 @@ struct Alert{
         }
     }
     
-    static func genericWithCompletion(viewController: UIViewController, title: String? = nil, message: String?, error: NSError?, completionHandler: @escaping () -> Void){
+    static func genericWithCompletion(viewController: UIViewController, title: String? = nil, message: String?, error: NSError?, completionHandler: @escaping () -> Void) {
            
         var titleCustmized = Local.Success
         if let title = title {
@@ -66,22 +65,19 @@ struct Alert{
         }
     }
     
-    static func approveDeny(viewController: UIViewController, title: String, message: String? = nil, completionHandler: @escaping (_ approved: Bool?) -> Void){
+    static func approveDeny(viewController: UIViewController, title: String, message: String? = nil, completionHandler: @escaping (_ approved: Bool?) -> Void) {
         DispatchQueue.main.async {
             let authAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
-            let approveAction = UIAlertAction(title: Local.Approve, style: UIAlertAction.Style.default) {
-                UIAlertAction in
+            let approveAction = UIAlertAction(title: Local.Approve, style: UIAlertAction.Style.default) { UIAlertAction in
                 print("Approve Pressed")
                 completionHandler(true)
             }
-            let denyAction = UIAlertAction(title: Local.Deny, style: UIAlertAction.Style.destructive) {
-                UIAlertAction in
+            let denyAction = UIAlertAction(title: Local.Deny, style: UIAlertAction.Style.destructive) { UIAlertAction in
                 print("Deny Pressed")
                 completionHandler(false)
             }
-            let cancelAction = UIAlertAction(title: Local.Cancel, style: UIAlertAction.Style.cancel) {
-                UIAlertAction in
+            let cancelAction = UIAlertAction(title: Local.Cancel, style: UIAlertAction.Style.cancel) { UIAlertAction in
                 print("Cancel Pressed")
                 completionHandler(nil)
             }
@@ -94,8 +90,8 @@ struct Alert{
         }
     }
     
-    static func genericApproveWithDismiss(viewController: UIViewController, title: String?, message: String?, error: NSError?, completionHandler: @escaping () -> Void){
-        DispatchQueue.main.async{
+    static func genericApproveWithDismiss(viewController: UIViewController, title: String?, message: String?, error: NSError?, completionHandler: @escaping () -> Void) {
+        DispatchQueue.main.async {
             var titleCustmized = Local.Success
             if let title = title {
                 titleCustmized = title
@@ -112,8 +108,7 @@ struct Alert{
                 print(error.description)
             }
             
-            let dismissAction = UIAlertAction(title: Local.Ok, style: UIAlertAction.Style.default) {
-                UIAlertAction in
+            let dismissAction = UIAlertAction(title: Local.Ok, style: UIAlertAction.Style.default) { UIAlertAction in
                 completionHandler()
             }
             
@@ -126,8 +121,8 @@ struct Alert{
         }
     }
     
-    static func genericWithDismiss(viewController: UIViewController, title: String?, message: String?, error: NSError?, completionHandler: @escaping () -> Void){
-        DispatchQueue.main.async{
+    static func genericWithDismiss(viewController: UIViewController, title: String?, message: String?, error: NSError?, completionHandler: @escaping () -> Void) {
+        DispatchQueue.main.async {
             var titleCustmized = Local.Success
             if let title = title {
                 titleCustmized = title
@@ -146,8 +141,7 @@ struct Alert{
             
             let generalAlert = UIAlertController(title: titleCustmized, message: alertMessage, preferredStyle: .alert)
             
-            let dismissAction = UIAlertAction(title: Local.Ok, style: UIAlertAction.Style.default) {
-                UIAlertAction in
+            let dismissAction = UIAlertAction(title: Local.Ok, style: UIAlertAction.Style.default) { UIAlertAction in
                 completionHandler()
             }
             
@@ -158,4 +152,3 @@ struct Alert{
         }
     }
 }
-

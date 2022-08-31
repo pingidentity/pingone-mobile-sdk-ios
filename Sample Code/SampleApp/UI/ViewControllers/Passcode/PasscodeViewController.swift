@@ -26,7 +26,7 @@ class PasscodeViewController: UIViewController {
         getOneTimePasscode()
     }
     
-    //MARK: - OTP functions
+    // MARK: - OTP functions
     
     func getOneTimePasscode() {
         PingOne.getOneTimePasscode() {[weak self] oneTimePasscodeData, error in
@@ -43,7 +43,7 @@ class PasscodeViewController: UIViewController {
             guard let _ = error else {
                 return
             }
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
                 self.passCodeLbl.text =  OneTimePasscodeError.notPaired
                 self.timerLbl.text = ""
             }
@@ -72,7 +72,7 @@ class PasscodeViewController: UIViewController {
         timerLbl.text = "\(remainTime)s"
     }
     
-    func isPasscodeEnded(currentdate: Date, eventdate: Date) -> Bool{
+    func isPasscodeEnded(currentdate: Date, eventdate: Date) -> Bool {
         if currentdate >= eventdate {
             return true
         }

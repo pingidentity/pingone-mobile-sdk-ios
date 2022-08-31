@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PingOneSDK",
+        "repositoryURL": "git@gitlab.corp.pingidentity.com:pingid_ios/PingID_SDK_Swift.git",
+        "state": {
+          "branch": "P14C-35815-change-the-build-jobs-to-use-the-binary-package",
+          "revision": "871457732d26ea47749d9573e5bee757c911bb7c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

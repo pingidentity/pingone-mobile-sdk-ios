@@ -17,30 +17,34 @@ protocol QRCaptureDelegate: AnyObject {
 
 class QRCapture: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 
-    var captureSession: AVCaptureSession!
-    var previewLayer:   AVCaptureVideoPreviewLayer!
-    weak var delegate:  QRCaptureDelegate?
+    var captureSession: AVCaptureSession?
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    weak var delegate: QRCaptureDelegate?
     
-    func stop(){
-        if (captureSession?.isRunning == true) {
-            captureSession.stopRunning()
-        }
-    }
-    
-    func start(){
-        if (captureSession?.isRunning == false) {
-            captureSession.startRunning()
+    func stop() {
+        if captureSession?.isRunning == true {
+            captureSession?.stopRunning()
+            print("Stopped camera scan")
         }
     }
     
     func addPreviewLayerTo(_ cameraView: UIView, withDelay: Bool, completion:@escaping (_ isDone: Bool) -> Void) {
         captureSession = AVCaptureSession()
+        previewLayer = AVCaptureVideoPreviewLayer()
+        let videoInput: AVCaptureDeviceInput
         
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
+        guard var previewLayer = previewLayer else {
+            completion(true)
             return
         }
-        
-        let videoInput: AVCaptureDeviceInput
+        guard let captureSession = self.captureSession else {
+            completion(true)
+            return
+        }
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
+            completion(true)
+            return
+        }
         
         do {
             videoInput = try AVCaptureDeviceInput(device: captureDevice)
@@ -48,16 +52,14 @@ class QRCapture: NSObject, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         
-        if (captureSession.canAddInput(videoInput)) {
+        if captureSession.canAddInput(videoInput) {
             captureSession.addInput(videoInput)
         } else {
             captureFailed()
             return
         }
-        
         let metadataOutput = AVCaptureMetadataOutput()
-        
-        if (captureSession.canAddOutput(metadataOutput)) {
+            if captureSession.canAddOutput(metadataOutput) {
             captureSession.addOutput(metadataOutput)
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr]
@@ -66,18 +68,30 @@ class QRCapture: NSObject, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         
-        var delay : Double = 0
+        var delay: Double = 0
         if withDelay {
             delay = 1.75
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-            self.previewLayer.frame = cameraView.layer.bounds
-            self.previewLayer.videoGravity = .resizeAspectFill
-            cameraView.layer.addSublayer(self.previewLayer)
-            self.captureSession.startRunning()
-            completion(true)
+            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            previewLayer.frame = cameraView.layer.bounds
+            previewLayer.videoGravity = .resizeAspectFill
+            cameraView.layer.addSublayer(previewLayer)
+            
+            self.startSessionInBackground {
+                DispatchQueue.main.async {
+                    print("Started camera scan")
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    func startSessionInBackground(completion:@escaping () -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            self.captureSession?.startRunning()
+            completion()
         }
     }
     
@@ -86,7 +100,8 @@ class QRCapture: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        captureSession.stopRunning()
+        captureSession?.stopRunning()
+        print("Stopped camera scan")
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
@@ -98,5 +113,4 @@ class QRCapture: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     func found(code: String) {
         delegate?.found(code: code)
     }
-
 }

@@ -72,4 +72,3 @@ struct Push {
 struct OneTimePasscodeError {
     static let notPaired               = "Device Not Paired"
 }
-

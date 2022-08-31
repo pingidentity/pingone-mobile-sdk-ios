@@ -32,22 +32,22 @@ public class RequestParams {
         self.flowId = flowId
     }
     
-    required init(){
+    required init() {
         self.action = nil
     }
     
-    //getFlowId
+    // getFlowId
     convenience init(urlStr: String) {
         
         let protocoloParams = [Identifiers.clientIdKey: Config.clientId, Identifiers.responseTypeKey: Config.responseType, Identifiers.scopeKey: Config.scope, Identifiers.responseMode: Config.responseMode]
-        let params : [String:Any] = [Identifiers.ProtocolParameters: protocoloParams]
+        let params: [String: Any] = [Identifiers.ProtocolParameters: protocoloParams]
        
         let completeUrlStr = "\(Config.oidcIssuer)/\(Identifiers.getFlow)?\(Identifiers.responseTypeKey)=\(Config.responseType)&\(Identifiers.clientIdKey)=\(Config.clientId)&\(Identifiers.scopeKey)=\(Config.scope)&\(Identifiers.responseMode)=\(Config.responseMode)"
         
         self.init(urlStr: completeUrlStr, params: params, name: Identifiers.PathNameFlows, flowId: nil)
     }
     
-    //Login
+    // Login
     convenience init(username: String, password: String, flowID: String) {
         
         let params = [Identifiers.username: username, Identifiers.password: password]
@@ -56,7 +56,7 @@ public class RequestParams {
         self.init(urlStr: completeUrlStr, params: params, name: Identifiers.PathNameLogin, flowId: flowID)
     }
     
-    //OTP
+    // OTP
     convenience init(otp: String, flowID: String) {
         
         let params = [Identifiers.otp: otp]
@@ -65,16 +65,16 @@ public class RequestParams {
         self.init(urlStr: completeUrlStr, params: params, name: Identifiers.PathNameOTP, flowId: flowID)
     }
     
-    //SelectDevice
+    // SelectDevice
     convenience init(deviceId: String, mobilePayload: String, flowID: String) {
         
-        let params = [Identifiers.deviceRef: [Identifiers.id: deviceId], Identifiers.mobilePayloadKey: mobilePayload] as [String : Any]
+        let params = [Identifiers.deviceRef: [Identifiers.id: deviceId], Identifiers.mobilePayloadKey: mobilePayload] as [String: Any]
         
         let completeUrlStr = "\(Config.oidcIssuer)/\(Identifiers.pfWs)/\(Identifiers.authn)/\(Identifiers.PathNameFlows)/\(flowID)"
         self.init(urlStr: completeUrlStr, params: params, name: Identifiers.PathNameSelectDevice, flowId: flowID)
     }
     
-    //Authenticate
+    // Authenticate
     convenience init(mobilePayload: String, flowID: String) {
         
         let params = [Identifiers.mobilePayloadKey: mobilePayload]
@@ -83,13 +83,13 @@ public class RequestParams {
         self.init(urlStr: completeUrlStr, params: params, name: Identifiers.PathNameAuthenticate, flowId: flowID)
     }
     
-    //Polling, CancelAuthentication, ContinueAuthentication
+    // Polling, CancelAuthentication, ContinueAuthentication
     convenience init(flowID: String) {
         let completeUrlStr = "\(Config.oidcIssuer)/\(Identifiers.pfWs)/\(Identifiers.authn)/\(Identifiers.PathNameFlows)/\(flowID)"
         self.init(urlStr: completeUrlStr, params: nil, name: Identifiers.PathNamePoll, flowId: flowID)
     }
     
-    //GetAuthnToken
+    // GetAuthnToken
     convenience init(code: String) {
         
         let params = [Identifiers.AuthnTokenCodeKey: code,
@@ -101,4 +101,3 @@ public class RequestParams {
         self.init(urlStr: completeUrlStr, params: params, name: Identifiers.PathNameGetToken, flowId: nil)
     }
 }
-

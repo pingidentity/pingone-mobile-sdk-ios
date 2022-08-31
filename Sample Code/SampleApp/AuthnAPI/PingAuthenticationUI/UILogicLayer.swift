@@ -15,7 +15,7 @@ final class UILogicLayer: NSObject {
     
     var needToPresentVC = true
     
-    func authenticate(request: RequestParams, completionHandler: @escaping (_ response: AuthenticationState?, _ error: NSError?) -> Void){
+    func authenticate(request: RequestParams, completionHandler: @escaping (_ response: AuthenticationState?, _ error: NSError?) -> Void) {
         PingAuthenticationCore.authenticate(request) { (response, error) in
             
             if let error = error {
@@ -23,21 +23,21 @@ final class UILogicLayer: NSObject {
             }
             
             if let response = response {
-                if self.needToPresentVC && authenticationState.status != .errorReceived{
+                if self.needToPresentVC && authenticationState.status != .errorReceived {
                     self.showMainVC()
                     
                 }
                 self.needToPresentVC = true
-                completionHandler(response,nil)
+                completionHandler(response, nil)
             }
         }
     }
     
-    func continueAuthentication(){
+    func continueAuthentication() {
         showMainVC()
     }
  
-    private func showMainVC(){
+    private func showMainVC() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard.init(name: ViewControllerKeys.storyboardId, bundle: nil)
             if let mainVC = storyboard.instantiateViewController(withIdentifier: ViewControllerKeys.MainVcID) as? MainAuthViewController {

@@ -23,4 +23,3 @@ class DynamicTableView: UITableView {
         self.invalidateIntrinsicContentSize()
     }
 }
-

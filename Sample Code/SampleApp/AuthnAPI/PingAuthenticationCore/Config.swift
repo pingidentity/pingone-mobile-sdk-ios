@@ -34,4 +34,3 @@ struct Config {
     static let clientSecret              = "" // Optional. Add the client secret here, according to its configuration in PingFederate.
     static let grantType                 = "authorization_code"
 }
-

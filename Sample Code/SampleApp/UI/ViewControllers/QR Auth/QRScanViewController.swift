@@ -14,7 +14,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
 
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var authKeyTextField: UITextField!
-    private var capture: QRCapture!
+    private var capture: QRCapture?
     
     var isKeyboardVisible = false
     var viewOriginY: CGFloat = 0
@@ -25,7 +25,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
         super.viewDidLoad()
 
         capture = QRCapture()
-        capture.delegate = self
+        capture?.delegate = self
         self.cameraView.clipsToBounds = true
         
         addKeyboardNotifications()
@@ -33,28 +33,26 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
     
     // MARK: Lifecycle
     
-    override func viewDidLayoutSubviews(){
-        self.capture.start()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.cameraView.alpha = 0
+        
+        // Handle camera UI
+        cameraView.alpha = 0
+        cameraView.clipsToBounds = true
 
-        DispatchQueue.main.async{
-            if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .authorized { //Request Access only if needed
-                
-                AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted:Bool) -> Void in
-                    
-                    DispatchQueue.main.async{
+        // Handle permissions
+        DispatchQueue.main.async {
+            if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .authorized {
+                AVCaptureDevice.requestAccess(for: AVMediaType.video) { granted in
+                    DispatchQueue.main.async {
                         self.cameraView.alpha = 1
                         self.startCameraPreview()
                     }
-                })
+                }
             } else {
                 self.startCameraPreview()
             }
-       }
+        }
     }
     
     @IBAction func authenticateWasTapped(_ sender: Any) {
@@ -66,39 +64,26 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
         }
     }
     
-    func startCameraPreview(){
-        self.capture.addPreviewLayerTo(self.cameraView, withDelay: false) { (isDone) in
+    func startCameraPreview() {
+        capture?.addPreviewLayerTo(self.cameraView, withDelay: false) { (isDone) in
             if isDone {
-                self.capture.start()
                 UIView.animate(withDuration: 0.25) {
                     self.cameraView.alpha = 1
                 }
             }
         }
-    }
-    
-    func didFinishCapture(){
-        self.capture.addPreviewLayerTo(self.cameraView, withDelay: true) { (isDone) in
-            if isDone {
-                self.capture.start()
-                UIView.animate(withDuration: 0.25) {
-                    self.cameraView.alpha = 1
-                }
-            }
-        }
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.capture.stop()
+        self.capture?.stop()
     }
     
     deinit {
         removeKeyboardNotifications()
     }
     
-    //MARK: QRCameraDelegate
+    // MARK: QRCameraDelegate
     
     func found(code: String) {
         startLoadingAnimation()
@@ -114,7 +99,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
         print(error)
     }
     
-    func openUsersApprovalVC(){
+    func openUsersApprovalVC() {
         DispatchQueue.main.async {
             self.view.endEditing(true)
             self.performSegue(withIdentifier: SegueName.UserApproval, sender: nil)
@@ -122,7 +107,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == SegueName.UserApproval){
+        if segue.identifier == SegueName.UserApproval {
             if let userVC = segue.destination as? UserApprovalViewController {
                 userVC.authObject = self.authObject
             }
@@ -131,14 +116,14 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
     
     // MARK: PingOneSDK methods call
     
-    func authenticateWith(_ code: String){
+    func authenticateWith(_ code: String) {
         PingOne.authenticate(code) { obj, error in
             self.stopLoadingAnimation()
             self.handleAuthObject(obj, error)
         }
     }
     
-    func handleAuthObject(_ obj: AuthenticationObject?, _ error: Error?){
+    func handleAuthObject(_ obj: AuthenticationObject?, _ error: Error?) {
         
         if error != nil { // If any error
             Alert.genericWithDismiss(viewController: self, title: nil, message: nil, error: error as NSError?) {
@@ -183,7 +168,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
         }
     }
     
-    func approveAuth(userId: String, authObject: AuthenticationObject){
+    func approveAuth(userId: String, authObject: AuthenticationObject) {
         let title = "\(Local.userSelectionTitle) \(userId)"
         
         Alert.approveDeny(viewController: self, title: title, message: nil) { approved in
@@ -201,12 +186,12 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
     
     // MARK: Handle Keyboard Raise
     
-    func addKeyboardNotifications(){
+    func addKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func removeKeyboardNotifications(){
+    func removeKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -227,7 +212,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
 
     // MARK: TextField Delegates
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         authKeyTextField.resignFirstResponder()
     }
     

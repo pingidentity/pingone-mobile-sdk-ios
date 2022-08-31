@@ -12,7 +12,7 @@ import PingOneSDK
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var actionTableView: UITableView!
-    var actionsArray: Array<ActionItem>!
+    var actionsArray = [ActionItem]()
     var notificationObject: NotificationObject?
     
     @IBOutlet weak var versionOutlt: UILabel!
@@ -26,14 +26,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let PasscodeAction = ActionItem.init(actionName: SDKFunctionality.OneTimePasscode, segueID: SegueName.passcode, actionType: .segue)
         let QRAuthAction = ActionItem.init(actionName: SDKFunctionality.QRAuth, segueID: SegueName.QRAuth, actionType: .segue)
         let logsAction = ActionItem.init(actionName: SDKFunctionality.SendLogs, segueID: nil, actionType: .sendLogs)
-        actionsArray = [pairAction,oidcAction,authnAction,logsAction,PasscodeAction,QRAuthAction]
+        actionsArray = [pairAction, oidcAction, authnAction, logsAction, PasscodeAction, QRAuthAction]
         self.navigationItem.title = Local.appTitle
         if let version = getAppVersionAndBuild() {
             versionOutlt.text = version
         }
         
-        NotificationCenter.default.addObserver(self,selector: #selector(updateScreenByClientContext), name: NSNotification.Name(rawValue: "notificationRecived"), object: nil)
-        NotificationCenter.default.addObserver(self,selector: #selector(resetClientContextUpdate), name: NSNotification.Name(rawValue: "notificationResponded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateScreenByClientContext), name: NSNotification.Name(rawValue: "notificationRecived"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetClientContextUpdate), name: NSNotification.Name(rawValue: "notificationResponded"), object: nil)
         
     }
     
@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "notificationResponded"), object: nil)
     }
 
-    func getAppVersionAndBuild() -> String?{
+    func getAppVersionAndBuild() -> String? {
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             if let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
                 return "v\(appVersion)(\(appBuild))"
@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return nil
     }
     
-    @objc func updateScreenByClientContext(){
+    @objc func updateScreenByClientContext() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Error accessing AppDelegate")
             return
@@ -72,14 +72,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             if let fontStr = clientContextJson["header_font_color"] as? String {
                 let attributes = [NSAttributedString.Key.foregroundColor: UIColor(hexString: fontStr)]
-                self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+                self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key: Any]
             }
         }
     }
     
-    @objc func resetClientContextUpdate(){
+    @objc func resetClientContextUpdate() {
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key: Any]
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {
@@ -93,25 +93,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return nil
     }
     
-    //Table View
+    // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
         return actionsArray.count
     }
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    var cell : UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
-        }
-        if self.actionsArray.count > 0 {
-            cell?.textLabel!.text = self.actionsArray[indexPath.row].actionName
+    let cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
+ 
+        if actionsArray.count > 0 {
+            cell?.textLabel!.text = actionsArray[indexPath.row].actionName
         }
         cell?.textLabel?.numberOfLines = 0
 
-        return cell!
+        return cell ?? UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -119,8 +116,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 100.0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedActionItem = actionsArray[indexPath.row]
+        
         switch selectedActionItem.type {
         case .segue:
             if let segueID = selectedActionItem.segueID {
@@ -128,11 +126,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         case .sendLogs:
             PingOne.sendLogs { (supportId, error) in
-                if let supportId = supportId{
-                    Alert.generic(viewController: self, message:"Support ID: \(supportId)", error: nil)
+                if let supportId = supportId {
+                    Alert.generic(viewController: self, message: "Support ID: \(supportId)", error: nil)
                     print("Support ID:\(supportId)")
-                }
-                else if let error = error{
+                } else if let error = error {
                     print(error.localizedDescription)
                 }
             }

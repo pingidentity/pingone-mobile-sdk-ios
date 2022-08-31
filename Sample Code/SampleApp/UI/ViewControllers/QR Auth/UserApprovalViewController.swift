@@ -38,7 +38,7 @@ class UserApprovalViewController: MainViewController, UITableViewDelegate, UITab
         
     }
     
-    func getUsers(){
+    func getUsers() {
         guard let users = authObject?.users else {
             print("No users in the Authentication Object")
             return
@@ -55,7 +55,7 @@ class UserApprovalViewController: MainViewController, UITableViewDelegate, UITab
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell : UITableViewCell? = UITableViewCell()
+        let cell: UITableViewCell? = UITableViewCell()
         cell?.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell?.textLabel?.numberOfLines = 0
         
@@ -99,7 +99,7 @@ class UserApprovalViewController: MainViewController, UITableViewDelegate, UITab
     }
 
 
-    //MARK: handle user approval
+    // MARK: handle user approval
     
     func approveUserSelected() {
         if let authenticateObject = authObject, let userId = selectedUser?.id {

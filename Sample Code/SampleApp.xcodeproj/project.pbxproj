@@ -125,7 +125,9 @@
 		69155A6E24432F4000CD0D16 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				698E4A86279FDF36002D7553 /* QR Auth */,
+				698E4A89279FDF47002D7553 /* QRCapture.swift */,
+				698E4A87279FDF47002D7553 /* User.swift */,
+				698E4A88279FDF47002D7553 /* UsersHandler.swift */,
 				7BA92C26235F00570022D645 /* ActionItem.swift */,
 				7BA92C20235F00440022D645 /* Constants.swift */,
 				69155A79244C4F2800CD0D16 /* Extension+UIColor.swift */,
@@ -181,16 +183,6 @@
 				69C4583F254FE38C00010773 /* AuthnViewController.swift */,
 			);
 			path = "Authentication API";
-			sourceTree = "<group>";
-		};
-		698E4A86279FDF36002D7553 /* QR Auth */ = {
-			isa = PBXGroup;
-			children = (
-				698E4A89279FDF47002D7553 /* QRCapture.swift */,
-				698E4A87279FDF47002D7553 /* User.swift */,
-				698E4A88279FDF47002D7553 /* UsersHandler.swift */,
-			);
-			path = "QR Auth";
 			sourceTree = "<group>";
 		};
 		698E4A8F279FE039002D7553 /* Views */ = {
@@ -317,6 +309,7 @@
 				7BA52469229AA65200DD0E06 /* Frameworks */,
 				7BA5246A229AA65200DD0E06 /* Resources */,
 				7BA52486229AA7E000DD0E06 /* Embed Frameworks */,
+				695F4692284F93050021B9AE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -382,6 +375,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		695F4692284F93050021B9AE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7BA52468229AA65200DD0E06 /* Sources */ = {
@@ -478,7 +491,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 405;
+				CURRENT_PROJECT_VERSION = 415;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -541,7 +554,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 405;
+				CURRENT_PROJECT_VERSION = 415;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -571,7 +584,7 @@
 				CODE_SIGN_ENTITLEMENTS = SampleApp/SampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 405;
+				CURRENT_PROJECT_VERSION = 415;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YZYUGL7S48;
 				ENABLE_BITCODE = NO;
@@ -585,7 +598,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pingIdentity.p14c.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "P14C Sample InHouse Development";
@@ -602,7 +615,7 @@
 				CODE_SIGN_ENTITLEMENTS = SampleApp/SampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 405;
+				CURRENT_PROJECT_VERSION = 415;
 				DEVELOPMENT_TEAM = YZYUGL7S48;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -615,7 +628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pingIdentity.p14c.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "P14C Sample InHouse Distribution";
