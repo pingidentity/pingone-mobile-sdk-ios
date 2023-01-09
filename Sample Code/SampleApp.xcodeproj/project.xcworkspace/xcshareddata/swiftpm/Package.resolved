@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "PingOneSDK",
-        "repositoryURL": "git@gitlab.corp.pingidentity.com:pingid_ios/PingID_SDK_Swift.git",
+        "repositoryURL": "git@gitlab.corp.pingidentity.com:github-clones/pingone-customers-mobile-sdk-ios.git",
         "state": {
-          "branch": "P14C-35815-change-the-build-jobs-to-use-the-binary-package",
-          "revision": "871457732d26ea47749d9573e5bee757c911bb7c",
+          "branch": "1.8.1",
+          "revision": "d70ff33363688db6e1f530a23c7cda6319d6b134",
           "version": null
         }
       }

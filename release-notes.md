@@ -1,5 +1,14 @@
 # Release Notes
 
+## v1.8.1 - Jan 4th, 2023
+Features:
+
+- Updated SDK to version 1.8.1.
+- Added support for importing PingOne MFA SDK using Swift Package Manager.
+- Added the ability to define time-sensitive notifications for iOS apps, taking advantage of the focus mode mechanism which was introduced in iOS 15.
+- Added support for a new push category APPROVE_AND_OPEN_APP: when the approve button is clicked, authentication is completed and the app is opened.
+- Support for convergence from PingID SDK to PingOne SDK.
+
 ## v1.7.2 - Aug 31st, 2022
 Features:
  

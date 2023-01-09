@@ -16,7 +16,6 @@ class ManualPairingViewController: UIViewController, UITextFieldDelegate {
 
     var interaction: UIDocumentInteractionController?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = PairingMethodName.Manual

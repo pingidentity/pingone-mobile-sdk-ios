@@ -59,7 +59,8 @@ struct Local {
     static let AuthStatusCompleted              = "COMPLETED"
     static let AuthUserApprovalNOTRequired      = "NOT_REQUIRED"
     static let AuthUserApprovalRequired         = "REQUIRED"
-    static let userSelectionTitle               = "Do you want to approve authentication for a user"
+    static let UserSelectionTitle               = "Do you want to approve authentication for a user"
+    static let ClientContextPlaceholder         = "clientContext will be placed here if returned from the SDK"
 }
 
 struct Push {
