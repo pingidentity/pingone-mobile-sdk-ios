@@ -32,7 +32,8 @@ class UserApprovalViewController: MainViewController, UITableViewDelegate, UITab
         usersTableView.dataSource = self
         usersTableView.separatorColor = UIColor.black
         
-        if let context = authObject?.clientContext {
+        contextLbl.text = Local.ClientContextPlaceholder
+        if let context = authObject?.clientContext as? String, context.count > 0 {
             contextLbl.text = context
         }
         
@@ -83,7 +84,7 @@ class UserApprovalViewController: MainViewController, UITableViewDelegate, UITab
             
         } else if needsApproval == Local.AuthUserApprovalRequired {
             
-            let title = "\(Local.userSelectionTitle) \(selectedUser?.id ?? "")"
+            let title = "\(Local.UserSelectionTitle) \(selectedUser?.id ?? "")"
             Alert.approveDeny(viewController: self, title: title, message: nil) { approved in
                 if let approvedResult = approved {
                     if approvedResult {

@@ -169,7 +169,7 @@ class QRScanViewController: MainViewController, UITextFieldDelegate, QRCaptureDe
     }
     
     func approveAuth(userId: String, authObject: AuthenticationObject) {
-        let title = "\(Local.userSelectionTitle) \(userId)"
+        let title = "\(Local.UserSelectionTitle) \(userId)"
         
         Alert.approveDeny(viewController: self, title: title, message: nil) { approved in
             if let approvedResult = approved {
