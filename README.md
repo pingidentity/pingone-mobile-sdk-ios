@@ -11,10 +11,11 @@ Release notes can be found [here](./release-notes.md).
 
 Reference documentation is available for PingOne for Customers Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
 
-* [PingOne for Customers Mobile SDK release notes and admin related documentation](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
-* [PingOne for Customers Mobile SDK developer documentation](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-native-sdks)
-* [PingOne for Customers Mobile SDK](https://github.com/pingidentity/pingone-sample-app-ios)
-* [Authenticator sample app](https://github.com/pingidentity/pingone-authenticator-sample-app-ios)
+* [PingOne PingOne MFA Documentation](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
+* [PingOne MFA Native SDK documentation](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-native-sdks)
+* [PingOne MFA SDK - API documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios/documentation/pingonesdk)
+* [PingOne MFA SDK - sample app](https://github.com/pingidentity/pingone-sample-app-ios)
+* [PingOne MFA SDK - ready-for-use authenticator app](https://github.com/pingidentity/pingone-authenticator-sample-app-ios)
 
 ### Content
 
@@ -63,7 +64,7 @@ For more information, see the Apple documentation on [managing identifiers](http
 
 **Note:** PingOne SDK supports the following software versions:
 
-* Xcode 13 and above.
+* Xcode 14 and above.
 * iOS 12.0 and above.
 
 <a name="installation"></a>
@@ -86,7 +87,7 @@ You can use either of the following methods to add the PingOne SDK component to 
 <a name="installation_manual"></a>
 ##### 4.2 Manual downloading from the Ping Identity Assets
 
-1. Download the latest version 1.9.0 [here](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.1.9.0.zip).
+1. Download the latest version [1.10.0](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.1.10.0.zip).
 2. Unzip the PingOneSDK.xcframework zipped file and drag it into your project.
 3. In your **Project Navigator**, click on your target, and drag **PingOneSDK.xcframework** to **Frameworks, Libraries, and Embedded Content**.
 4. Check the **Copy items if needed** checkbox.
