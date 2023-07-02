@@ -1,21 +1,21 @@
-# PingOne for Customers Mobile SDK
+# PingOne MFA Mobile SDK
 
 ## Overview
 
-PingOne for Customers Mobile SDK is a set of components and services targeted at enabling organizations to include multifactor authentication (MFA) into native applications.
+PingOne MFA Mobile SDK is a set of components and services targeted at enabling organizations to include multifactor authentication (MFA) into native applications.
 This solution leverages Ping Identity’s expertise in MFA technology, as a component that can be embedded easily and quickly into a new or existing application. 
 
 Release notes can be found [here](./release-notes.md).
 
 ### Documentation
 
-Reference documentation is available for PingOne for Customers Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
+Reference documentation is available for PingOne MFA Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
 
-* [PingOne PingOne MFA Documentation](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
-* [PingOne MFA Native SDK documentation](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-native-sdks)
-* [PingOne MFA SDK - API documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios/documentation/pingonesdk)
-* [PingOne MFA SDK - sample app](https://github.com/pingidentity/pingone-sample-app-ios)
-* [PingOne MFA SDK - ready-for-use authenticator app](https://github.com/pingidentity/pingone-authenticator-sample-app-ios)
+* [Introduction to PingOne MFA](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
+* [PingOne MFA Mobile SDK Overview](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-sdk-for-ios)
+* [PingOne MFA Mobile SDK API Documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios)
+* [PingOne MFA Mobile SDK Sample App](https://github.com/pingidentity/pingone-sample-app-ios)
+* [PingOne MFA SDK Ready-For-Use Authenticator App](https://github.com/pingidentity/pingone-authenticator-sample-app-ios)
 
 ### Content
 
