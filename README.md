@@ -87,7 +87,7 @@ You can use either of the following methods to add the PingOne SDK component to 
 <a name="installation_manual"></a>
 ##### 4.2 Manual downloading from the Ping Identity Assets
 
-1. Download the latest version [1.10.0](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.1.10.0.zip).
+1. Download the latest version [1.10.1](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.1.10.1.zip).
 2. Unzip the PingOneSDK.xcframework zipped file and drag it into your project.
 3. In your **Project Navigator**, click on your target, and drag **PingOneSDK.xcframework** to **Frameworks, Libraries, and Embedded Content**.
 4. Check the **Copy items if needed** checkbox.
@@ -178,4 +178,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SAMPLE CODE OR THE USE OR OTHER DEALINGS IN
 THE SAMPLE CODE.  FURTHERMORE, THIS SAMPLE CODE IS NOT COMMERCIALLY SUPPORTED BY PING IDENTITY BUT QUESTIONS MAY BE ADDRESSED TO PING'S SUPPORT CENTER OR MAY BE OTHERWISE ADDRESSED IN THE RELATED DOCUMENTATION.
 
-Any questions or issues should go to the support center, or may be discussed in the [Ping Identity developer communities](https://support.pingidentity.com/s/topic/0TO1W000000atTxWAI/pingone-mfa).
+Any questions or issues should go to the support center, or may be discussed in the [Ping Identity developer communities](https://community.pingidentity.com/collaborate).

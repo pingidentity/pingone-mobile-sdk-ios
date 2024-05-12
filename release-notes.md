@@ -1,6 +1,12 @@
 # Release Notes
 
-## v1.10.0 - Jun 29th, 2023
+## v1.10.1 - May 12th, 2024
+Features:
+
+- In situations where multiple users carried out OIDC-based pairing on the same device without the application being closed in between, error 10013 was displayed - "Pairing is currently in progress - you cannot make another API call until it is completed." 
+This issue has been resolved.
+
+## v1.10.0 - Jun 26th, 2023
 Features:
 
 - The PingOne MFA SDK has been updated to rotate encryption keys once a year. Key rotation events are written to the audit log.
