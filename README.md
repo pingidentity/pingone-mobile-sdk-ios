@@ -13,7 +13,7 @@ Reference documentation is available for PingOne MFA Mobile SDK, describing its 
 
 * [Introduction to PingOne MFA](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
 * [PingOne MFA Mobile SDK Overview](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-sdk-for-ios)
-* [PingOne MFA Mobile SDK API Documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios)
+* [PingOne MFA Mobile SDK API Documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios/documentation/pingonesdk)
 * [PingOne MFA Mobile SDK Sample App](https://github.com/pingidentity/pingone-sample-app-ios)
 * [PingOne MFA SDK Ready-For-Use Authenticator App](https://github.com/pingidentity/pingone-authenticator-sample-app-ios)
 
