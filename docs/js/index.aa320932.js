@@ -561,6 +561,10 @@
             {
                 baseUrl: r
             } = window;
+        async function s() {
+            const e = new URL(r + "theme-settings.json", window.location.href);
+            return fetch(e.href).then(e => e.json()).catch(() => ({}))
+        }
         const c = (e, t) => n(i, e, t)
     },
     7138: function(e, t, o) {
@@ -1405,3 +1409,4 @@
     f8ba: function(e, t, o) {},
     fb1e: function(e, t, o) {}
 });
+*/
