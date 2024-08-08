@@ -548,6 +548,8 @@
             return i
         })), o.d(t, "a", (function() {
             return r
+        })), o.d(t, "b", (function() {
+            return s
         })), o.d(t, "c", (function() {
             return c
         }));
@@ -559,6 +561,19 @@
             {
                 baseUrl: r
             } = window;
+        async function s() {
+            try {
+                // Try to create a new URL object
+                const e = new URL(r + "theme-settings.json", window.location.href);
+                
+                // Fetch the JSON data from the created URL
+                const response = await fetch(e.href);
+                return await response.json();
+            } catch (error) {
+                // Return an empty string if there's an error during URL creation or fetching
+                return '';
+            }
+        }
         const c = (e, t) => n(i, e, t)
     },
     7138: function(e, t, o) {
