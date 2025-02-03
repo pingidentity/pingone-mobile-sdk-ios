@@ -11,7 +11,7 @@ Release notes can be found [here](./release-notes.md).
 
 Reference documentation is available for PingOne MFA Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
 
-* [Introduction to PingOne MFA](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
+* [Introduction to PingOne MFA](https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_intro_to_strong_authentication.html)
 * [PingOne MFA Mobile SDK Overview](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-sdk-for-ios)
 * [PingOne MFA Mobile SDK API Documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios/documentation/pingonesdk)
 * [PingOne MFA Mobile SDK Sample App](https://github.com/pingidentity/pingone-sample-app-ios)
