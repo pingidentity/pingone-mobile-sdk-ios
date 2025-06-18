@@ -1,5 +1,15 @@
 # Release Notes
 
+## v2.1.0 - June 17th, 2025
+Features:
+
+- Added support for the PingOne Singapore geography
+- Deprecated the setDevicePairedAfterReinstall method, as it is scheduled for removal in a future release 
+- Added new package dependencies for the following libraries:  
+  **JOSESwift**, **Reachability**, **SwiftOTP**, and **ZIPFoundation**
+- Fixed a bug where `PingOne.pair()` triggered the `completionHandler` twice  
+  [Issue #48](https://github.com/pingidentity/pingone-mobile-sdk-ios/issues/48)
+
 ## v2.0.0 - April 1st, 2025
 Features:
 

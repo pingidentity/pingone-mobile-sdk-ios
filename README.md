@@ -55,7 +55,7 @@ You must configure the SDK at least once before using it. Configure the SDK usin
 /// Initializes the PingOne SDK for a specific geo.
     ///
     /// - Parameter geo: The selected enum value.
-    /// Possible values are: `NorthAmerica`, `Europe`, `Canada` and `Australia`.
+    /// Possible values are: `NorthAmerica`, `Europe`, `Canada`, `Australia` and `Singapore`.
     ///
     /// > Warning: If this method is not called, the SDK will throw an error.
     ///
@@ -76,6 +76,8 @@ Select the desired geo from the PingOneGeo enum:
     case Australia
     /// Canada
     case Canada
+   /// Singapore
+    case Singapore
 }
 ```
 
