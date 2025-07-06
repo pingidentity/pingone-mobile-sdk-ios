@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.1.1 - July 6th, 2025
+Fixed an issue that was causing pairing of devices to fail in PingOne's Australia and Canada regions.
+
 ## v2.1.0 - June 22nd, 2025
 Features:
 
