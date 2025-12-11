@@ -11,7 +11,7 @@ Release notes can be found [here](./release-notes.md).
 
 Reference documentation is available for PingOne MFA Mobile SDK, describing its capabilities, features, installation and setup, integration with mobile apps, deployment and more: 
 
-* [Introduction to PingOne MFA](https://docs.pingidentity.com/csh?Product=p1&context=p1mfa_c_introduction)
+* [Introduction to PingOne MFA](https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_intro_to_strong_authentication.html)
 * [PingOne MFA Mobile SDK Overview](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-mfa-sdk-for-ios)
 * [PingOne MFA Mobile SDK API Documentation](https://pingidentity.github.io/pingone-mobile-sdk-ios/documentation/pingonesdk)
 * [PingOne MFA Mobile SDK Sample App](https://github.com/pingidentity/pingone-sample-app-ios)
@@ -132,7 +132,7 @@ You can use either of the following methods to add the PingOne SDK component to 
 <a name="installation_manual"></a>
 ##### 5.2 Manual download from the Ping Identity Assets
 
-1. Download the latest version [2.0.0](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.2.0.0.zip).
+1. Download the latest version [2.2.0](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.2.2.0.zip).
 2. Unzip the PingOneSDK.xcframework zipped file and drag it into your project.
 3. In your **Project Navigator**, click on your target, and drag **PingOneSDK.xcframework** to **Frameworks, Libraries, and Embedded Content**.
 4. Check the **Copy items if needed** checkbox.
