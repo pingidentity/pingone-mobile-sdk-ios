@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.2.1 - March 1st, 2026
+- Fixed an issue where the keychain entry remained after configuration and reinstallation instead of being properly deleted.
+- Resolved a bug that caused the SDK to lose trust with the server when keychain errors occurred.
+
 ## v2.2.0 - December 11th, 2025
 - Resolved an issue where the configuration callback was being invoked multiple times
 - Fixed a defect that prevented the `getInfo()` method from being executed following an application restart or during background-to-foreground transitions under certain conditions.
