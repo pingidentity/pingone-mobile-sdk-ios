@@ -1,5 +1,16 @@
 # Release Notes
 
+## v2.3.0 - April 26th, 2026
+- Fixed an issue where the push notification auth timeout defaulted to the maximum value rather than the calculated one.
+- Updated the getOneTimePasscode() method to return an explicit error when One-Time Passcode (OTP) is not enabled.
+- NotificationObject.approve() now returns a `confirmationInfo` object to support future capabilities, as well as specific error codes for device-related approval failures.
+- Added the `DenyReason enum` to specify the reason for a denial for `NotificationObject.deny()`.
+
+Deprecations:
+
+- Deprecated `deny(completionHandler: @escaping (_ error: NSError?)` Use `deny(reason: DenyReason = .none, completionHandler: @escaping (_ error: NSError?) -> Void)`
+
+
 ## v2.2.1 - March 1st, 2026
 - Fixed an issue where the keychain entry remained after configuration and reinstallation instead of being properly deleted.
 - Resolved a bug that caused the SDK to lose trust with the server when keychain errors occurred.
@@ -11,7 +22,7 @@
 - Addressed an issue where the One-Time Passcode (OTP) refresh duration did not update based on the configured refresh duration, remaining fixed at 30 seconds
 
 ## v2.1.1 - July 6th, 2025
-Fixed an issue that was causing pairing of devices to fail in PingOne's Australia and Canada regions.
+- Fixed an issue that was causing pairing of devices to fail in PingOne's Australia and Canada regions.
 
 ## v2.1.0 - June 22nd, 2025
 Features:
