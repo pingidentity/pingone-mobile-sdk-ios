@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.3.1 - May 17th, 2026
+- Improved detection of jailbroken devices.
+
 ## v2.3.0 - April 26th, 2026
 - Fixed an issue where the push notification auth timeout defaulted to the maximum value rather than the calculated one.
 - Updated the getOneTimePasscode() method to return an explicit error when One-Time Passcode (OTP) is not enabled.
