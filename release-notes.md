@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.3.2 - Jul 6th, 2026
+- Fixed a race condition where the SDK could cache the default private key type instead of updating it with the actual key type after key creation.
+- Fixed a race condition that could cause the trust operation to run multiple times.
+
 ## v2.3.1 - May 17th, 2026
 - Improved detection of jailbroken devices.
 
