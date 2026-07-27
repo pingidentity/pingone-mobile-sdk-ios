@@ -1,5 +1,20 @@
 # Release Notes
 
+## v2.4.0 - July 23rd, 2026
+Features:
+
+- Added async/await support across the PingOne public API, alongside the existing completion-handler methods.
+- Integrated Apple App Attest to strengthen device integrity verification.
+- Improved reliability and thread safety across configuration, logging, key rotation, and device posture analysis.
+
+Compatibility:
+
+- Updated minimum OS target to iOS 16.0.
+
+Dependencies:
+
+- Removed the Reachability dependency; network reachability is now handled using native Apple APIs.
+
 ## v2.3.2 - Jul 6th, 2026
 - Fixed a race condition where the SDK could cache the default private key type instead of updating it with the actual key type after key creation.
 - Fixed a race condition that could cause the trust operation to run multiple times.
@@ -16,7 +31,6 @@
 Deprecations:
 
 - Deprecated `deny(completionHandler: @escaping (_ error: NSError?)` Use `deny(reason: DenyReason = .none, completionHandler: @escaping (_ error: NSError?) -> Void)`
-
 
 ## v2.2.1 - March 1st, 2026
 - Fixed an issue where the keychain entry remained after configuration and reinstallation instead of being properly deleted.
