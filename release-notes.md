@@ -1,6 +1,6 @@
 # Release Notes
 
-## v2.4.0 - July 23rd, 2026
+## v2.4.0 - July 27th, 2026
 Features:
 
 - Added async/await support across the PingOne public API, alongside the existing completion-handler methods.
