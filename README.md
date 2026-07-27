@@ -32,6 +32,7 @@ Reference documentation is available for PingOne MFA Mobile SDK, describing its 
 9. [Test Push Notifications](#test_push)
 10. [Localization](#localization)
 11. [Kechain sharing](#kechain_sharing)
+12. [AppAttest Setup](#appattest_setup)
 
 
 <a name="prerequisites"></a>
@@ -132,7 +133,7 @@ You can use either of the following methods to add the PingOne SDK component to 
 <a name="installation_manual"></a>
 ##### 5.2 Manual download from the Ping Identity Assets
 
-1. Download the latest version [2.3.2](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.2.3.2.zip).
+1. Download the latest version [2.4.0](https://assets.pingone.com/pingonemobile/ios-sdk/release/PingOneSDK.xcframework.2.4.0.zip).
 2. Unzip the PingOneSDK.xcframework zipped file and drag it into your project.
 3. In your **Project Navigator**, click on your target, and drag **PingOneSDK.xcframework** to **Frameworks, Libraries, and Embedded Content**.
 4. Check the **Copy items if needed** checkbox.
@@ -309,6 +310,20 @@ The following keys are returned by the PingOne SDK Remote Notification, with sug
 Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your private keychain group). This requirement will ensure that the SDK keychain values are private, and are not shared between apps​:
 
 ![](./img/p1_i_SDKkeychainSharing.png)
+
+<a name="appattest_setup"></a>
+#### 12. AppAttest Setup
+
+The PingOne SDK uses Apple's [App Attest](https://developer.apple.com/documentation/devicecheck/preparing-to-use-the-app-attest-service) service to strengthen device integrity verification. If your app wants to use this feature, you must enable it for your app:
+
+* In the Xcode project, select your target -> tap the `Signing & Capabilities` tab -> click the `+ Capability` button and add the **App Attest** capability. This automatically adds the `com.apple.developer.devicecheck.appattest-environment` entitlement to your app, with its value set to `development`.
+* In your **Apple Developer Account > Certificates, Identifiers & Profiles > Identifiers**, select your App ID and make sure the **App Attest** capability is enabled for it, then regenerate/download your provisioning profile so it includes the capability.
+
+**Note:** App Attest requires iOS 14.0 and above, and is not available on the Simulator — testing must be done on a physical device.
+
+The `development` entitlement value routes attestation requests to Apple's sandbox environment, which is intended for testing and keeps development activity separate from production risk metrics. Regardless of the entitlement value you set, your app always uses the production environment once distributed via TestFlight, the App Store, or the Apple Developer Enterprise Program, so no changes are needed before release.
+
+For more information, see the Apple documentation on [managing identifiers](https://developer.apple.com/help/account/manage-identifiers/enable-app-capabilities), [adding capabilities to your app](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app), and [preparing to use the App Attest service](https://developer.apple.com/documentation/devicecheck/preparing-to-use-the-app-attest-service).
 
 ## Disclaimer
 
