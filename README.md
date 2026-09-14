@@ -111,7 +111,7 @@ For more information, see the Apple documentation on [managing identifiers](http
 **Note:** PingOne SDK supports the following software versions:
 
 * Xcode 14 and above.
-* iOS 15.0 and above.
+* iOS 16.0 and above.
 
 <a name="installation"></a>
 #### 5. Installation
@@ -180,6 +180,60 @@ Call:
 @objc public static func processRemoteNotification(_ userInfo: [AnyHashable : Any], completionHandler: @escaping (_ notificationObject: NotificationObject?, _ error: NSError?) -> Void)
 ```
 and pass it the `userInfo` as is.
+
+##### Sample code
+
+The following example shows a typical implementation of `didReceiveRemoteNotification` in the `AppDelegate`, calling `processRemoteNotification` and reacting to the returned `notificationObject`:
+
+```swift
+func application(_ application: UIApplication,
+                 didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+    PingOne.processRemoteNotification(userInfo) { (notificationObject, error) in
+        if let error = error {
+            print("Error: \(String(describing: error))")
+            if error.code == ErrorCode.unrecognizedRemoteNotification.rawValue {
+                // Unrecognized remote notification.
+                completionHandler(UIBackgroundFetchResult.noData)
+            }
+        } else if let notificationObject = notificationObject {
+            self.notificationObject = notificationObject
+            switch notificationObject.notificationType {
+            case .authentication:
+
+                if let userInfo = userInfo as? [String: Any] {
+                    let title = self.getNotificationTextFrom(userInfo).title
+                    let message = self.getNotificationTextFrom(userInfo).body
+                    self.displayNotificationViewAlert(notificationObject, title: title, msg: message)
+                    completionHandler(UIBackgroundFetchResult.newData)
+                }
+
+            case .authCanceled:
+                DispatchQueue.main.async { // Remove top vc
+                    self.removeTopView({
+                        completionHandler(UIBackgroundFetchResult.noData)
+                        }
+                    )
+                }
+            default:
+                print("Error: \(String(describing: error))")
+                completionHandler(UIBackgroundFetchResult.noData)
+            }
+        } else {
+            completionHandler(UIBackgroundFetchResult.noData)
+        }
+    }
+}
+```
+
+> **Note:** `getNotificationTextFrom(userInfo)`, `displayNotificationViewAlert(...)` and `removeTopView(...)` in the example above are app-side helper methods — implement them in your own app to extract the notification title/body from the `userInfo` payload and to present or dismiss your authentication UI.
+
+##### Displaying UI for PingOne notifications
+
+The app should display UI for a PingOne notification **only in case `notificationObject` is not `nil`**. When `processRemoteNotification` returns `nil` (and no error), the push was not a user-facing PingOne authentication push and the app does not need to display any UI.
+
+In particular, Ping sends a **dry push** on first pairing — on iOS only. After the app calls `processRemoteNotification` with that push, it returns `nil`, which means the app doesn't need to display any UI for it; the app should simply call `completionHandler(UIBackgroundFetchResult.noData)` and continue as usual.
 
 <a name="work_with_push"></a>
 #### 8. Working with push messages in iOS
@@ -310,6 +364,10 @@ The following keys are returned by the PingOne SDK Remote Notification, with sug
 Make sure that the first item on your Keychain Groups is `YOUR_BUNDLE_ID` (your private keychain group). This requirement will ensure that the SDK keychain values are private, and are not shared between apps​:
 
 ![](./img/p1_i_SDKkeychainSharing.png)
+
+**Important:** Apple may implicitly add a `$(DEVELOPMENT_TEAM).*` wildcard keychain access group to a provisioning profile, even when the Keychain Sharing capability is **not** explicitly enabled. This entitlement is not shown anywhere in the Developer Portal UI — you can only see it by inspecting the downloaded `.mobileprovision` file itself.
+
+As a consequence, any apps signed with the same Apple Developer Team ID could end up sharing this default keychain access group, and can read/write each other's keychain items unless a more specific access group is explicitly configured — this includes multiple variants/targets of the same app (e.g. Debug/Release/white-label builds).
 
 <a name="appattest_setup"></a>
 #### 12. AppAttest Setup
