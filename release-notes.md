@@ -1,9 +1,12 @@
 # Release Notes
 
+## v2.4.2 - November 16th, 2026
+- Bug fixes and improvements.
+
 ## v2.4.1 - August 2nd, 2026
 - Fixed an issue where the device's private key type could be misreported as EC instead of RSA.
 
-## v2.4.0 - July 27th, 2026
+## v2.4.0 - July 23rd, 2026
 Features:
 
 - Added async/await support across the PingOne public API, alongside the existing completion-handler methods.
