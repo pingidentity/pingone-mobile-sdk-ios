@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.4.2 - November 16th, 2026
+- Bug fixes and improvements.
+
 ## v2.4.1 - August 2nd, 2026
 - Fixed an issue where the device's private key type could be misreported as EC instead of RSA.
 
